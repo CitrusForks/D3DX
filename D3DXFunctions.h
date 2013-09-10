@@ -52,23 +52,6 @@ inline float D3DXVec4Dot(const D3DXVECTOR4 *a, const D3DXVECTOR4 *b){
 	return (a->x*b->x+ a->y*b->y+ a->z*b->z + a->w*b->w);
 };
 
-/**Normalize a D3DXVECTOR3*/
-float Normalizza2(D3DXVECTOR3 *a){
-	float l=(a->x*a->x+a->z*a->z+a->y*a->y);
-	
-	if(l>0.0f){
-		l=sqrtf(l);
-		a->x/=l;
-		a->y/=l;
-		a->z/=l;
-		return l;
-	}
-	else{
-	//	printf("float Normalizza2(D3DXVECTOR3 *a): ERRORE GRAVE NORMALIZZAZIONE FALLITA!\n");
-		return 0.0f;
-	}
-};
-
 D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut, const D3DXVECTOR2 *pV){
 #ifdef D3DX_NORMALIZATION_POINTER_CHECK
 	if(pOut == NULL)
@@ -155,6 +138,22 @@ D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut){
 		return pOut;
 	}
 };
+
+/**Normalize a D3DXVECTOR3*/
+float D3DXVec3Normalize2(D3DXVECTOR3 *pOut){
+	float length = (pOut->x*pOut->x + pOut->z*pOut->z + pOut->y*pOut->y);
+	
+	if(length>0.0f){
+		length = sqrtf(length);
+		pOut->x /= length;
+		pOut->y /= length;
+		pOut->z /= length;
+		return length;
+	}
+	else
+		return 0.0f;
+};
+
 /**Normalize a D3DXVECTOR4*/
 D3DXVECTOR4 *D3DXVec4Normalize(D3DXVECTOR4 *pOut, const D3DXVECTOR4 *pV){
 #ifdef D3DX_NORMALIZATION_POINTER_CHECK
