@@ -118,7 +118,7 @@ D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *pV){
 	}
 };
 
-/**Normalize a D3DXVECTOR3*/
+/**D3DXVec3Normalize: normalizes a D3DXVECTOR3*/
 D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut){
 	float length = (pOut->x*pOut->x+
 					pOut->z*pOut->z+
@@ -139,7 +139,7 @@ D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut){
 	}
 };
 
-/**Normalize a D3DXVECTOR3*/
+/**D3DXVec3Normalize2: normalizes a D3DXVECTOR3 and returns is magnitude*/
 float D3DXVec3Normalize2(D3DXVECTOR3 *pOut){
 	float length = (pOut->x*pOut->x + pOut->z*pOut->z + pOut->y*pOut->y);
 	
@@ -154,7 +154,7 @@ float D3DXVec3Normalize2(D3DXVECTOR3 *pOut){
 		return 0.0f;
 };
 
-/**Normalize a D3DXVECTOR4*/
+/**D3DXVec4Normalize: normalizes a D3DXVECTOR4*/
 D3DXVECTOR4 *D3DXVec4Normalize(D3DXVECTOR4 *pOut, const D3DXVECTOR4 *pV){
 #ifdef D3DX_NORMALIZATION_POINTER_CHECK
 	if(pOut == NULL)
@@ -256,26 +256,9 @@ D3DXVECTOR3 D3DXFloat2Vec3(float vec[3]){
 	return D3DXVECTOR3(vec[0],vec[1],vec[2]);
 };
 
-//Check for similarity
+//Checking for similarity
 bool D3DXVec3Similar(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
 	D3DXVECTOR3 tmp = *a - *b;
 	return sqrtf(D3DXVec3Dot(&tmp,&tmp))<1e-12f;
-};
-
-/**Calculate a quaternion from an axis and an angle*/
-D3DXQUATERNION *D3DXQuaternionRotationAxis(D3DXQUATERNION *pOut, const D3DXVECTOR3 * pV, float Angle){
-	if(pOut==NULL)
-		pOut=new D3DXQUATERNION();
-
-	Angle /= 2.0f;
-
-	float sinAngle = sinf(Angle);
-
-	pOut->x = (sinAngle*pV->x);
-	pOut->y = (sinAngle*pV->y);
-	pOut->z = (sinAngle*pV->z);
-	pOut->w = cosf(Angle);
-
-	return pOut;
 };
 #endif

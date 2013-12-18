@@ -22,10 +22,7 @@ class D3DXVECTOR2{
 public:
 	float x, y;
 
-	D3DXVECTOR2()
-	{
-		x = 0.0f;
-		y = 0.0f;
+	D3DXVECTOR2(){
 	}
 
 	D3DXVECTOR2(float x, float y)

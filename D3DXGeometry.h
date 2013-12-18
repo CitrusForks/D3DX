@@ -55,13 +55,21 @@ D3DXVECTOR3 *D3DXTriangleNormal2(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const
 
 /**D3DXTriangleArea: calculates the area of a triangle*/
 float D3DXTriangleArea(D3DXVECTOR3 *v0, D3DXVECTOR3 *v1, D3DXVECTOR3 *v2){
-	float a = D3DXVecDistance(v0,v1);
-	float b = D3DXVecDistance(v0,v2);
-	float c = D3DXVecDistance(v1,v2);
+	float v01 = D3DXVecDistance(v0,v1);
+	float v02 = D3DXVecDistance(v0,v2);
+	float v12 = D3DXVecDistance(v1,v2);
 
-	float s = (a+b+c)/2.0f;
+	float s = (v01+v02+v12)/2.0f;
 
-	return sqrtf(s*(s-a)*(s-b)*(s-c));
+	float area2 = s*(s-v01)*(s-v02)*(s-v12);
+	return (area2>0.0f) ? sqrtf(area2): 0.0f;
+};
+
+inline float D3DXTriangleArea(float v01, float v02, float v12){
+	float s = (v01+v02+v12)/2.0f;
+
+	float area2 = s*(s-v01)*(s-v02)*(s-v12);
+	return (area2>0.0f) ? sqrtf(area2): 0.0f;
 };
 
 /**Convert a D3DXVECTOR2 into a D3DXVECTOR3*/
@@ -92,14 +100,15 @@ float D3DXVec3DistanceRayPointF(const D3DXVECTOR3 *rO, const D3DXVECTOR3 *rD, co
 
 /**D3DXDiffuse*/
 D3DXVECTOR3 *D3DXVec3Diffuse(float u1, float u2, D3DXVECTOR3 *out){
-	float cosTheta=sqrtf(u1);
-	float sinTheta=sqrtf(1.0f-cosTheta*cosTheta);
+	float cosTheta = sqrtf(u1);
+	float tmp = 1.0f-cosTheta*cosTheta;
+	float sinTheta = tmp>0.0 ? sqrtf(tmp) : 0.0f;
 
 	float phi = C_PI_2*u2;
 	
-	out->x=sinTheta*cosf(phi);
-	out->y=cosTheta;
-	out->z=sinTheta*sinf(phi);
+	out->x = sinTheta*cosf(phi);
+	out->y = cosTheta;
+	out->z = sinTheta*sinf(phi);
 
 	return out;
 };
@@ -152,7 +161,7 @@ bool D3DXVec3Refract(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1, fl
 			return false;
 		#endif
 	}else{
-		*out =  I*eta - N*(sqrtf(k)+ eta * NdotI);
+		*out =  I*eta - N*(sqrtf(k) + eta * NdotI);
 		return true;
 	}
 
@@ -206,7 +215,7 @@ bool D3DXVec3RefractNeg(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1,
 			return false;
 		#endif
 	}else{
-		*out =  - I*eta - N*(sqrtf(k)+ eta * NdotI);
+		*out =  - I*eta - N*(sqrtf(k) + eta*NdotI);
 		return true;
 	}
 };

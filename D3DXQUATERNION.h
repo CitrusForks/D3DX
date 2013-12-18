@@ -29,18 +29,38 @@ public:
 		z = 0.0f;
 		w = 1.0f;
 	}
+
+	void Init(const D3DXVECTOR3 &dir, float angle){
+
+	}
 };
 
 //D3DXQuaternionIdentity:: identity quaternion
 D3DXQUATERNION *D3DXQuaternionIdentity(D3DXQUATERNION *pOut){
 	if(pOut==NULL)
 		pOut = new D3DXQUATERNION();
-	else{ 
-		pOut->x=0.0f;
-		pOut->y=0.0f;
-		pOut->z=0.0f;
-		pOut->w=1.0f;
-	}
+
+	pOut->x = 0.0f;
+	pOut->y = 0.0f;
+	pOut->z = 0.0f;
+	pOut->w = 1.0f;
+
+	return pOut;
+};
+
+/**Calculate a quaternion from an axis and an angle*/
+D3DXQUATERNION *D3DXQuaternionRotationAxis(D3DXQUATERNION *pOut, const D3DXVECTOR3 * pV, float Angle){
+	if(pOut==NULL)
+		pOut=new D3DXQUATERNION();
+
+	Angle /= 2.0f;
+
+	float sinAngle = sinf(Angle);
+
+	pOut->x = (sinAngle*pV->x);
+	pOut->y = (sinAngle*pV->y);
+	pOut->z = (sinAngle*pV->z);
+	pOut->w = cosf(Angle);
 
 	return pOut;
 };

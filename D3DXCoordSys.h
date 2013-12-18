@@ -26,11 +26,14 @@
 
 /**Convert a D3DXVECTOR3 direction into (theta,phi) direction*/
 D3DXVECTOR2 *D3DXVecToAng(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out){
-	if(out==NULL)
-		out = new D3DXVECTOR2();
 
-	out->x=acosf(dir->y);
-	out->y=atan2f(dir->z,dir->x);
+	#ifdef GRT_POINTER_OUT_CHECK
+		if(out==NULL)
+			out = new D3DXVECTOR2();
+	#endif
+
+	out->x = acosf( dir->y);
+	out->y = atan2f(dir->z, dir->x);
 
 	return out;
 };
@@ -49,13 +52,15 @@ D3DXVECTOR2 *D3DXVecToTexCoord(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out){
 
 /**Convert a (theta,phi) direction into a D3DXVECTOR3 direction*/
 D3DXVECTOR3 *D3DXAngToVec(const D3DXVECTOR2 *dir, D3DXVECTOR3 *out){
-	if(out==NULL)
-		out = new D3DXVECTOR3();
+	#ifdef GRT_POINTER_OUT_CHECK
+		if(out==NULL)
+			out = new D3DXVECTOR3();
+	#endif
 
 	float sinTheta = sinf(dir->x);
-	out->x=cosf(dir->y)*sinTheta;
-	out->y=cosf(dir->x);
-	out->z=sinf(dir->y)*sinTheta;
+	out->x = cosf(dir->y)*sinTheta;
+	out->y = cosf(dir->x);
+	out->z = sinf(dir->y)*sinTheta;
 
 	return out;
 };
@@ -136,12 +141,12 @@ D3DXVECTOR3 *D3DXVecApplyBase(	const D3DXVECTOR3 *V0,
 
 //Decompression of a normal
 void DecompressNormals(D3DXVECTOR3 *n){
-	float tmp = 1.0f-n->x*n->x-n->y*n->y;
+	float tmp = 1.0f - n->x*n->x - n->y*n->y;
 
 	if(tmp>=0.0f)
-		n->z=sqrtf(tmp);
+		n->z = sqrtf(tmp);
 	else{
-		n->z=0.0f;
+		n->z = 0.0f;
 		D3DXVec3Normalize(n, n);
 	}
 };

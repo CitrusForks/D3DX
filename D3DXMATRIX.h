@@ -238,7 +238,6 @@ D3DXMATRIX *D3DXMatrixRotationQuaternion(D3DXMATRIX * pOut, const D3DXQUATERNION
 	float qx2 = pQ->x*pQ->x;
 	float qy2 = pQ->y*pQ->y;
 	float qz2 = pQ->z*pQ->z;
-//	printf("%f %f %f\n",2.0f*(qx2+qz2),qx2,qy2);
 
 	pOut->_11=1.0f-2.0f*(qz2+qy2);				pOut->_12=2.0f*(pQ->x*pQ->y-pQ->w*pQ->z);		pOut->_13=2.0f*(pQ->x*pQ->z+pQ->w*pQ->y);
 
@@ -246,7 +245,6 @@ D3DXMATRIX *D3DXMatrixRotationQuaternion(D3DXMATRIX * pOut, const D3DXQUATERNION
 
 	pOut->_31=2.0f*(pQ->x*pQ->z-pQ->w*pQ->y);	pOut->_32=2.0f*(pQ->y*pQ->z+pQ->w*pQ->x);		pOut->_33=1.0f-2.0f*(qx2+qy2);
 
-//	D3DXMatrixPrintf(pOut);
 	return pOut;
 };
 
@@ -399,10 +397,6 @@ D3DXVECTOR4* D3DXVec3Transform( D3DXVECTOR4 *pOut, const D3DXVECTOR3 *pV, const 
 	return NULL;
 };*/
 
-float NegZero(float val){
-	return (fabsf(val)<1e-6f) ? 0.0f : val;
-};
-
 //Inverse of a Matrix using partition method
 //TO DO: BUG when A0 determinant is 0
 //TO DO: another bug when inverting rotational matricies!!!
@@ -527,7 +521,7 @@ D3DXPLANE *D3DXMatrixExtractPlanes(D3DXPLANE *pOut, D3DXMATRIX *pM){
 	return pOut;
 };
 
-void TestD3DXMATRIX(){
+void D3DXMatrixTestFunction(){
 	D3DXMATRIX m,mOut;
 	
 	D3DXMatrixIdentity(&m);
