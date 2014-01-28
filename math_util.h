@@ -35,7 +35,7 @@
 inline float SFunction(float x){
 	float x2 = x*x;
 	return 3.0f*x2-2.0f*x2*x;
-};
+}
 
 //Quintic S-Shape: 6x^5-15x^4+10x^3
 float SCurve5(float t){
@@ -43,7 +43,7 @@ float SCurve5(float t){
 	float t4=t2*t2;
 
 	return (6.0f*t-15.0f)*t4+10.0f*t2*t;
-};
+}
 
 //Clamp a value, x, in the bound [a,b]
 inline float Clampf(float x, float a, float b) {
@@ -54,7 +54,7 @@ inline float Clampf(float x, float a, float b) {
 		return a;
 		
 	return x;
-};
+}
 
 //Clamp a value, x, in the bound [a,b]
 int Clamp(int x, int a, int b){
@@ -63,28 +63,36 @@ int Clamp(int x, int a, int b){
 	if(x<a)
 		return a;		
 	return x;
-};
+}
+
+/*Rounding*/
+inline long lround(double x){
+   if(x>0)
+      return (x-floor(x)<0.5) ? (long)floor(x) : (long)ceil(x);
+   else
+      return (x-floor(x)<=0.5) ? (long)floor(x) : (long)ceil(x);
+}
 
 //Linear interpolation
 inline float lerp(float t, float x0, float x1){
 	return x0+t*(x1-x0);
-};
+}
 
 //Smooth a value from a to b using a cube S-Shape: -2x^3+3x^2
 inline float SmoothStep(float a, float b, float value){
 	float x = Clampf((value - a) / (b - a), 0.0f, 1.0f);
 	return  x*x*(-2.0f*x + 3.0f);
-};
+}
 
 /**Deg2Rad: from degrees to radiants*/
 inline float Deg2Rad(float deg){
 	return deg*C_PI_OVER_ONE_80;
-};
+}
 
 /**Rad2Deg: from radiants to degrees*/
 inline float Rad2Deg(float rad){
 	return rad*C_ONE_80_OVER_PI;
-};
+}
 
 /**log2: logarithm in base 2*/
 inline int log2(int n){
@@ -99,15 +107,15 @@ inline int log2(int n){
 		lg--;
 
 	return lg;
-};
+}
 
 //Power of Two
 inline int pow2(int n){
 	return 1<<n;
-};
+}
 
 //A small value is set to zero
 inline float NegZero(float val){
 	return (fabsf(val)<1e-6f) ? 0.0f : val;
-};
+}
 #endif

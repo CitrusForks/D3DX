@@ -18,7 +18,8 @@
 #ifndef CLASS_D3DXQUATERNION
 #define CLASS_D3DXQUATERNION
 
-class D3DXQUATERNION{
+class D3DXQUATERNION
+{
 public:
 
 	float x,y,z,w;
@@ -28,10 +29,6 @@ public:
 		y = 0.0f;
 		z = 0.0f;
 		w = 1.0f;
-	}
-
-	void Init(const D3DXVECTOR3 &dir, float angle){
-
 	}
 };
 
@@ -46,7 +43,7 @@ D3DXQUATERNION *D3DXQuaternionIdentity(D3DXQUATERNION *pOut){
 	pOut->w = 1.0f;
 
 	return pOut;
-};
+}
 
 /**Calculate a quaternion from an axis and an angle*/
 D3DXQUATERNION *D3DXQuaternionRotationAxis(D3DXQUATERNION *pOut, const D3DXVECTOR3 * pV, float Angle){
@@ -63,12 +60,12 @@ D3DXQUATERNION *D3DXQuaternionRotationAxis(D3DXQUATERNION *pOut, const D3DXVECTO
 	pOut->w = cosf(Angle);
 
 	return pOut;
-};
+}
 
 //D3DXQuaternionDot:: dot product between quaternions
 inline float D3DXQuaternionDot(const D3DXQUATERNION *pQ1, const D3DXQUATERNION *pQ2){
 	return (pQ1->x*pQ2->x + pQ1->y*pQ2->y + pQ1->z*pQ2->z + pQ1->w*pQ2->w);
-};
+}
 
 //D3DXQuaternionSlerp: spherical interpolation
 inline D3DXQUATERNION* D3DXQuaternionSlerp(D3DXQUATERNION *pOut, const D3DXQUATERNION *pQ1, const D3DXQUATERNION *pQ2, float t){
@@ -88,5 +85,5 @@ inline D3DXQUATERNION* D3DXQuaternionSlerp(D3DXQUATERNION *pOut, const D3DXQUATE
 	pOut->w = pQ1->w*t1 + pQ2->w*t2;
 
 	return pOut;
-};
+}
 #endif

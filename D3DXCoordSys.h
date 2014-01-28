@@ -36,7 +36,7 @@ D3DXVECTOR2 *D3DXVecToAng(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out){
 	out->y = atan2f(dir->z, dir->x);
 
 	return out;
-};
+}
 
 /**Convert a D3DXVECTOR3 direction into (theta,phi) direction*/
 D3DXVECTOR2 *D3DXVecToTexCoord(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out){
@@ -48,7 +48,7 @@ D3DXVECTOR2 *D3DXVecToTexCoord(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out){
 	out->y = (acosf(dir->y)*C_INV_PI);
 
 	return out;
-};
+}
 
 /**Convert a (theta,phi) direction into a D3DXVECTOR3 direction*/
 D3DXVECTOR3 *D3DXAngToVec(const D3DXVECTOR2 *dir, D3DXVECTOR3 *out){
@@ -63,7 +63,7 @@ D3DXVECTOR3 *D3DXAngToVec(const D3DXVECTOR2 *dir, D3DXVECTOR3 *out){
 	out->z = sinf(dir->y)*sinTheta;
 
 	return out;
-};
+}
 
 /**D3DXPixelToVec: Conversion from pixel position (x,y) to D3DXVECTOR3*/
 inline D3DXVECTOR3 *D3DXImgCoordToVec(float x, float y, int width, int height, D3DXVECTOR3 *out){
@@ -80,7 +80,7 @@ inline D3DXVECTOR3 *D3DXImgCoordToVec(float x, float y, int width, int height, D
 	out->z = sinTheta*sinf(phi);
 
 	return out;
-};
+}
 
 /**Create an orthonormal base from a vector*/
 void CreateOrthoNormalBase(const D3DXVECTOR3 *n, D3DXVECTOR3 *u, D3DXVECTOR3 *v){
@@ -106,7 +106,7 @@ void CreateOrthoNormalBase(const D3DXVECTOR3 *n, D3DXVECTOR3 *u, D3DXVECTOR3 *v)
 	
 	//NOTE: This should not be required
 	D3DXVec3Normalize(u);
-};
+}
 
 /**Project into a base*/
 D3DXVECTOR3 *D3DXVecProjBase(	const D3DXVECTOR3 *V0,
@@ -122,7 +122,7 @@ D3DXVECTOR3 *D3DXVecProjBase(	const D3DXVECTOR3 *V0,
 	pOut->z = D3DXVec3Dot(V2,pV);
 
 	return pOut;
-};
+}
 
 /**Apply a base*/
 D3DXVECTOR3 *D3DXVecApplyBase(	const D3DXVECTOR3 *V0,
@@ -137,17 +137,17 @@ D3DXVECTOR3 *D3DXVecApplyBase(	const D3DXVECTOR3 *V0,
 				(*V1) * pV->y+
 				(*V2) * pV->z;
 	return pOut;
-};
+}
 
 //Decompression of a normal
 void DecompressNormals(D3DXVECTOR3 *n){
 	float tmp = 1.0f - n->x*n->x - n->y*n->y;
 
-	if(tmp>=0.0f)
+	if(tmp>0.0f)
 		n->z = sqrtf(tmp);
 	else{
 		n->z = 0.0f;
 		D3DXVec3Normalize(n, n);
 	}
-};
+}
 #endif

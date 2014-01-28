@@ -37,20 +37,20 @@ void D3DXVec3Cross(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *A, const D3DXVECTOR3 *B
 	pOut->x = A->y * B->z - B->y * A->z;
 	pOut->y = A->z * B->x - B->z * A->x;
 	pOut->z = A->x * B->y - B->x * A->y;
-};
+}
 
 //Dot product
 inline float D3DXVec2Dot(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b){
 	return (a->x*b->x+ a->y*b->y);
-};
+}
 
 inline float D3DXVec3Dot(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
 	return (a->x*b->x+ a->y*b->y+ a->z*b->z);
-};
+}
 
 inline float D3DXVec4Dot(const D3DXVECTOR4 *a, const D3DXVECTOR4 *b){
 	return (a->x*b->x+ a->y*b->y+ a->z*b->z + a->w*b->w);
-};
+}
 
 D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut, const D3DXVECTOR2 *pV){
 #ifdef D3DX_NORMALIZATION_POINTER_CHECK
@@ -72,7 +72,7 @@ D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut, const D3DXVECTOR2 *pV){
 		#endif
 		return pOut;
 	}
-};
+}
 
 D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut){
 
@@ -90,7 +90,7 @@ D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut){
 		#endif
 		return pOut;
 	}
-};
+}
 
 /**Normalize a D3DXVECTOR3*/
 D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *pV){
@@ -116,7 +116,7 @@ D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *pV){
 		#endif
 		return pOut;
 	}
-};
+}
 
 /**D3DXVec3Normalize: normalizes a D3DXVECTOR3*/
 D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut){
@@ -137,7 +137,7 @@ D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut){
 		#endif
 		return pOut;
 	}
-};
+}
 
 /**D3DXVec3Normalize2: normalizes a D3DXVECTOR3 and returns is magnitude*/
 float D3DXVec3Normalize2(D3DXVECTOR3 *pOut){
@@ -152,7 +152,7 @@ float D3DXVec3Normalize2(D3DXVECTOR3 *pOut){
 	}
 	else
 		return 0.0f;
-};
+}
 
 /**D3DXVec4Normalize: normalizes a D3DXVECTOR4*/
 D3DXVECTOR4 *D3DXVec4Normalize(D3DXVECTOR4 *pOut, const D3DXVECTOR4 *pV){
@@ -179,45 +179,45 @@ D3DXVECTOR4 *D3DXVec4Normalize(D3DXVECTOR4 *pOut, const D3DXVECTOR4 *pV){
 		#endif
 		return pOut;
 	}
-};
+}
 
 /**Length Square*/
 float D3DXVec2LengthSq(const D3DXVECTOR2 *pV){
 	return	pV->x*pV->x+
 			pV->y*pV->y;
-};
+}
 
 float D3DXVec3LengthSq(const D3DXVECTOR3 *pV){
 	return	pV->x*pV->x+
 			pV->z*pV->z+
 			pV->y*pV->y;
-};
+}
 
 float D3DXVec4LengthSq(const D3DXVECTOR4 *pV){
 	return	pV->x*pV->x+
 			pV->z*pV->z+
 			pV->w*pV->w+
 			pV->y*pV->y;
-};
+}
 
 /**Length*/
 float D3DXVec2Length(const D3DXVECTOR2 *pV){
 	return	sqrtf(	pV->x*pV->x+
 					pV->y*pV->y);
-};
+}
 
 float D3DXVec3Length(const D3DXVECTOR3 *pV){
 	return	sqrtf(	pV->x*pV->x+
 					pV->z*pV->z+
 					pV->y*pV->y);
-};
+}
 
 float D3DXVec4Length(const D3DXVECTOR4 *pV){
 	return	sqrtf(	pV->x*pV->x+
 					pV->z*pV->z+
 					pV->w*pV->w+
 					pV->y*pV->y);
-};
+}
 
 /**Distance*/
 float D3DXVecDistance(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b){
@@ -225,7 +225,7 @@ float D3DXVecDistance(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b){
 	c.x=a->x-b->x;
 	c.y=a->y-b->y;
 	return sqrtf(c.x*c.x + c.y*c.y);
-};
+}
 
 float D3DXVecDistance(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
 	D3DXVECTOR3 c;
@@ -233,7 +233,7 @@ float D3DXVecDistance(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
 	c.y=a->y-b->y;
 	c.z=a->z-b->z;
 	return sqrtf(c.x*c.x+c.y*c.y+c.z*c.z);
-};
+}
 
 /**Squared distance*/
 float D3DXVecDistanceSq(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b){
@@ -241,7 +241,7 @@ float D3DXVecDistanceSq(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b){
 	c.x=a->x-b->x;
 	c.y=a->y-b->y;
 	return (c.x*c.x+c.y*c.y);
-};
+}
 
 float D3DXVecDistanceSq(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
 	D3DXVECTOR3 c;
@@ -249,16 +249,16 @@ float D3DXVecDistanceSq(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
 	c.y=a->y-b->y;
 	c.z=a->z-b->z;
 	return c.x*c.x+c.y*c.y+c.z*c.z;
-};
+}
 
 //Array to Vector
 D3DXVECTOR3 D3DXFloat2Vec3(float vec[3]){
 	return D3DXVECTOR3(vec[0],vec[1],vec[2]);
-};
+}
 
 //Checking for similarity
 bool D3DXVec3Similar(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
 	D3DXVECTOR3 tmp = *a - *b;
 	return sqrtf(D3DXVec3Dot(&tmp,&tmp))<1e-12f;
-};
+}
 #endif

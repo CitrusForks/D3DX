@@ -29,7 +29,7 @@ void D3DXExtendBBox(D3DXVECTOR3 *bMax, D3DXVECTOR3 *bMin, const D3DXVECTOR3 *p){
 	bMin->x = MIN(p->x,bMin->x);
 	bMin->y = MIN(p->y,bMin->y);
 	bMin->z = MIN(p->z,bMin->z);
-};
+}
 
 /**D3DXMinBBox: calculates the minimum box*/
 void D3DXMinBBox(D3DXVECTOR3 *max, D3DXVECTOR3 *min, const D3DXVECTOR3 *bMax,const D3DXVECTOR3 *bMin){
@@ -40,7 +40,7 @@ void D3DXMinBBox(D3DXVECTOR3 *max, D3DXVECTOR3 *min, const D3DXVECTOR3 *bMax,con
 	if(bMin->x>min->x) min->x=bMin->x;
 	if(bMin->y>min->y) min->y=bMin->y;
 	if(bMin->z>min->z) min->z=bMin->z;
-};
+}
 
 /**D3DXCheckPointBBox: checks if a point p is in a bounding box (bMax,bMin)*/
 bool D3DXCheckPointBBox(const D3DXVECTOR2 *bMax, const D3DXVECTOR2 *bMin, const D3DXVECTOR2 *p){
@@ -48,7 +48,7 @@ bool D3DXCheckPointBBox(const D3DXVECTOR2 *bMax, const D3DXVECTOR2 *bMin, const 
 			&&(p->y>=bMin->y)
 			&&(p->x<=bMax->x)
 			&&(p->y<=bMax->y));
-};
+}
 
 /**D3DXCheckPointBBox: checks if a point p is in a bounding box (bMax,bMin)*/
 bool D3DXCheckPointBBox(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin, const D3DXVECTOR3 *p){
@@ -58,7 +58,7 @@ bool D3DXCheckPointBBox(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin, const 
 			&&(p->x<=bMax->x)
 			&&(p->y<=bMax->y)
 			&&(p->z<=bMax->z));
-};
+}
 
 /**D3DXCheckPlaneBBox: checks if a plane (nor,d) intersects a bounding box (bMax,bMin)*/
 bool D3DXCheckPlaneBBox(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin, const D3DXVECTOR3 *nor, float d){
@@ -82,14 +82,14 @@ bool D3DXCheckPlaneBBox(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin, const 
 		return false;
 	else
 		return true;
-};
+}
 
 /**D3DXBBoxFromSphere: bounding box froma a sphere*/
 void D3DXBBoxFromSphere(const D3DXVECTOR3 *center, float radius, D3DXVECTOR3 *bMax, D3DXVECTOR3 *bMin){
 	D3DXVECTOR3 rVec = D3DXVECTOR3(radius,radius,radius); 
 	*bMax = *center+rVec;
 	*bMin = *center-rVec;
-};
+}
 
 /**D3DXBBoxFromTri: bounding box from a triangle*/
 void D3DXBBoxFromTri(const D3DXVECTOR3 *v0, const D3DXVECTOR3 *v1, const D3DXVECTOR3 *v2,
@@ -122,7 +122,7 @@ void D3DXBBoxFromTri(const D3DXVECTOR3 *v0, const D3DXVECTOR3 *v1, const D3DXVEC
 	//Max Z
 	bMax->z = bMax->z < v1->z ? v1->z : bMax->z;
 	bMax->z = bMax->z < v2->z ? v2->z : bMax->z;
-};
+}
 
 /**D3DXCheckBBoxBBox: */
 bool D3DXCheckBBoxBBox(const D3DXVECTOR3 *amax, const D3DXVECTOR3 *amin,
@@ -158,7 +158,7 @@ bool D3DXCheckBBoxBBox(const D3DXVECTOR3 *amax, const D3DXVECTOR3 *amin,
 	}
 
 	return true;
-};
+}
 
 /**D3DXAreaBBox: calculates the area of the bounding box*/
 float D3DXAreaBBox(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin){
@@ -169,12 +169,12 @@ float D3DXAreaBBox(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin){
 				size.z*size.y;
 
 	return ret*2.0f;
-};
+}
 
 /**D3DXCheckSphereSphere:*/
 bool D3DXCheckSphereSphere(const D3DXVECTOR3 *c0, const D3DXVECTOR3 *c1, float r0, float r1){
 	return (D3DXVecDistance(c0,c1)<=(r0+r1));
-};
+}
 
 //TODO: Check if this code works or not
 bool D3DXCheckSphereBBox(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin, const D3DXVECTOR3 *sph_center, float sph_radius2){
@@ -193,7 +193,7 @@ bool D3DXCheckSphereBBox(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin, const
     }
 
 	return (dmin<=(sph_radius2));
-};
+}
 
 /**D3DXClosestCube: the closest cube from a starting bounding box (bMax,bMin)*/
 void D3DXClosestCube(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin, D3DXVECTOR3 *amax, D3DXVECTOR3 *amin){
@@ -208,7 +208,7 @@ void D3DXClosestCube(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin, D3DXVECTO
 
 	*amax =  D3DXVECTOR3(1.0f,1.0f,1.0f);
 	*amin = -D3DXVECTOR3(1.0f,1.0f,1.0f);
-};
+}
 
 //Bounding Box 3D
 void D3DXBBoxClamp(const D3DXVECTOR3 *max, const D3DXVECTOR3 *min, D3DXVECTOR3 *p){
@@ -219,27 +219,27 @@ void D3DXBBoxClamp(const D3DXVECTOR3 *max, const D3DXVECTOR3 *min, D3DXVECTOR3 *
 	p->x = (p->x > max->x) ? max->x : p->x;
 	p->y = (p->y > max->y) ? max->y : p->y;
 	p->z = (p->z > max->z) ? max->z : p->z;
-};
+}
 
 //Bounding Box 3D
 void D3DXBBoxLocal(const D3DXVECTOR3 *max, const D3DXVECTOR3 *min, D3DXVECTOR3 *p){
 	D3DXVECTOR3 len = *max - *min;
 	*p = (*p - *min)/len;
-};
+}
 
 //Bounding Box 3D
 void D3DXBBoxClampLocal(const D3DXVECTOR3 *max, const D3DXVECTOR3 *min, D3DXVECTOR3 *p){
 	D3DXBBoxClamp(max,min,p);
 	D3DXBBoxLocal(max,min,p);
-};
+}
 
 inline int Bool2Ind(bool x, bool y, bool z){
 	return (x<<0)+(y<<1)+(z<<2);
-};
+}
 
 inline bool Ind2Bool(int ind, int pos){
 	return (ind>>pos)&0x1;
-};
+}
 
 /**D3DXBoxOctant: calculates an octant of a box*/
 void D3DXBoxOctant(D3DXVECTOR3 *max, D3DXVECTOR3 *min, D3DXVECTOR3 *maxOut, D3DXVECTOR3 *minOut, int ind){
@@ -253,7 +253,7 @@ void D3DXBoxOctant(D3DXVECTOR3 *max, D3DXVECTOR3 *min, D3DXVECTOR3 *maxOut, D3DX
 			(*minOut)[i] = ((*max)[i]+(*min)[i])/2.0f;
 		}
 	}
-};
+}
 
 /**D3DXVec3ShiftOctant: calculates an octant shift vector*/
 D3DXVECTOR3 *D3DXVec3ShiftOctant(D3DXVECTOR3 *vecOut, int ind){
@@ -265,5 +265,5 @@ D3DXVECTOR3 *D3DXVec3ShiftOctant(D3DXVECTOR3 *vecOut, int ind){
 	}
 
 	return vecOut;
-};
+}
 #endif

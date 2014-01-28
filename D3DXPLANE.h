@@ -18,7 +18,8 @@
 #ifndef CLASS_D3DXPLANE
 #define CLASS_D3DXPLANE
 
-class D3DXPLANE{
+class D3DXPLANE
+{
 public:
 	float a,b,c,d;
 

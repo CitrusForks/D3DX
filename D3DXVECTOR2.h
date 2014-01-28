@@ -18,7 +18,8 @@
 #ifndef CLASS_D3DXVECTOR2
 #define CLASS_D3DXVECTOR2
 
-class D3DXVECTOR2{
+class D3DXVECTOR2
+{
 public:
 	float x, y;
 

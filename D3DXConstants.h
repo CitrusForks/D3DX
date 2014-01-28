@@ -28,16 +28,12 @@ const D3DXVECTOR3 VecNull   = D3DXVECTOR3(0.0f,0.0f,0.0f);
 const D3DXVECTOR4 Vec4Null  = D3DXVECTOR4(0.0f,0.0f,0.0f,0.0f);
 
 //Constant Vector
-const D3DXVECTOR3 VecHalf = D3DXVECTOR3(0.5f,0.5f,0.5f);
-const D3DXVECTOR3 VecOne  = D3DXVECTOR3(1.0f,1.0f,1.0f);
+const D3DXVECTOR3 VecHalf   = D3DXVECTOR3(0.5f,0.5f,0.5f);
+const D3DXVECTOR3 VecOne    = D3DXVECTOR3(1.0f,1.0f,1.0f);
 
 //Space Axis
-const D3DXVECTOR3 E0 = D3DXVECTOR3(1.0f,0.0f,0.0f);
-const D3DXVECTOR3 E1 = D3DXVECTOR3(0.0f,1.0f,0.0f);
-const D3DXVECTOR3 E2 = D3DXVECTOR3(0.0f,0.0f,1.0f);
-
-//Array to zero and one
-#define ANull(v){v[0]=0.0f; v[1]=0.0f; v[2]=0.0f; }
-#define AOne(v) {v[0]=1.0f; v[1]=1.0f; v[2]=1.0f; }
+const D3DXVECTOR3 E0        = D3DXVECTOR3(1.0f,0.0f,0.0f);
+const D3DXVECTOR3 E1        = D3DXVECTOR3(0.0f,1.0f,0.0f);
+const D3DXVECTOR3 E2        = D3DXVECTOR3(0.0f,0.0f,1.0f);
 
 #endif

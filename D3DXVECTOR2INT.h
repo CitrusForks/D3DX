@@ -1,7 +1,8 @@
 #ifndef CLASS_D3DXVECTOR2INT
 #define CLASS_D3DXVECTOR2INT
 
-class D3DXVECTOR2INT{
+class D3DXVECTOR2INT
+{
 public:
 	int		x, y;
 

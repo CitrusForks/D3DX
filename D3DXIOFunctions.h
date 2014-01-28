@@ -18,6 +18,10 @@
 #ifndef FUNCTIONS_D3DXIOFUNCTIONS
 #define FUNCTIONS_D3DXIOFUNCTIONS
 
+#include <stdio.h>
+
+#include "D3DXVECTOR3.h"
+
 //fscanf of a D3DXVECTOR3
 void fscanfVet(FILE *file, D3DXVECTOR3 *vet){
 	if(vet==NULL)
@@ -26,7 +30,7 @@ void fscanfVet(FILE *file, D3DXVECTOR3 *vet){
 	fscanf(file, "%f", &vet->x);
 	fscanf(file, "%f", &vet->y);
 	fscanf(file, "%f", &vet->z);
-};
+}
 
 //fscanf of a float[3] vector
 void fscanfVet(FILE *file, float *vet){
@@ -36,21 +40,21 @@ void fscanfVet(FILE *file, float *vet){
 	fscanf(file, "%f", &vet[0]);
 	fscanf(file, "%f", &vet[1]);
 	fscanf(file, "%f", &vet[2]);
-};
+}
 
 //fscanf of a D3DXVECTOR2
 void fscanfVet(FILE *file, D3DXVECTOR2 *vet){
 	fscanf(file, "%f", &vet->x);
 	fscanf(file, "%f", &vet->y);
-};
+}
 
 //printf of a D3DXVECTOR3
 void printfVet(const D3DXVECTOR3 *vet){
 	printf(" %f %f %f\n",vet->x,vet->y,vet->z);
-};
+}
 
 //printf of a D3DXVECTOR2
 void printfVet(D3DXVECTOR2 *vet){
 	printf(" %f %f\n",vet->x,vet->y);
-};
+}
 #endif

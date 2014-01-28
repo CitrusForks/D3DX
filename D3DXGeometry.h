@@ -18,11 +18,11 @@
 #ifndef FUNCTIONS_D3DXGEOMETRY
 #define FUNCTIONS_D3DXGEOMETRY
 
+#include "D3DXConstants.h"
 #include "D3DXFunctions.h"
 
 /**D3DXTriangleNormal: computes the normal of a triangle*/
-D3DXVECTOR3 *D3DXTriangleNormal(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const D3DXVECTOR3 *p2, const D3DXVECTOR3 *p3)
-{
+D3DXVECTOR3 *D3DXTriangleNormal(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const D3DXVECTOR3 *p2, const D3DXVECTOR3 *p3){
 	D3DXVECTOR3 a, b;
 	a.x=p1->x-p2->x;
 	a.y=p1->y-p2->y;
@@ -35,11 +35,10 @@ D3DXVECTOR3 *D3DXTriangleNormal(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const 
 	D3DXVec3Cross(pOut,&a,&b);
 	D3DXVec3Normalize(pOut);
 	return pOut;
-};
+}
 
 /**D3DXTriangleNormal: computes the normal of a triangle*/
-D3DXVECTOR3 *D3DXTriangleNormal2(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const D3DXVECTOR3 *p2, const D3DXVECTOR3 *p3)
-{
+D3DXVECTOR3 *D3DXTriangleNormal2(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const D3DXVECTOR3 *p2, const D3DXVECTOR3 *p3){
 	D3DXVECTOR3 a, b;
 	a.x=p1->x-p2->x;
 	a.y=p1->y-p2->y;
@@ -51,7 +50,7 @@ D3DXVECTOR3 *D3DXTriangleNormal2(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const
 
 	D3DXVec3Cross(pOut,&a,&b);
 	return pOut;
-};
+}
 
 /**D3DXTriangleArea: calculates the area of a triangle*/
 float D3DXTriangleArea(D3DXVECTOR3 *v0, D3DXVECTOR3 *v1, D3DXVECTOR3 *v2){
@@ -63,14 +62,14 @@ float D3DXTriangleArea(D3DXVECTOR3 *v0, D3DXVECTOR3 *v1, D3DXVECTOR3 *v2){
 
 	float area2 = s*(s-v01)*(s-v02)*(s-v12);
 	return (area2>0.0f) ? sqrtf(area2): 0.0f;
-};
+}
 
 inline float D3DXTriangleArea(float v01, float v02, float v12){
 	float s = (v01+v02+v12)/2.0f;
 
 	float area2 = s*(s-v01)*(s-v02)*(s-v12);
 	return (area2>0.0f) ? sqrtf(area2): 0.0f;
-};
+}
 
 /**Convert a D3DXVECTOR2 into a D3DXVECTOR3*/
 D3DXVECTOR3 D3DXVec2ToVec3(D3DXVECTOR2 *vec){
@@ -81,7 +80,7 @@ D3DXVECTOR3 D3DXVec2ToVec3(D3DXVECTOR2 *vec){
 	ret.z = vec->y;
 
 	return ret;
-};
+}
 
 /**Distance from ray-point*/
 float D3DXVec3DistanceRayPoint(const D3DXVECTOR3 *rO, const D3DXVECTOR3 *rD, const D3DXVECTOR3 *p){
@@ -90,13 +89,13 @@ float D3DXVec3DistanceRayPoint(const D3DXVECTOR3 *rO, const D3DXVECTOR3 *rD, con
 	D3DXVECTOR3 tmp2 = (*rD)*tmp1;
 
 	return D3DXVecDistance(&tmp0,&tmp2);
-};
+}
 
 /**Distance from ray-point*/
 float D3DXVec3DistanceRayPointF(const D3DXVECTOR3 *rO, const D3DXVECTOR3 *rD, const D3DXVECTOR3 *p){
 	D3DXVECTOR3 tmp0 = (*p)-(*rO);
 	return D3DXVec3Dot(&tmp0,rD);
-};
+}
 
 /**D3DXDiffuse*/
 D3DXVECTOR3 *D3DXVec3Diffuse(float u1, float u2, D3DXVECTOR3 *out){
@@ -111,7 +110,7 @@ D3DXVECTOR3 *D3DXVec3Diffuse(float u1, float u2, D3DXVECTOR3 *out){
 	out->z = sinTheta*sinf(phi);
 
 	return out;
-};
+}
 
 /**D3DXReflect: reflects a direction (dir) against a normal (nor)*/
 D3DXVECTOR3 *D3DXVec3Reflect(const D3DXVECTOR3 *dir, const D3DXVECTOR3 *nor, D3DXVECTOR3 *out){
@@ -126,7 +125,7 @@ D3DXVECTOR3 *D3DXVec3Reflect(const D3DXVECTOR3 *dir, const D3DXVECTOR3 *nor, D3D
 	D3DXVec3Normalize(out);
 
 	return out;
-};
+}
 
 /**D3DXReflectNeg: reflects a direction (-dir) against a normal (nor)*/
 D3DXVECTOR3 *D3DXVec3ReflectNeg(const D3DXVECTOR3 *dir, const D3DXVECTOR3 *nor, D3DXVECTOR3 *out){
@@ -141,7 +140,7 @@ D3DXVECTOR3 *D3DXVec3ReflectNeg(const D3DXVECTOR3 *dir, const D3DXVECTOR3 *nor, 
 	D3DXVec3Normalize(out);
 
 	return out;
-};
+}
 
 /**D3DXRefract: refracts a directionr (dir) against a normal (nor) with (n1,n2)*/
 bool D3DXVec3Refract(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1, float n2, D3DXVECTOR3 *out){
@@ -164,38 +163,7 @@ bool D3DXVec3Refract(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1, fl
 		*out =  I*eta - N*(sqrtf(k) + eta * NdotI);
 		return true;
 	}
-
-	/*
-	D3DXVECTOR3 workNor;
-
-	float NdotD = -D3DXVec3Dot(nor,dir);
-	float eta=n1/n2;
-
-	if(NdotD<0.0f){
-		workNor.x = -nor->x;
-		workNor.y = -nor->y;
-		workNor.z = -nor->z;
-		NdotD = -NdotD;
-	}
-	else
-		workNor = *nor;
-
-	float coeff=1.0f-(eta*eta)*(1.0f-NdotD*NdotD);
-
-	if(coeff<=0.0f){//Total reflection
-		D3DXVec3Reflect(dir,&workNor,out);
-		return false;
-	}
-	else{
-		coeff = sqrtf(coeff);
-
-		out->x = -eta*(-dir->x-NdotD*workNor.x)-coeff*workNor.x;
-		out->y = -eta*(-dir->y-NdotD*workNor.y)-coeff*workNor.y;
-		out->z = -eta*(-dir->z-NdotD*workNor.z)-coeff*workNor.z;
-		Normalizza(out);
-		return true;
-	}*/
-};
+}
 
 /**D3DXRefract: refracts a directionr (-dir) against a normal (nor) with (n1,n2)*/
 bool D3DXVec3RefractNeg(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1, float n2, D3DXVECTOR3 *out){
@@ -218,5 +186,5 @@ bool D3DXVec3RefractNeg(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1,
 		*out =  - I*eta - N*(sqrtf(k) + eta*NdotI);
 		return true;
 	}
-};
+}
 #endif

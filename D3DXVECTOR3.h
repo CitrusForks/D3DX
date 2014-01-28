@@ -19,7 +19,8 @@
 #define CLASS_D3DXVECTOR3
 
 //Classe per gestione dei vettori 3d simile a quella di Direct3DX
-class D3DXVECTOR3{
+class D3DXVECTOR3
+{
 public:
 	float x,y,z;
 

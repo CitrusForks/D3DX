@@ -20,11 +20,6 @@
 
 #include "math_util.h"
 
-//2x2 Matrix
-#include "Matrix2x2.h"
-//3x3 Matrix
-#include "Matrix3x3.h"
-
 //D3DX
 #ifndef GRT_D3DX
 	#include "D3DXVECTOR2.h"
@@ -39,6 +34,11 @@
 #include "D3DXGeometry.h"
 #include "D3DXCoordSys.h"
 #include "D3DXBoundingBox.h"
+
+//2x2 Matrix
+#include "D3DXMATRIX2X2.h"
+//3x3 Matrix
+#include "D3DXMATRIX3X3.h"
 
 #ifndef GRT_D3DX
 	#include "D3DXMATRIX.h"
