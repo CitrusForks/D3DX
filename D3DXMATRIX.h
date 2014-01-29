@@ -19,8 +19,10 @@
 #define CLASS_D3DXMATRIX
 
 #include "D3DXVECTOR3.h"
+#include "D3DXVECTOR4.h"
 #include "D3DXQUATERNION.h"
 #include "D3DXPLANE.h"
+#include "D3DXMATRIX2X2.h"
 
 class D3DXMATRIX
 {
@@ -123,10 +125,10 @@ D3DXMATRIX * D3DXMatrixRotationX(D3DXMATRIX * pOut, float Angle){
 	float cosAng=cosf(Angle);
 	float sinAng=sinf(Angle);
 	
-	pOut->_22=cosAng;
-	pOut->_33=cosAng;
-	pOut->_23=sinAng;
-	pOut->_32=-sinAng;
+	pOut->_22 =  cosAng;
+	pOut->_33 =  cosAng;
+	pOut->_23 =  sinAng;
+	pOut->_32 = -sinAng;
 	return pOut;
 }
 	
@@ -140,10 +142,10 @@ D3DXMATRIX * D3DXMatrixRotationY(D3DXMATRIX * pOut, float Angle){
 	float cosAng=cosf(Angle);
 	float sinAng=sinf(Angle);
 	
-	pOut->_11=cosAng;
-	pOut->_33=cosAng;
-	pOut->_13=-sinAng;
-	pOut->_31=sinAng;
+	pOut->_11 =  cosAng;
+	pOut->_33 =  cosAng;
+	pOut->_13 = -sinAng;
+	pOut->_31 =  sinAng;
 	return pOut;
 }
 
@@ -157,10 +159,10 @@ D3DXMATRIX * D3DXMatrixRotationZ(D3DXMATRIX * pOut, float Angle){
 	float cosAng=cosf(Angle);
 	float sinAng=sinf(Angle);
 
-	pOut->_11=cosAng;
-	pOut->_22=cosAng;
-	pOut->_12=sinAng;
-	pOut->_21=-sinAng;
+	pOut->_11 =  cosAng;
+	pOut->_22 =  cosAng;
+	pOut->_12 =  sinAng;
+	pOut->_21 = -sinAng;
 	return pOut;
 }
 

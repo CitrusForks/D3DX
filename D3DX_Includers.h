@@ -15,19 +15,20 @@
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-#ifndef GRT_D3DX_INCLUDERS
-#define GRT_D3DX_INCLUDERS
+#ifndef D3DX_INCLUDERS
+#define D3DX_INCLUDERS
+
+//by default we check pointers
+#define D3DX_NORMALIZATION_POINTER_CHECK
 
 #include "math_util.h"
 
 //D3DX
-#ifndef GRT_D3DX
-	#include "D3DXVECTOR2.h"
-	#include "D3DXVECTOR3.h"
-	#include "D3DXVECTOR4.h"
-	#include "D3DXQUATERNION.h"
-	#include "D3DXFunctions.h"
-#endif
+#include "D3DXVECTOR2.h"
+#include "D3DXVECTOR3.h"
+#include "D3DXVECTOR4.h"
+#include "D3DXQUATERNION.h"
+#include "D3DXFunctions.h"
 
 #include "D3DXIOFunctions.h"
 #include "D3DXConstants.h"
@@ -37,11 +38,11 @@
 
 //2x2 Matrix
 #include "D3DXMATRIX2X2.h"
+
 //3x3 Matrix
 #include "D3DXMATRIX3X3.h"
 
-#ifndef GRT_D3DX
-	#include "D3DXMATRIX.h"
-#endif
+//4x4 Matrix
+#include "D3DXMATRIX.h"
 
 #endif
