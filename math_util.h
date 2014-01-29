@@ -31,13 +31,13 @@
 #define CLAMP(x, a)			(x>=a ?	(a-1)	:	(x<0?0:x))
 #define CLAMPi(x, a, b)		(x<a ?	a		:	(x>b?b:x))
 
-/**S-function*/
+/**SFunction: a cubic s-function*/
 inline float SFunction(float x){
 	float x2 = x*x;
 	return 3.0f*x2-2.0f*x2*x;
 }
 
-//Quintic S-Shape: 6x^5-15x^4+10x^3
+/**SCurve5: a quintic S-Shape: 6x^5-15x^4+10x^3*/
 float SCurve5(float t){
 	float t2=t*t;
 	float t4=t2*t2;
@@ -56,7 +56,7 @@ inline float Clampf(float x, float a, float b) {
 	return x;
 }
 
-//Clamp a value, x, in the bound [a,b]
+//Clamp: clamps a value, x, in the bound [a,b]
 int Clamp(int x, int a, int b){
 	if(x>b)
 		return b;
@@ -65,7 +65,7 @@ int Clamp(int x, int a, int b){
 	return x;
 }
 
-/*Rounding*/
+/**lround: double rounding*/
 inline long lround(double x){
    if(x>0)
       return (x-floor(x)<0.5) ? (long)floor(x) : (long)ceil(x);
@@ -73,12 +73,12 @@ inline long lround(double x){
       return (x-floor(x)<=0.5) ? (long)floor(x) : (long)ceil(x);
 }
 
-//Linear interpolation
+/**lerp: Linear interpolation*/
 inline float lerp(float t, float x0, float x1){
 	return x0+t*(x1-x0);
 }
 
-//Smooth a value from a to b using a cube S-Shape: -2x^3+3x^2
+/**SmoothStep: smoothes a value from a to b using a cube S-Shape: -2x^3+3x^2*/
 inline float SmoothStep(float a, float b, float value){
 	float x = Clampf((value - a) / (b - a), 0.0f, 1.0f);
 	return  x*x*(-2.0f*x + 3.0f);
@@ -94,7 +94,7 @@ inline float Rad2Deg(float rad){
 	return rad*C_ONE_80_OVER_PI;
 }
 
-/**log2: logarithm in base 2*/
+/**log2: logarithm in base 2 for integers*/
 inline int log2(int n){
 	int val = 1;
 	int lg  = 0;
@@ -109,12 +109,17 @@ inline int log2(int n){
 	return lg;
 }
 
-//Power of Two
+/**pow2: Power of Two*/
 inline int pow2(int n){
 	return 1<<n;
 }
 
-//A small value is set to zero
+/**log2f: logarithm in base 2 for floating point*/
+inline float log2f(float x){
+    return logf(x) * C_INV_LOG_NAT_2;
+}
+
+/**NegZero: a small value is set to zero*/
 inline float NegZero(float val){
 	return (fabsf(val)<1e-6f) ? 0.0f : val;
 }
