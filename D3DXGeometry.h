@@ -152,7 +152,7 @@ bool D3DXVec3Refract(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1, fl
 
 	float k = 1.0f - eta*eta * (1.0f - NdotI*NdotI);
 	if(k<=0.0f){
-		#ifdef GRT_TOTAL_REFRACTION_OFF
+		#ifdef D3DX_TOTAL_REFRACTION_OFF
 			*out = *dir;
 			return true;
 		#else
@@ -175,7 +175,7 @@ bool D3DXVec3RefractNeg(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1,
 
 	float k = 1.0f - eta*eta * (1.0f - NdotI*NdotI);
 	if(k<=0.0f){
-		#ifdef GRT_TOTAL_REFRACTION_OFF
+		#ifdef D3DX_TOTAL_REFRACTION_OFF
 			*out = *dir;
 			return true;
 		#else
