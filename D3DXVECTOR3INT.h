@@ -18,4 +18,5 @@ public:
 		return ((a.x==x)&&(a.y==y)&&(a.z==z));
 	}
 };
+
 #endif

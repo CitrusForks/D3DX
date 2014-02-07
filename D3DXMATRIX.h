@@ -24,6 +24,8 @@
 #include "D3DXPLANE.h"
 #include "D3DXMATRIX2X2.h"
 
+#include "math_util.h"
+
 class D3DXMATRIX
 {
 public:

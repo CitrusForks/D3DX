@@ -31,6 +31,25 @@
 #define CLAMP(x, a)			(x>=a ?	(a-1)	:	(x<0?0:x))
 #define CLAMPi(x, a, b)		(x<a ?	a		:	(x>b?b:x))
 
+/**isnan: is it a NaN?*/
+#ifndef isnan
+template< typename T > inline bool isnan(T value)
+{
+    return value != value ;
+};
+#endif
+
+/**isnan: is it a Inf value?*/
+#ifndef isnan
+template< typename T > inline bool isinf(T value)
+{
+    return std::numeric_limits<T>::has_infinity &&
+           (value == std::numeric_limits<T>::infinity() ||
+            value == -std::numeric_limits<T>::infinity());
+}
+#endif
+
+
 /**SFunction: a cubic s-function*/
 inline float SFunction(float x){
 	float x2 = x*x;

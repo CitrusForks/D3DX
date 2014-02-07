@@ -18,19 +18,12 @@
 #ifndef FUNCTIONS_D3DXFUNCTIONS
 #define FUNCTIONS_D3DXFUNCTIONS
 
+#include <math.h>
+
 #include "D3DXVECTOR2.h"
 #include "D3DXVECTOR3.h"
 #include "D3DXVECTOR4.h"
 #include "D3DXQUATERNION.h"
-
-/*
- *  D3DXFunctions.h
- *  GhigoRayTracer
- *
- *  Created by Francesco on 06/06/2009.
- *  Copyright 2009 __MyCompanyName__. All rights reserved.
- *
- */
 
 //Cross Product
 void D3DXVec3Cross(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *A, const D3DXVECTOR3 *B){

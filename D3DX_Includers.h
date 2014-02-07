@@ -30,6 +30,9 @@
 #include "D3DXQUATERNION.h"
 #include "D3DXFunctions.h"
 
+#include "D3DXVECTOR3INT.h"
+#include "D3DXVECTOR2INT.h"
+
 #include "D3DXIOFunctions.h"
 #include "D3DXConstants.h"
 #include "D3DXGeometry.h"

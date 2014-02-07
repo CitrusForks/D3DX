@@ -20,6 +20,7 @@
 
 #include "D3DXConstants.h"
 #include "D3DXFunctions.h"
+#include "math_constant.h"
 
 /**D3DXTriangleNormal: computes the normal of a triangle*/
 D3DXVECTOR3 *D3DXTriangleNormal(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const D3DXVECTOR3 *p2, const D3DXVECTOR3 *p3){
