@@ -36,7 +36,7 @@
 template< typename T > inline bool isnan(T value)
 {
     return value != value ;
-};
+}
 #endif
 
 /**isnan: is it a Inf value?*/
@@ -65,22 +65,14 @@ float SCurve5(float t){
 }
 
 //Clamp a value, x, in the bound [a,b]
-inline float Clampf(float x, float a, float b) {
+template < class T >
+inline T Clamp(T x, T a, T b) {
 	if(x>b)
 		return b;
 
 	if(x<a)
 		return a;
 		
-	return x;
-}
-
-//Clamp: clamps a value, x, in the bound [a,b]
-int Clamp(int x, int a, int b){
-	if(x>b)
-		return b;
-	if(x<a)
-		return a;		
 	return x;
 }
 
@@ -99,7 +91,7 @@ inline float lerp(float t, float x0, float x1){
 
 /**SmoothStep: smoothes a value from a to b using a cube S-Shape: -2x^3+3x^2*/
 inline float SmoothStep(float a, float b, float value){
-	float x = Clampf((value - a) / (b - a), 0.0f, 1.0f);
+	float x = Clamp<float>((value - a) / (b - a), 0.0f, 1.0f);
 	return  x*x*(-2.0f*x + 3.0f);
 }
 
