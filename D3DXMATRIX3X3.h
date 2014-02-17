@@ -79,7 +79,7 @@
 
 	    float det = Determinant();
 	    if(fabsf(det)<=1e-9f){
-		    printf("Error: Negative determinant\n");
+            printf("Error: Near to zero determinant\n");
 		    return inv;
 	    }
 
