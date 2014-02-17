@@ -21,90 +21,90 @@
  class D3DXMATRIX2X2{
 
  public:
-	float data[2][2];
+	float data[4];
 	
-	//Constructor
+	/**Constructor*/
 	D3DXMATRIX2X2(){
     }
 	
-	//Constructor
+	/**Constructor: creates and sets the matrix to (a00,a01,a10,a11)*/
 	D3DXMATRIX2X2(float a00, float a01, float a10, float a11){
         Init(a00, a01, a10, a11);
     }
 
-    //Init
+    /**Init: sets the matrix to (a00,a01,a10,a11)*/
     void Init(float a00, float a01, float a10, float a11){
-	    data[0][0] = a00;
-	    data[1][0] = a10;
-	    data[0][1] = a01;
-	    data[1][1] = a11;
+	    data[0] = a00;
+	    data[2] = a10;
+	    data[1] = a01;
+	    data[3] = a11;
     }
 
-    //Identity Matrix
+    /**Identity: sets the matrix to identity*/
 	void Identity(){
-	    data[0][0] = 1.0f;
-	    data[1][1] = 1.0f;
-	    data[0][1] = 0.0f;
-	    data[1][0] = 0.0f;
+	    data[0] = 1.0f;
+	    data[3] = 1.0f;
+	    data[1] = 0.0f;
+	    data[2] = 0.0f;
     }
 	
-	//Scaling
+	/**Scale: scales the matrix by val*/
 	void Scale(float val){
-	    data[0][0] *= val;
-	    data[1][1] *= val;
-	    data[0][1] *= val;
-	    data[1][0] *= val;
+	    data[0] *= val;
+	    data[3] *= val;
+	    data[1] *= val;
+	    data[2] *= val;
     }
 	
-	//Negate
+	/**Negate: negates the matrix*/
 	void Negate(){
-	    data[0][0] = -data[0][0];
-	    data[0][1] = -data[0][1];
-	    data[1][0] = -data[1][0];
-	    data[1][1] = -data[1][1];
+	    data[0] = -data[0];
+	    data[1] = -data[1];
+	    data[2] = -data[2];
+	    data[3] = -data[3];
     }
 
-  	//Add operator
+  	/**Add: add operator*/
 	D3DXMATRIX2X2 *Add(const D3DXMATRIX2X2 *m, D3DXMATRIX2X2 *out=NULL){
 	    if(out==NULL)
 		    out = new D3DXMATRIX2X2();
 
-	    out->data[0][0] = data[0][0]+m->data[0][0];
-	    out->data[1][0] = data[1][0]+m->data[1][0];
-	    out->data[0][1] = data[0][1]+m->data[0][1];
-	    out->data[1][1] = data[1][1]+m->data[1][1];
+	    out->data[0] = data[0] + m->data[0];
+	    out->data[2] = data[2] + m->data[2];
+	    out->data[1] = data[1] + m->data[1];
+	    out->data[3] = data[3] + m->data[3];
 	    return out;
     }
 
-    //Sub operator
+	/**Sub: sub operator*/
 	D3DXMATRIX2X2 *Sub(const D3DXMATRIX2X2 *m, D3DXMATRIX2X2 *out=NULL){
 	    if(out==NULL)
 		    out = new D3DXMATRIX2X2();
 
-	    out->data[0][0] = data[0][0]-m->data[0][0];
-	    out->data[1][0] = data[1][0]-m->data[1][0];
-	    out->data[0][1] = data[0][1]-m->data[0][1];
-	    out->data[1][1] = data[1][1]-m->data[1][1];
+	    out->data[0] = data[0] - m->data[0];
+	    out->data[2] = data[2] - m->data[2];
+	    out->data[1] = data[1] - m->data[1];
+	    out->data[3] = data[3] - m->data[3];
 	    return out;
     }
 	
-	//Mul operator
+	/**Mul: mul operator*/
 	D3DXMATRIX2X2 *Mul(const D3DXMATRIX2X2 *m, D3DXMATRIX2X2 *out=NULL){
 	    if(out==NULL)
 		    out = new D3DXMATRIX2X2();
 
-	    out->data[0][0] = data[0][0]*m->data[0][0]+data[0][1]*m->data[1][0];
-	    out->data[0][1] = data[0][0]*m->data[0][1]+data[0][1]*m->data[1][1];
+	    out->data[0] = data[0]*m->data[0] + data[1]*m->data[2];
+	    out->data[1] = data[0]*m->data[1] + data[1]*m->data[3];
 
-	    out->data[1][0] = data[1][0]*m->data[0][0]+data[1][1]*m->data[1][0];
-	    out->data[1][1] = data[1][0]*m->data[0][1]+data[1][1]*m->data[1][1];
+	    out->data[2] = data[2]*m->data[0] + data[3]*m->data[2];
+	    out->data[3] = data[2]*m->data[1] + data[3]*m->data[3];
 
 	    return out;
     }
 	
-	//Determinant of the Matrix
+	/**Determinant: computes the determinant of the matrix*/
 	float D3DXMATRIX2X2::Determinant(){
-		return data[0][0]*data[1][1]-data[1][0]*data[0][1];
+		return data[0]*data[3] - data[2]*data[1];
 	}
 
 	//Inverse of the Matrix
@@ -117,17 +117,17 @@
 	    }
 		
         if(out==NULL)
-            out = new D3DXMATRIX2X2(data[1][1], -data[0][1], -data[1][0], data[0][0]);
+            out = new D3DXMATRIX2X2(data[3], -data[1], -data[2], data[0]);
         else
-            out->Init(data[1][1], -data[0][1], -data[1][0], data[0][0]);
+            out->Init(data[3], -data[1], -data[2], data[0]);
 
 	    out->Scale(1.0f/det);
 	    return out;
     }
     	
-	//Print Matrix
+	/**Print: outputs the matrix*/
 	void Print(){
-		printf("\n%3.3f %3.3f \n %3.3f %3.3f\n\n",data[0][0],data[0][1],data[1][0],data[1][1]);
+		printf("\n%3.3f %3.3f \n %3.3f %3.3f\n\n",data[0],data[1],data[2],data[3]);
 	}
 };
 #endif
