@@ -493,8 +493,8 @@ float D3DXMatrixDeterminant(const D3DXMATRIX *pM){
 }
 
 /**D3DXMatrixInverse: computes the inverse of a matrix*/
-D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
-    return D3DXMatrixInversePartition(pOut, pDeterminant, pM);
+D3DXMATRIX* D3DXMatrixInverse(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
+    return D3DXMatrixInverse(pOut, pDeterminant, pM);
 }
 
 /**D3DXMatrixInversePartition: computes the inverse of a matrix using the partition method*/
