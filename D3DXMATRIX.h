@@ -39,8 +39,7 @@ public:
 };
 
 /**D3DXMatrixPrintf: outputs a D3DXMATRIX*/
-void D3DXMatrixPrintf(const D3DXMATRIX *pM)
-{
+void D3DXMatrixPrintf(const D3DXMATRIX *pM){
 	printf("\n");
 	printf("%3.3f %3.3f %3.3f %3.3f\n",pM->_11,pM->_12,pM->_13,pM->_14);
 	printf("%3.3f %3.3f %3.3f %3.3f\n",pM->_21,pM->_22,pM->_23,pM->_24);
@@ -94,7 +93,7 @@ D3DXMATRIX *D3DXMatrixIdentity(D3DXMATRIX *pOut){
 	if(pOut==NULL)
 		pOut = new D3DXMATRIX();
 		
-	pOut->_11 = 1.0f;
+    pOut->_11 = 1.0f;
     pOut->_12 = 0.0f;
     pOut->_13 = 0.0f;
     pOut->_14 = 0.0f;
@@ -122,7 +121,7 @@ D3DXMATRIX *D3DXMatrixTranspose(D3DXMATRIX *pOut, const D3DXMATRIX *pM){
 	if(pOut==NULL)
 		pOut = new D3DXMATRIX();
 	
-	pOut->_11 = pM->_11;
+    pOut->_11 = pM->_11;
     pOut->_12 = pM->_21;
     pOut->_13 = pM->_31;
     pOut->_14 = pM->_41;
@@ -246,10 +245,10 @@ D3DXVECTOR4 * D3DXVec3Transform(D3DXVECTOR4 * pOut, const D3DXVECTOR3 * pV, cons
 	if(pOut==NULL)
 		pOut = new D3DXVECTOR4();
 
-	pOut->x= pV->x*pM->_11 + pV->y*pM->_21 + pV->z*pM->_31 + pM->_41;
-	pOut->y= pV->x*pM->_12 + pV->y*pM->_22 + pV->z*pM->_32 + pM->_42;
-	pOut->z= pV->x*pM->_13 + pV->y*pM->_23 + pV->z*pM->_33 + pM->_43;
-	pOut->w= pV->x*pM->_14 + pV->y*pM->_24 + pV->z*pM->_34 + pM->_44;
+	pOut->x = pV->x*pM->_11 + pV->y*pM->_21 + pV->z*pM->_31 + pM->_41;
+	pOut->y = pV->x*pM->_12 + pV->y*pM->_22 + pV->z*pM->_32 + pM->_42;
+	pOut->z = pV->x*pM->_13 + pV->y*pM->_23 + pV->z*pM->_33 + pM->_43;
+	pOut->w = pV->x*pM->_14 + pV->y*pM->_24 + pV->z*pM->_34 + pM->_44;
 
 	return pOut;
 }
@@ -259,9 +258,9 @@ D3DXVECTOR3 * D3DXVec3TransformNormal(D3DXVECTOR3 * pOut, const D3DXVECTOR3 * pV
 	if(pOut==NULL)
 		pOut=new D3DXVECTOR3();
 
-	pOut->x= pV->x*pM->_11 + pV->y*pM->_21 + pV->z*pM->_31;
-	pOut->y= pV->x*pM->_12 + pV->y*pM->_22 + pV->z*pM->_32;
-	pOut->z= pV->x*pM->_13 + pV->y*pM->_23 + pV->z*pM->_33;
+	pOut->x = pV->x*pM->_11 + pV->y*pM->_21 + pV->z*pM->_31;
+	pOut->y = pV->x*pM->_12 + pV->y*pM->_22 + pV->z*pM->_32;
+	pOut->z = pV->x*pM->_13 + pV->y*pM->_23 + pV->z*pM->_33;
 	return pOut;
 }
 
@@ -276,11 +275,17 @@ D3DXMATRIX *D3DXMatrixRotationQuaternion(D3DXMATRIX * pOut, const D3DXQUATERNION
 	float qy2 = pQ->y*pQ->y;
 	float qz2 = pQ->z*pQ->z;
 
-	pOut->_11=1.0f-2.0f*(qz2+qy2);				pOut->_12=2.0f*(pQ->x*pQ->y-pQ->w*pQ->z);		pOut->_13=2.0f*(pQ->x*pQ->z+pQ->w*pQ->y);
+    pOut->_11 = 1.0f-2.0f*(qz2+qy2);
+    pOut->_12 = 2.0f*(pQ->x*pQ->y-pQ->w*pQ->z);
+    pOut->_13 = 2.0f*(pQ->x*pQ->z+pQ->w*pQ->y);
 
-	pOut->_21=2.0f*(pQ->x*pQ->y+pQ->w*pQ->z);	pOut->_22=1.0f-2.0f*(qx2+qz2);					pOut->_23=2.0f*(pQ->y*pQ->z-pQ->w*pQ->x);
+    pOut->_21 = 2.0f*(pQ->x*pQ->y+pQ->w*pQ->z);
+    pOut->_22 = 1.0f-2.0f*(qx2+qz2);
+    pOut->_23 = 2.0f*(pQ->y*pQ->z-pQ->w*pQ->x);
 
-	pOut->_31=2.0f*(pQ->x*pQ->z-pQ->w*pQ->y);	pOut->_32=2.0f*(pQ->y*pQ->z+pQ->w*pQ->x);		pOut->_33=1.0f-2.0f*(qx2+qy2);
+    pOut->_31 = 2.0f*(pQ->x*pQ->z-pQ->w*pQ->y);
+    pOut->_32 = 2.0f*(pQ->y*pQ->z+pQ->w*pQ->x);
+    pOut->_33 = 1.0f-2.0f*(qx2+qy2);
 
 	return pOut;
 }
@@ -316,7 +321,7 @@ D3DXMATRIX* D3DXMatrixLookAtLH( D3DXMATRIX *pOut, const D3DXVECTOR3 *pEye, const
 
 	D3DXVec3Cross(&y,&z,&x);
 
-	pOut->_11 = x.x;
+    pOut->_11 = x.x;
     pOut->_12 = y.x;
     pOut->_13 = z.x;
     pOut->_14 = 0.0f;
@@ -356,7 +361,7 @@ D3DXMATRIX* D3DXMatrixLookAtRH( D3DXMATRIX *pOut, const D3DXVECTOR3 *pEye, const
 
 	D3DXVec3Cross(&y,&x,&z);
 
-	pOut->_11 = x.x;
+    pOut->_11 = x.x;
     pOut->_12 = y.x;
     pOut->_13 = z.x;	
     pOut->_14 = 0.0f;
