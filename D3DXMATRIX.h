@@ -497,10 +497,6 @@ float D3DXMatrixDeterminant(const D3DXMATRIX *pM){
 
 }
 
-/**D3DXMatrixInverse: computes the inverse of a matrix*/
-D3DXMATRIX* D3DXMatrixInverse(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
-    return D3DXMatrixInverse(pOut, pDeterminant, pM);
-}
 
 /**D3DXMatrixInversePartition: computes the inverse of a matrix using the partition method*/
 D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
@@ -538,14 +534,14 @@ D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, co
 	pOut->_11 = NegZero(B0->data[0]);
     pOut->_12 = NegZero(B0->data[1]);
 	
-    pOut->_21=NegZero(B0->data[2]);
-    pOut->_22=NegZero(B0->data[2]);
+    pOut->_21 = NegZero(B0->data[2]);
+    pOut->_22 = NegZero(B0->data[3]);
 
 	pOut->_13 = NegZero(B1->data[0]);
     pOut->_14 = NegZero(B1->data[1]);
 	
     pOut->_23 = NegZero(B1->data[2]);
-    pOut->_24 = NegZero(B1->data[2]);
+    pOut->_24 = NegZero(B1->data[3]);
 
 	pOut->_31 = NegZero(B2->data[0]);
     pOut->_32 = NegZero(B2->data[1]);
@@ -557,10 +553,16 @@ D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, co
     pOut->_34 = NegZero(B3->data[1]);
 	
     pOut->_43 = NegZero(B3->data[2]);
-    pOut->_44 = NegZero(B3->data[2]);
+    pOut->_44 = NegZero(B3->data[3]);
 		
 	return pOut;
 }
+
+/**D3DXMatrixInverse: computes the inverse of a matrix*/
+D3DXMATRIX* D3DXMatrixInverse(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
+    return D3DXMatrixInversePartition(pOut, pDeterminant, pM);
+}
+
 
 /**D3DXMatrixToOpenGL: converts the matrix from the D3DXMATRIX format to the OpenGL format*/
 float *D3DXMatrixToOpenGL(float *pOut, const D3DXMATRIX *pM){
