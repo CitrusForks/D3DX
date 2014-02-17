@@ -451,6 +451,52 @@ D3DXMATRIX *D3DXMatrixOrthoRH(D3DXMATRIX * pOut, float w, float h, float zn, flo
 	return pOut;
 }
 
+/**D3DXMatrixTrace: computes the trace of a matrix*/
+float D3DXMatrixTrace(const D3DXMATRIX *pM){
+    return pM->_11 + pM->_22 + pM->_33 + pM->_44;
+}
+
+/**D3DXMatrixDeterminant: computes the determinant of a matrix*/
+float D3DXMatrixDeterminant(const D3DXMATRIX *pM){
+    return  pM->_11 * pM->_22 * pM->_33 * pM->_44 +
+            pM->_11 * pM->_23 * pM->_34 * pM->_42 +
+            pM->_11 * pM->_24 * pM->_32 * pM->_43 +
+
+            pM->_12 * pM->_21 * pM->_34 * pM->_43 +
+            pM->_12 * pM->_23 * pM->_31 * pM->_44 +
+            pM->_12 * pM->_24 * pM->_33 * pM->_41 +
+
+            pM->_13 * pM->_21 * pM->_32 * pM->_44 +
+            pM->_13 * pM->_22 * pM->_34 * pM->_41 +
+            pM->_13 * pM->_24 * pM->_31 * pM->_42 +
+
+            pM->_14 * pM->_21 * pM->_33 * pM->_42 +
+            pM->_14 * pM->_22 * pM->_31 * pM->_43 +
+            pM->_14 * pM->_23 * pM->_32 * pM->_41 -(
+
+            pM->_11 * pM->_22 * pM->_34 * pM->_44 +
+            pM->_11 * pM->_23 * pM->_32 * pM->_44 +
+            pM->_11 * pM->_24 * pM->_33 * pM->_42 +
+
+            pM->_12 * pM->_21 * pM->_33 * pM->_44 +
+            pM->_12 * pM->_23 * pM->_34 * pM->_41 +
+            pM->_12 * pM->_24 * pM->_32 * pM->_41 +
+
+            pM->_13 * pM->_21 * pM->_34 * pM->_42 +
+            pM->_13 * pM->_22 * pM->_31 * pM->_44 +
+            pM->_13 * pM->_24 * pM->_32 * pM->_41 +
+
+            pM->_14 * pM->_21 * pM->_32 * pM->_43 +
+            pM->_14 * pM->_22 * pM->_33 * pM->_41 +
+            pM->_14 * pM->_23 * pM->_31 * pM->_42 );
+
+}
+
+/**D3DXMatrixInverse: computes the inverse of a matrix*/
+D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
+    return D3DXMatrixInversePartition(pOut, pDeterminant, pM);
+}
+
 /**D3DXMatrixInversePartition: computes the inverse of a matrix using the partition method*/
 D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
     //KNOWN ISSUES 0: BUG when A0 determinant is 0
@@ -459,10 +505,10 @@ D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, co
     if(pOut==NULL)
 		pOut = new D3DXMATRIX();
 	
-	D3DXMATRIX2X2 A0 = D3DXMATRIX2X2(pM->_11,pM->_12,pM->_21,pM->_22);
-	D3DXMATRIX2X2 A1 = D3DXMATRIX2X2(pM->_13,pM->_14,pM->_23,pM->_24);
-	D3DXMATRIX2X2 A2 = D3DXMATRIX2X2(pM->_31,pM->_32,pM->_41,pM->_42);
-	D3DXMATRIX2X2 A3 = D3DXMATRIX2X2(pM->_33,pM->_34,pM->_43,pM->_44);
+	D3DXMATRIX2X2 A0 = D3DXMATRIX2X2(pM->_11, pM->_12, pM->_21, pM->_22);
+	D3DXMATRIX2X2 A1 = D3DXMATRIX2X2(pM->_13, pM->_14, pM->_23, pM->_24);
+	D3DXMATRIX2X2 A2 = D3DXMATRIX2X2(pM->_31, pM->_32, pM->_41, pM->_42);
+	D3DXMATRIX2X2 A3 = D3DXMATRIX2X2(pM->_33, pM->_34, pM->_43, pM->_44);
 	
 	D3DXMATRIX2X2 *InvA0   = A0.Inverse();
 	D3DXMATRIX2X2 *A2InvA0 = A2.Mul(InvA0);
