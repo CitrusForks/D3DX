@@ -36,6 +36,227 @@ public:
 	
 	D3DXMATRIX(){
 	}
+
+    // assignment operators
+    void operator += ( const D3DXMATRIX &pM){
+        _11 += pM._11;
+        _12 += pM._12;
+        _13 += pM._13;
+        _14 += pM._14;
+
+        _21 += pM._21;
+        _22 += pM._22;
+        _23 += pM._23;
+        _24 += pM._24;
+
+        _31 += pM._31;
+        _32 += pM._32;
+        _33 += pM._33;
+        _34 += pM._34;
+
+        _41 += pM._41;
+        _42 += pM._42;
+        _43 += pM._43;
+        _44 += pM._44;
+    }
+
+    void operator -= ( const D3DXMATRIX &pM){
+        _11 -= pM._11;
+        _12 -= pM._12;
+        _13 -= pM._13;
+        _14 -= pM._14;
+
+        _21 -= pM._21;
+        _22 -= pM._22;
+        _23 -= pM._23;
+        _24 -= pM._24;
+
+        _31 -= pM._31;
+        _32 -= pM._32;
+        _33 -= pM._33;
+        _34 -= pM._34;
+
+        _41 -= pM._41;
+        _42 -= pM._42;
+        _43 -= pM._43;
+        _44 -= pM._44;
+    }
+
+    void operator *= ( float v){
+        _11 *= v;
+        _12 *= v;
+        _13 *= v;
+        _14 *= v;
+
+        _21 *= v;
+        _22 *= v;
+        _23 *= v;
+        _24 *= v;
+
+        _31 *= v;
+        _32 *= v;
+        _33 *= v;
+        _34 *= v;
+
+        _41 *= v;
+        _42 *= v;
+        _43 *= v;
+        _44 *= v;
+    }
+
+    void operator /= ( float v){
+        _11 /= v;
+        _12 /= v;
+        _13 /= v;
+        _14 /= v;
+
+        _21 /= v;
+        _22 /= v;
+        _23 /= v;
+        _24 /= v;
+
+        _31 /= v;
+        _32 /= v;
+        _33 /= v;
+        _34 /= v;
+
+        _41 /= v;
+        _42 /= v;
+        _43 /= v;
+        _44 /= v;
+    }
+
+    D3DXMATRIX operator - () const{
+        D3DXMATRIX pOut;
+
+        pOut._11 = -_11;
+        pOut._12 = -_12;
+        pOut._13 = -_13;
+        pOut._14 = -_14;
+
+        pOut._21 = -_21;
+        pOut._22 = -_22;
+        pOut._23 = -_23;
+        pOut._24 = -_24;
+
+        pOut._31 = -_31;
+        pOut._32 = -_32;
+        pOut._33 = -_33;
+        pOut._34 = -_34;
+
+        pOut._41 = -_41;
+        pOut._42 = -_42;
+        pOut._43 = -_43;
+        pOut._44 = -_44;
+        
+        return pOut;
+    }
+
+    // binary operators
+    D3DXMATRIX operator + ( const D3DXMATRIX &pM) const{
+        D3DXMATRIX pOut;
+
+        pOut._11 = _11 + pM._11;
+        pOut._12 = _12 + pM._12;
+        pOut._13 = _13 + pM._13;
+        pOut._14 = _14 + pM._14;
+
+        pOut._21 = _21 + pM._21;
+        pOut._22 = _22 + pM._22;
+        pOut._23 = _23 + pM._23;
+        pOut._24 = _24 + pM._24;
+
+        pOut._31 = _31 + pM._31;
+        pOut._32 = _32 + pM._32;
+        pOut._33 = _33 + pM._33;
+        pOut._34 = _34 + pM._34;
+
+        pOut._41 = _41 + pM._41;
+        pOut._42 = _42 + pM._42;
+        pOut._43 = _43 + pM._43;
+        pOut._44 = _44 + pM._44;
+
+        return pOut;
+    }
+
+    D3DXMATRIX operator - ( const D3DXMATRIX  &pM) const{
+        D3DXMATRIX pOut;
+
+        pOut._11 = _11 - pM._11;
+        pOut._12 = _12 - pM._12;
+        pOut._13 = _13 - pM._13;
+        pOut._14 = _14 - pM._14;
+
+        pOut._21 = _21 - pM._21;
+        pOut._22 = _22 - pM._22;
+        pOut._23 = _23 - pM._23;
+        pOut._24 = _24 - pM._24;
+
+        pOut._31 = _31 - pM._31;
+        pOut._32 = _32 - pM._32;
+        pOut._33 = _33 - pM._33;
+        pOut._34 = _34 - pM._34;
+
+        pOut._41 = _41 - pM._41;
+        pOut._42 = _42 - pM._42;
+        pOut._43 = _43 - pM._43;
+        pOut._44 = _44 - pM._44;
+
+        return pOut;
+    }
+
+    D3DXMATRIX operator * ( float v) const{
+        D3DXMATRIX pOut;
+
+        pOut._11 = _11 * v;
+        pOut._12 = _12 * v;
+        pOut._13 = _13 * v;
+        pOut._14 = _14 * v;
+
+        pOut._21 = _21 * v;
+        pOut._22 = _22 * v;
+        pOut._23 = _23 * v;
+        pOut._24 = _24 * v;
+
+        pOut._31 = _31 * v;
+        pOut._32 = _32 * v;
+        pOut._33 = _33 * v;
+        pOut._34 = _34 * v;
+
+        pOut._41 = _41 * v;
+        pOut._42 = _42 * v;
+        pOut._43 = _43 * v;
+        pOut._44 = _44 * v;
+
+        return pOut;
+    }
+
+    D3DXMATRIX operator / ( float v) const{
+        D3DXMATRIX pOut;
+
+        pOut._11 = _11 / v;
+        pOut._12 = _12 / v;
+        pOut._13 = _13 / v;
+        pOut._14 = _14 / v;
+
+        pOut._21 = _21 / v;
+        pOut._22 = _22 / v;
+        pOut._23 = _23 / v;
+        pOut._24 = _24 / v;
+
+        pOut._31 = _31 / v;
+        pOut._32 = _32 / v;
+        pOut._33 = _33 / v;
+        pOut._34 = _34 / v;
+
+        pOut._41 = _41 / v;
+        pOut._42 = _42 / v;
+        pOut._43 = _43 / v;
+        pOut._44 = _44 / v;
+
+        return pOut;
+
+    }
 };
 
 /**D3DXMatrixPrintf: outputs a D3DXMATRIX*/
@@ -511,49 +732,49 @@ D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, co
 	D3DXMATRIX2X2 A2 = D3DXMATRIX2X2(pM->_31, pM->_32, pM->_41, pM->_42);
 	D3DXMATRIX2X2 A3 = D3DXMATRIX2X2(pM->_33, pM->_34, pM->_43, pM->_44);
 	
-	D3DXMATRIX2X2 *InvA0   = A0.Inverse();
-	D3DXMATRIX2X2 *A2InvA0 = A2.Mul(InvA0);
-	D3DXMATRIX2X2 *InvA0A1 = InvA0->Mul(&A1);
+    D3DXMATRIX2X2 InvA0, B3;
+	
+    A0.Inverse(&InvA0);
+	D3DXMATRIX2X2 A2InvA0 = A2*InvA0;
+	D3DXMATRIX2X2 InvA0A1 = InvA0*A1;
 
 	//Calculate B3
-	D3DXMATRIX2X2 *B3 = A3.Sub(A2InvA0->Mul(&A1));
-	B3 = B3->Inverse();
+	D3DXMATRIX2X2 tmp = A3 - (A2InvA0*A1);
+    tmp.Inverse(&B3);
 
 	//Calculate B2=-(InvA3-A2)*B0)
-	D3DXMATRIX2X2 *B2 = B3->Mul(A2InvA0);
-	B2->Negate();
+	D3DXMATRIX2X2 B2 = -(B3*A2InvA0);
 	
 	//Calculate B0
-	D3DXMATRIX2X2 *B0 = InvA0->Sub(InvA0A1->Mul(B2));
+	D3DXMATRIX2X2 B0 = InvA0 - (InvA0A1*B2);
 
 	//Calculate B1=-B0*(A1*InvA3)
-	D3DXMATRIX2X2 *B1 = InvA0A1->Mul(B3);
-	B1->Negate();
+	D3DXMATRIX2X2 B1 = - (InvA0A1 * B3);
 		
 	//Copying the blocks to the final result
-	pOut->_11 = NegZero(B0->data[0]);
-    pOut->_12 = NegZero(B0->data[1]);
+	pOut->_11 = NegZero(B0.data[0]);
+    pOut->_12 = NegZero(B0.data[1]);
 	
-    pOut->_21 = NegZero(B0->data[2]);
-    pOut->_22 = NegZero(B0->data[3]);
+    pOut->_21 = NegZero(B0.data[2]);
+    pOut->_22 = NegZero(B0.data[3]);
 
-	pOut->_13 = NegZero(B1->data[0]);
-    pOut->_14 = NegZero(B1->data[1]);
+	pOut->_13 = NegZero(B1.data[0]);
+    pOut->_14 = NegZero(B1.data[1]);
 	
-    pOut->_23 = NegZero(B1->data[2]);
-    pOut->_24 = NegZero(B1->data[3]);
+    pOut->_23 = NegZero(B1.data[2]);
+    pOut->_24 = NegZero(B1.data[3]);
 
-	pOut->_31 = NegZero(B2->data[0]);
-    pOut->_32 = NegZero(B2->data[1]);
+	pOut->_31 = NegZero(B2.data[0]);
+    pOut->_32 = NegZero(B2.data[1]);
 	
-    pOut->_41 = NegZero(B2->data[2]);
-    pOut->_42 = NegZero(B2->data[2]);
+    pOut->_41 = NegZero(B2.data[2]);
+    pOut->_42 = NegZero(B2.data[2]);
 
-	pOut->_33 = NegZero(B3->data[0]);
-    pOut->_34 = NegZero(B3->data[1]);
+	pOut->_33 = NegZero(B3.data[0]);
+    pOut->_34 = NegZero(B3.data[1]);
 	
-    pOut->_43 = NegZero(B3->data[2]);
-    pOut->_44 = NegZero(B3->data[3]);
+    pOut->_43 = NegZero(B3.data[2]);
+    pOut->_44 = NegZero(B3.data[3]);
 		
 	return pOut;
 }
@@ -562,7 +783,6 @@ D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, co
 D3DXMATRIX* D3DXMatrixInverse(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
     return D3DXMatrixInversePartition(pOut, pDeterminant, pM);
 }
-
 
 /**D3DXMatrixToOpenGL: converts the matrix from the D3DXMATRIX format to the OpenGL format*/
 float *D3DXMatrixToOpenGL(float *pOut, const D3DXMATRIX *pM){

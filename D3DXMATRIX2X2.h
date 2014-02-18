@@ -48,60 +48,80 @@
 	    data[2] = 0.0f;
     }
 	
-	/**Scale: scales the matrix by val*/
-	void Scale(float val){
-	    data[0] *= val;
-	    data[3] *= val;
-	    data[1] *= val;
-	    data[2] *= val;
-    }
-	
-	/**Negate: negates the matrix*/
-	void Negate(){
-	    data[0] = -data[0];
-	    data[1] = -data[1];
-	    data[2] = -data[2];
-	    data[3] = -data[3];
+  	/** + operator*/
+    void operator += ( const D3DXMATRIX2X2 &pM){
+        for(int i=0;i<4;i++)
+            data[i] += pM.data[i];
     }
 
-  	/**Add: add operator*/
-	D3DXMATRIX2X2 *Add(const D3DXMATRIX2X2 *m, D3DXMATRIX2X2 *out=NULL){
+	D3DXMATRIX2X2 operator +(const D3DXMATRIX2X2 &pM) const{
+        D3DXMATRIX2X2 pOut;
+
+        for(int i=0;i<4;i++)
+            pOut.data[i] =  data[i] + pM.data[i];
+
+        return pOut;
+	}
+
+  	/** - operator*/
+    void operator -= ( const D3DXMATRIX2X2 &pM){
+        for(int i=0;i<4;i++)
+            data[i] -= pM.data[i];
+    }
+
+	D3DXMATRIX2X2 operator -(const D3DXMATRIX2X2 &pM) const{
+        D3DXMATRIX2X2 pOut;
+
+        for(int i=0;i<4;i++)
+            pOut.data[i] =  data[i] - pM.data[i];
+
+        return pOut;
+	}
+
+    D3DXMATRIX2X2 operator -()const{
+		return D3DXMATRIX2X2(-data[0], -data[1], -data[2], -data[3]);
+	}
+
+    /** * operator */
+	
+	static D3DXMATRIX2X2 *Mul(const D3DXMATRIX2X2 &mA, const D3DXMATRIX2X2 &mB, D3DXMATRIX2X2 *out=NULL){
 	    if(out==NULL)
 		    out = new D3DXMATRIX2X2();
 
-	    out->data[0] = data[0] + m->data[0];
-	    out->data[2] = data[2] + m->data[2];
-	    out->data[1] = data[1] + m->data[1];
-	    out->data[3] = data[3] + m->data[3];
-	    return out;
-    }
+	    out->data[0] = mA.data[0]*mB.data[0] + mA.data[1]*mB.data[2];
+	    out->data[1] = mA.data[0]*mB.data[1] + mA.data[1]*mB.data[3];
 
-	/**Sub: sub operator*/
-	D3DXMATRIX2X2 *Sub(const D3DXMATRIX2X2 *m, D3DXMATRIX2X2 *out=NULL){
-	    if(out==NULL)
-		    out = new D3DXMATRIX2X2();
-
-	    out->data[0] = data[0] - m->data[0];
-	    out->data[2] = data[2] - m->data[2];
-	    out->data[1] = data[1] - m->data[1];
-	    out->data[3] = data[3] - m->data[3];
-	    return out;
-    }
-	
-	/**Mul: mul operator*/
-	D3DXMATRIX2X2 *Mul(const D3DXMATRIX2X2 *m, D3DXMATRIX2X2 *out=NULL){
-	    if(out==NULL)
-		    out = new D3DXMATRIX2X2();
-
-	    out->data[0] = data[0]*m->data[0] + data[1]*m->data[2];
-	    out->data[1] = data[0]*m->data[1] + data[1]*m->data[3];
-
-	    out->data[2] = data[2]*m->data[0] + data[3]*m->data[2];
-	    out->data[3] = data[2]*m->data[1] + data[3]*m->data[3];
+	    out->data[2] = mA.data[2]*mB.data[0] + mA.data[3]*mB.data[2];
+	    out->data[3] = mA.data[2]*mB.data[1] + mA.data[3]*mB.data[3];
 
 	    return out;
     }
-	
+
+    void operator *= ( const D3DXMATRIX2X2 &pM){
+        D3DXMATRIX2X2 pOut;
+        Mul(*this, pM, &pOut);
+
+        for(int i=0;i<4;i++)
+            data[i] = pOut.data[i];
+    }
+
+    void operator *= (float v){
+        for(int i=0;i<4;i++)
+            data[i] *= v;
+    }
+
+    D3DXMATRIX2X2 operator *(const D3DXMATRIX2X2 &pM) const{
+        D3DXMATRIX2X2 pOut;
+        Mul(*this, pM, &pOut);
+        return pOut;
+    }
+
+    /*** /  operator */
+    void operator /= (float v){
+        for(int i=0;i<4;i++)
+            data[i] /= v;
+    }
+    	
 	/**Determinant: computes the determinant of the matrix*/
 	float D3DXMATRIX2X2::Determinant(){
 		return data[0]*data[3] - data[2]*data[1];
@@ -121,7 +141,7 @@
         else
             out->Init(data[3], -data[1], -data[2], data[0]);
 
-	    out->Scale(1.0f/det);
+	    *out /= det;
 	    return out;
     }
     	

@@ -40,37 +40,37 @@ public:
 	}
 
 	D3DXVECTOR3 operator -(const D3DXVECTOR3 &v) const{
-		return D3DXVECTOR3(x-v.x,y-v.y,z-v.z);
+		return D3DXVECTOR3(x-v.x, y-v.y, z-v.z);
 	}
 
 	D3DXVECTOR3 operator -()const{
-		return D3DXVECTOR3(-x,-y,-z);
+		return D3DXVECTOR3(-x, -y, -z);
 	}
 
 	void operator -=(const D3DXVECTOR3 &v){
-		x-=v.x;
-		y-=v.y;
-		z-=v.z;
+		x -= v.x;
+		y -= v.y;
+		z -= v.z;
 	}
 
 	D3DXVECTOR3 operator +(const D3DXVECTOR3 &v) const{
-		return D3DXVECTOR3(x+v.x,y+v.y,z+v.z);
+		return D3DXVECTOR3(x+v.x, y+v.y, z+v.z);
 	}
 
 	void operator +=(const D3DXVECTOR3 &v){
-		x+=v.x;
-		y+=v.y;
-		z+=v.z;
+		x += v.x;
+		y += v.y;
+		z += v.z;
 	}
 
 	D3DXVECTOR3 operator /(const D3DXVECTOR3 &v) const{
-		return D3DXVECTOR3(x/v.x,y/v.y,z/v.z);
+		return D3DXVECTOR3(x/v.x, y/v.y, z/v.z);
 	}
 
 	void operator /=(const D3DXVECTOR3 &v){
-		x/=v.x;
-		y/=v.y;
-		z/=v.z;
+		x /= v.x;
+		y /= v.y;
+		z /= v.z;
 	}
 
 	D3DXVECTOR3 operator *(const D3DXVECTOR3 &v)const{
@@ -78,13 +78,13 @@ public:
 	}
 
 	D3DXVECTOR3 operator *(const float &a)const{
-		return D3DXVECTOR3(x*a,y*a,z*a);
+		return D3DXVECTOR3(x*a, y*a, z*a);
 	}
 	
 	void operator *=(const float &a){
-		x*=a;
-		y*=a;
-		z*=a;
+		x *= a;
+		y *= a;
+		z *= a;
 	}
 
 	D3DXVECTOR3 operator = (const float v[3]){
@@ -100,9 +100,9 @@ public:
 
 	void operator /=(const float &a){
 		if(a!=0.0f){
-			x/=a;
-			y/=a;
-			z/=a;
+			x /= a;
+			y /= a;
+			z /= a;
 		}
 	}
 

@@ -34,52 +34,52 @@ public:
 
 	D3DXVECTOR2 operator -(const D3DXVECTOR2 &v)
 	{
-		return D3DXVECTOR2(x-v.x,y-v.y);
+		return D3DXVECTOR2(x-v.x, y-v.y);
 	}
 
 	void operator -=(const D3DXVECTOR2 &v)
 	{
-		x-=v.x;
-		y-=v.y;
+		x -= v.x;
+		y -= v.y;
 	}
 
 	D3DXVECTOR2 operator +(const D3DXVECTOR2 &v)
 	{
-		return D3DXVECTOR2(x+v.x,y+v.y);
+		return D3DXVECTOR2(x+v.x, y+v.y);
 	}
 
 	void operator +=(const D3DXVECTOR2 &v)
 	{
-		x+=v.x;
-		y+=v.y;
+		x += v.x;
+		y += v.y;
 	}
 
 	D3DXVECTOR2 operator *(const D3DXVECTOR2 &v)
 	{
-		return D3DXVECTOR2(x*v.x,y*v.y);
+		return D3DXVECTOR2(x*v.x, y*v.y);
 	}
 
 	D3DXVECTOR2 operator *(const float &a)
 	{
-		return D3DXVECTOR2(x*a,y*a);
+		return D3DXVECTOR2(x*a, y*a);
 	}
 
 	D3DXVECTOR2 operator *=(const float &a)
 	{
-		return D3DXVECTOR2(x*a,y*a);
+		return D3DXVECTOR2(x*a, y*a);
 	}
 
 	D3DXVECTOR2 operator /(const float &a)
 	{
 		if(x!=0.0f)
-			return D3DXVECTOR2(x/a,y/a);
+			return D3DXVECTOR2(x/a, y/a);
 		else
-			return D3DXVECTOR2(x,y);
+			return D3DXVECTOR2(x, y);
 	}
 
 	void operator /=(const D3DXVECTOR2 &v){
-		x/=v.x;
-		y/=v.y;
+		x /= v.x;
+		y /= v.y;
 	}
 
 	bool operator ==(const D3DXVECTOR2 &v){
