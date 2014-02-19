@@ -83,11 +83,17 @@
 		    return inv;
 	    }
 
-	    inv->data[0] =  (data[4]*data[8]-data[5]*data[7])/det;	inv->data[1] = -(data[1]*data[8]-data[2]*data[7])/det;	inv->data[2] =  (data[1]*data[5]-data[2]*data[4])/det;
+	    inv->data[0] =  (data[4]*data[8]-data[5]*data[7])/det;
+        inv->data[1] = -(data[1]*data[8]-data[2]*data[7])/det;
+        inv->data[2] =  (data[1]*data[5]-data[2]*data[4])/det;
 
-	    inv->data[3] = -(data[3]*data[8]-data[5]*data[6])/det;	inv->data[4] =  (data[0]*data[8]-data[2]*data[6])/det;	inv->data[5] = -(data[0]*data[5]-data[2]*data[3])/det;
+	    inv->data[3] = -(data[3]*data[8]-data[5]*data[6])/det;	
+        inv->data[4] =  (data[0]*data[8]-data[2]*data[6])/det;
+        inv->data[5] = -(data[0]*data[5]-data[2]*data[3])/det;
 	
-	    inv->data[6] =  (data[3]*data[7]-data[4]*data[6])/det;	inv->data[7] = -(data[0]*data[7]-data[1]*data[6])/det;	inv->data[8] =  (data[0]*data[4]-data[1]*data[3])/det;
+	    inv->data[6] =  (data[3]*data[7]-data[4]*data[6])/det;
+        inv->data[7] = -(data[0]*data[7]-data[1]*data[6])/det;
+        inv->data[8] =  (data[0]*data[4]-data[1]*data[3])/det;
 
 	    return inv;
     }
