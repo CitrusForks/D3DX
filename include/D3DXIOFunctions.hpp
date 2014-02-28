@@ -20,7 +20,7 @@
 
 #include <stdio.h>
 
-#include "D3DXVECTOR3.h"
+#include "D3DXVECTOR3.hpp"
 
 //fscanf of a D3DXVECTOR3
 void fscanfVet(FILE *file, D3DXVECTOR3 *vet){

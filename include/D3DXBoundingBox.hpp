@@ -17,9 +17,10 @@
 
 #ifndef FUNCTIONS_D3DXBOUNDINGBOX
 #define FUNCTIONS_D3DXBOUNDINGBOX
-#include "D3DXVECTOR3.h"
 
-/**D3DXExtendBBox: a bounding box (bMax,bMin) is expanded according p*/
+#include "D3DXVECTOR3.hpp"
+
+/**D3DXExtendBBox: a bounding box (bMax,bMin) is expanded according to p*/
 void D3DXExtendBBox(D3DXVECTOR3 *bMax, D3DXVECTOR3 *bMin, const D3DXVECTOR3 *p){
 	//Max
 	bMax->x = MAX(p->x,bMax->x);

@@ -18,9 +18,10 @@
 #ifndef FUNCTIONS_D3DXCOORDSYS
 #define FUNCTIONS_D3DXCOORDSYS
 
-#include "math_constant.h"
-#include "D3DXVECTOR2.h"
-#include "D3DXVECTOR3.h"
+#include "math_constant.hpp"
+
+#include "D3DXVECTOR2.hpp"
+#include "D3DXVECTOR3.hpp"
 
 #define D3DX_COORDSYS_EPSILON 1e-6f
 

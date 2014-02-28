@@ -18,9 +18,9 @@
 #ifndef FUNCTIONS_D3DXGEOMETRY
 #define FUNCTIONS_D3DXGEOMETRY
 
-#include "D3DXConstants.h"
-#include "D3DXFunctions.h"
-#include "math_constant.h"
+#include "D3DXConstants.hpp"
+#include "D3DXFunctions.hpp"
+#include "math_constant.hpp"
 
 /**D3DXTriangleNormal: computes the normal of a triangle*/
 D3DXVECTOR3 *D3DXTriangleNormal(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const D3DXVECTOR3 *p2, const D3DXVECTOR3 *p3){

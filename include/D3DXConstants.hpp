@@ -18,8 +18,8 @@
 #ifndef CONSTANTS_D3DXCONSTANTS
 #define CONSTANTS_D3DXCONSTANTS
 
-#include "D3DXVECTOR3.h"
-#include "D3DXVECTOR4.h"
+#include "D3DXVECTOR3.hpp"
+#include "D3DXVECTOR4.hpp"
 
 //Empty D3DXVECTOR3
 const D3DXVECTOR3 VecNull   = D3DXVECTOR3(0.0f,0.0f,0.0f);

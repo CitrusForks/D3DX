@@ -20,7 +20,7 @@
 
 #include <math.h>
 
-#include "math_constant.h"
+#include "math_constant.hpp"
 
 #define equalf(a, b)		( fabsf(a-b)< C_EPSILON)
 

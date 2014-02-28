@@ -20,10 +20,10 @@
 
 #include <math.h>
 
-#include "D3DXVECTOR2.h"
-#include "D3DXVECTOR3.h"
-#include "D3DXVECTOR4.h"
-#include "D3DXQUATERNION.h"
+#include "D3DXVECTOR2.hpp"
+#include "D3DXVECTOR3.hpp"
+#include "D3DXVECTOR4.hpp"
+#include "D3DXQUATERNION.hpp"
 
 //Cross Product
 void D3DXVec3Cross(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *A, const D3DXVECTOR3 *B){

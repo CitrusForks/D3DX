@@ -18,13 +18,13 @@
 #ifndef CLASS_D3DXMATRIX
 #define CLASS_D3DXMATRIX
 
-#include "D3DXVECTOR3.h"
-#include "D3DXVECTOR4.h"
-#include "D3DXQUATERNION.h"
-#include "D3DXPLANE.h"
-#include "D3DXMATRIX2X2.h"
+#include "math_util.hpp"
 
-#include "math_util.h"
+#include "D3DXVECTOR3.hpp"
+#include "D3DXVECTOR4.hpp"
+#include "D3DXQUATERNION.hpp"
+#include "D3DXPLANE.hpp"
+#include "D3DXMATRIX2X2.hpp"
 
 class D3DXMATRIX
 {
