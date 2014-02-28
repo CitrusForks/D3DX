@@ -21,31 +21,32 @@
 //by default we check pointers
 #define D3DX_NORMALIZATION_POINTER_CHECK
 
-#include "math_util.h"
+//classic math utils
+#include "math_util.hpp"
 
 //D3DX
-#include "D3DXVECTOR2.h"
-#include "D3DXVECTOR3.h"
-#include "D3DXVECTOR4.h"
-#include "D3DXQUATERNION.h"
-#include "D3DXFunctions.h"
+#include "D3DXVECTOR2.hpp"
+#include "D3DXVECTOR3.hpp"
+#include "D3DXVECTOR4.hpp"
+#include "D3DXQUATERNION.hpp"
+#include "D3DXFunctions.hpp"
 
-#include "D3DXVECTOR3INT.h"
-#include "D3DXVECTOR2INT.h"
+#include "D3DXVECTOR3INT.hpp"
+#include "D3DXVECTOR2INT.hpp"
 
-#include "D3DXIOFunctions.h"
-#include "D3DXConstants.h"
-#include "D3DXGeometry.h"
-#include "D3DXCoordSys.h"
-#include "D3DXBoundingBox.h"
+#include "D3DXIOFunctions.hpp"
+#include "D3DXConstants.hpp"
+#include "D3DXGeometry.hpp"
+#include "D3DXCoordSys.hpp"
+#include "D3DXBoundingBox.hpp"
 
 //2x2 Matrix
-#include "D3DXMATRIX2X2.h"
+#include "D3DXMATRIX2X2.hpp"
 
 //3x3 Matrix
-#include "D3DXMATRIX3X3.h"
+#include "D3DXMATRIX3X3.hpp"
 
 //4x4 Matrix
-#include "D3DXMATRIX.h"
+#include "D3DXMATRIX.hpp"
 
 #endif
