@@ -53,7 +53,7 @@ D3DXVECTOR3 *D3DXTriangleNormal2(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const
 	return pOut;
 }
 
-/**D3DXTriangleArea: calculates the area of a triangle*/
+/**D3DXTriangleArea: calculates the area of a triangle given its verticies*/
 float D3DXTriangleArea(D3DXVECTOR3 *v0, D3DXVECTOR3 *v1, D3DXVECTOR3 *v2){
 	float v01 = D3DXVecDistance(v0,v1);
 	float v02 = D3DXVecDistance(v0,v2);
@@ -65,6 +65,7 @@ float D3DXTriangleArea(D3DXVECTOR3 *v0, D3DXVECTOR3 *v1, D3DXVECTOR3 *v2){
 	return (area2>0.0f) ? sqrtf(area2): 0.0f;
 }
 
+/**D3DXTriangleArea: calculates the area of a triangle give the length of its edges*/
 inline float D3DXTriangleArea(float v01, float v02, float v12){
 	float s = (v01+v02+v12)/2.0f;
 
@@ -72,7 +73,7 @@ inline float D3DXTriangleArea(float v01, float v02, float v12){
 	return (area2>0.0f) ? sqrtf(area2): 0.0f;
 }
 
-/**Convert a D3DXVECTOR2 into a D3DXVECTOR3*/
+/**D3DXVec2ToVec3: converts a D3DXVECTOR2 into a D3DXVECTOR3*/
 D3DXVECTOR3 D3DXVec2ToVec3(D3DXVECTOR2 *vec){
 	D3DXVECTOR3 ret;
 
@@ -83,7 +84,7 @@ D3DXVECTOR3 D3DXVec2ToVec3(D3DXVECTOR2 *vec){
 	return ret;
 }
 
-/**Distance from ray-point*/
+/**D3DXVec3DistanceRayPoint: the distance from ray-point*/
 float D3DXVec3DistanceRayPoint(const D3DXVECTOR3 *rO, const D3DXVECTOR3 *rD, const D3DXVECTOR3 *p){
 	D3DXVECTOR3 tmp0 = (*rO)-(*p);
 	float tmp1 = D3DXVec3Dot(&tmp0,rD);
@@ -92,14 +93,17 @@ float D3DXVec3DistanceRayPoint(const D3DXVECTOR3 *rO, const D3DXVECTOR3 *rD, con
 	return D3DXVecDistance(&tmp0,&tmp2);
 }
 
-/**Distance from ray-point*/
+/**D3DXVec3DistanceRayPointF: the distance from ray-point*/
 float D3DXVec3DistanceRayPointF(const D3DXVECTOR3 *rO, const D3DXVECTOR3 *rD, const D3DXVECTOR3 *p){
 	D3DXVECTOR3 tmp0 = (*p)-(*rO);
 	return D3DXVec3Dot(&tmp0,rD);
 }
 
-/**D3DXDiffuse*/
+/**D3DXDiffuse: creates a diffuse vector given (u1, u2)*/
 D3DXVECTOR3 *D3DXVec3Diffuse(float u1, float u2, D3DXVECTOR3 *out){
+    if(out==NULL)
+        out = new D3DXVECTOR3();
+    
 	float cosTheta = sqrtf(u1);
 	float tmp = 1.0f-cosTheta*cosTheta;
 	float sinTheta = tmp>0.0 ? sqrtf(tmp) : 0.0f;
