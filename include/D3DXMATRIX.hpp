@@ -718,7 +718,6 @@ float D3DXMatrixDeterminant(const D3DXMATRIX *pM){
 
 }
 
-
 /**D3DXMatrixInversePartition: computes the inverse of a matrix using the partition method*/
 D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
     //KNOWN ISSUES 0: BUG when A0 determinant is 0
@@ -726,7 +725,7 @@ D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, co
         
     if(pOut==NULL)
 		pOut = new D3DXMATRIX();
-	
+    
 	D3DXMATRIX2X2 A0 = D3DXMATRIX2X2(pM->_11, pM->_12, pM->_21, pM->_22);
 	D3DXMATRIX2X2 A1 = D3DXMATRIX2X2(pM->_13, pM->_14, pM->_23, pM->_24);
 	D3DXMATRIX2X2 A2 = D3DXMATRIX2X2(pM->_31, pM->_32, pM->_41, pM->_42);
@@ -779,37 +778,72 @@ D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, co
 	return pOut;
 }
 
+/**D3DXMatrixInverseTrace: computes the inverse of a matrix using the Cayley-Hamilton method*/
+D3DXMATRIX* D3DXMatrixInverseTrace(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
+
+    float det = D3DXMatrixDeterminant(pM);
+
+    if(det<=1e-6f)
+        return NULL;
+
+    if(pOut==NULL)
+        pOut = new D3DXMATRIX();
+
+    D3DXMATRIX I, pM2, pM3;
+
+    D3DXMatrixMultiply(&pM2,  pM,  pM);
+    D3DXMatrixMultiply(&pM3, &pM2, pM);
+
+
+    float tr_pM  = D3DXMatrixTrace(pM);
+    float tr_pM2 = D3DXMatrixTrace(&pM2);
+    float tr_pM3 = D3DXMatrixTrace(&pM3);
+
+    float tmp1 =  (tr_pM * tr_pM * tr_pM -3.0f * tr_pM * tr_pM2  + 2.0f * tr_pM3) / 6.0f;
+    float tmp2 = -(tr_pM * tr_pM - tr_pM2) / 2.0f;
+
+
+    D3DXMatrixIdentity(&I);
+
+    *pOut = (I * tmp1 + (*pM) * tmp2 + pM2 * tr_pM  - pM3) / det;
+
+    if(pDeterminant != NULL)
+        *pDeterminant = det;
+        
+    return pOut;
+}
+
 /**D3DXMatrixInverse: computes the inverse of a matrix*/
 D3DXMATRIX* D3DXMatrixInverse(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
-    return D3DXMatrixInversePartition(pOut, pDeterminant, pM);
+    return D3DXMatrixInverseTrace(pOut, pDeterminant, pM);
 }
 
 /**D3DXMatrixToOpenGL: converts the matrix from the D3DXMATRIX format to the OpenGL format*/
 float *D3DXMatrixToOpenGL(float *pOut, const D3DXMATRIX *pM){
-	if(pOut==NULL)
-		pOut=new float[16];
+    if(pOut==NULL)
+        pOut=new float[16];
 
-	pOut[0]  = pM->_11;
-	pOut[1]  = pM->_12;
-	pOut[2]  = pM->_13;
-	pOut[3]  = pM->_14;
+    pOut[0]  = pM->_11;
+    pOut[1]  = pM->_12;
+    pOut[2]  = pM->_13;
+    pOut[3]  = pM->_14;
 
-	pOut[4]  = pM->_21;
-	pOut[5]  = pM->_22;
-	pOut[6]  = pM->_23;
-	pOut[7]  = pM->_24;
+    pOut[4]  = pM->_21;
+    pOut[5]  = pM->_22;
+    pOut[6]  = pM->_23;
+    pOut[7]  = pM->_24;
 
-	pOut[8]  = pM->_31;
-	pOut[9]  = pM->_32;
-	pOut[10] = pM->_33;
-	pOut[11] = pM->_34;
+    pOut[8]  = pM->_31;
+    pOut[9]  = pM->_32;
+    pOut[10] = pM->_33;
+    pOut[11] = pM->_34;
 
-	pOut[12] = pM->_41;
-	pOut[13] = pM->_42;
-	pOut[14] = pM->_43;
-	pOut[15] = pM->_44;
+    pOut[12] = pM->_41;
+    pOut[13] = pM->_42;
+    pOut[14] = pM->_43;
+    pOut[15] = pM->_44;
 
-	return pOut;
+    return pOut;
 }
 
 /**OpenGLToD3DXMatrix: converts the matrix from the OpenGL format to the D3DXMATRIX format*/
