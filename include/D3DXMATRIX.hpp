@@ -794,7 +794,6 @@ D3DXMATRIX* D3DXMatrixInverseTrace(D3DXMATRIX *pOut, float *pDeterminant, const 
     D3DXMatrixMultiply(&pM2,  pM,  pM);
     D3DXMatrixMultiply(&pM3, &pM2, pM);
 
-
     float tr_pM  = D3DXMatrixTrace(pM);
     float tr_pM2 = D3DXMatrixTrace(&pM2);
     float tr_pM3 = D3DXMatrixTrace(&pM3);
