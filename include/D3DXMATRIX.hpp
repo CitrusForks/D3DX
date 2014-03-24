@@ -741,13 +741,13 @@ D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, co
 	D3DXMATRIX2X2 tmp = A3 - (A2InvA0*A1);
     tmp.Inverse(&B3);
 
-	//Calculate B2=-(InvA3-A2)*B0)
+	//Calculate B2 = -(InvA3-A2)*B0)
 	D3DXMATRIX2X2 B2 = -(B3*A2InvA0);
 	
 	//Calculate B0
 	D3DXMATRIX2X2 B0 = InvA0 - (InvA0A1*B2);
 
-	//Calculate B1=-B0*(A1*InvA3)
+	//Calculate B1 = -B0*(A1*InvA3)
 	D3DXMATRIX2X2 B1 = - (InvA0A1 * B3);
 		
 	//Copying the blocks to the final result
@@ -794,11 +794,11 @@ D3DXMATRIX* D3DXMatrixInverseTrace(D3DXMATRIX *pOut, float *pDeterminant, const 
     D3DXMatrixMultiply(&pM2,  pM,  pM);
     D3DXMatrixMultiply(&pM3, &pM2, pM);
 
-    float tr_pM  = D3DXMatrixTrace(pM);
+    float tr_pM  = D3DXMatrixTrace( pM );
     float tr_pM2 = D3DXMatrixTrace(&pM2);
     float tr_pM3 = D3DXMatrixTrace(&pM3);
 
-    float tmp1 =  (tr_pM * tr_pM * tr_pM -3.0f * tr_pM * tr_pM2  + 2.0f * tr_pM3) / 6.0f;
+    float tmp1 =  (tr_pM * tr_pM * tr_pM - 3.0f * tr_pM * tr_pM2  + 2.0f * tr_pM3) / 6.0f;
     float tmp2 = -(tr_pM * tr_pM - tr_pM2) / 2.0f;
 
 
