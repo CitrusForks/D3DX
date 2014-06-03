@@ -22,14 +22,25 @@
 
 #include "math_constant.hpp"
 
-#define equalf(a, b)		( fabsf(a-b)< C_EPSILON)
+#ifndef MIN
+    #define MIN(a, b)			(a < b ? a : b)
+#endif
 
-#define MIN(a, b)			(a < b ? a : b)
-#define MAX(a, b)			(a > b ? a : b)
-#define ABS(a)				(a>0 ? a : -a)
+#ifndef MAX
+    #define MAX(a, b)			(a > b ? a : b)
+#endif
 
-#define CLAMP(x, a)			(x>=a ?	(a-1)	:	(x<0?0:x))
-#define CLAMPi(x, a, b)		(x<a ?	a		:	(x>b?b:x))
+#ifndef ABS
+    #define ABS(a)				(a>0   ? a : -a)
+#endif
+
+#ifndef CLAMP
+    #define CLAMP(x, a)			(x>=a ?	(a-1)	:	(x<0?0:x))
+#endif
+
+#ifndef CLAMPi
+    #define CLAMPi(x, a, b)		(x<a ?	a		:	(x>b?b:x))
+#endif
 
 /**isnan: is it a NaN?*/
 #ifndef isnan
