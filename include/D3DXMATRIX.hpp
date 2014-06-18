@@ -718,66 +718,6 @@ float D3DXMatrixDeterminant(const D3DXMATRIX *pM){
 
 }
 
-/**D3DXMatrixInversePartition: computes the inverse of a matrix using the partition method*/
-D3DXMATRIX* D3DXMatrixInversePartition(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
-    //KNOWN ISSUES 0: BUG when A0 determinant is 0
-    //KNOWN ISSUES 1: inverting rotational matricies!!!
-        
-    if(pOut==NULL)
-		pOut = new D3DXMATRIX();
-    
-	D3DXMATRIX2X2 A0 = D3DXMATRIX2X2(pM->_11, pM->_12, pM->_21, pM->_22);
-	D3DXMATRIX2X2 A1 = D3DXMATRIX2X2(pM->_13, pM->_14, pM->_23, pM->_24);
-	D3DXMATRIX2X2 A2 = D3DXMATRIX2X2(pM->_31, pM->_32, pM->_41, pM->_42);
-	D3DXMATRIX2X2 A3 = D3DXMATRIX2X2(pM->_33, pM->_34, pM->_43, pM->_44);
-	
-    D3DXMATRIX2X2 InvA0, B3;
-	
-    A0.Inverse(&InvA0);
-	D3DXMATRIX2X2 A2InvA0 = A2*InvA0;
-	D3DXMATRIX2X2 InvA0A1 = InvA0*A1;
-
-	//Calculate B3
-	D3DXMATRIX2X2 tmp = A3 - (A2InvA0*A1);
-    tmp.Inverse(&B3);
-
-	//Calculate B2 = -(InvA3-A2)*B0)
-	D3DXMATRIX2X2 B2 = -(B3*A2InvA0);
-	
-	//Calculate B0
-	D3DXMATRIX2X2 B0 = InvA0 - (InvA0A1*B2);
-
-	//Calculate B1 = -B0*(A1*InvA3)
-	D3DXMATRIX2X2 B1 = - (InvA0A1 * B3);
-		
-	//Copying the blocks to the final result
-	pOut->_11 = NegZero(B0.data[0]);
-    pOut->_12 = NegZero(B0.data[1]);
-	
-    pOut->_21 = NegZero(B0.data[2]);
-    pOut->_22 = NegZero(B0.data[3]);
-
-	pOut->_13 = NegZero(B1.data[0]);
-    pOut->_14 = NegZero(B1.data[1]);
-	
-    pOut->_23 = NegZero(B1.data[2]);
-    pOut->_24 = NegZero(B1.data[3]);
-
-	pOut->_31 = NegZero(B2.data[0]);
-    pOut->_32 = NegZero(B2.data[1]);
-	
-    pOut->_41 = NegZero(B2.data[2]);
-    pOut->_42 = NegZero(B2.data[2]);
-
-	pOut->_33 = NegZero(B3.data[0]);
-    pOut->_34 = NegZero(B3.data[1]);
-	
-    pOut->_43 = NegZero(B3.data[2]);
-    pOut->_44 = NegZero(B3.data[3]);
-		
-	return pOut;
-}
-
 /**D3DXMatrixInverseTrace: computes the inverse of a matrix using the Cayley-Hamilton method*/
 D3DXMATRIX* D3DXMatrixInverseTrace(D3DXMATRIX *pOut, float *pDeterminant, const D3DXMATRIX *pM){
 
