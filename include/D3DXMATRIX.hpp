@@ -271,13 +271,13 @@ void D3DXMatrixPrintf(const D3DXMATRIX *pM){
 
 /**D3DXMatrixEmpty: creates an empty D3DXMATRIX*/
 D3DXMATRIX *D3DXMatrixEmpty(D3DXMATRIX *pOut){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 		
-	pOut->_11=0.0f; pOut->_12=0.0f; pOut->_13=0.0f; pOut->_14=0.0f;
-	pOut->_21=0.0f; pOut->_22=0.0f; pOut->_23=0.0f; pOut->_24=0.0f;
-	pOut->_31=0.0f; pOut->_32=0.0f; pOut->_33=0.0f; pOut->_34=0.0f;
-	pOut->_41=0.0f; pOut->_42=0.0f; pOut->_43=0.0f; pOut->_44=0.0f;
+    pOut->_11 = 0.0f; pOut->_12 = 0.0f; pOut->_13 = 0.0f; pOut->_14 = 0.0f;
+    pOut->_21 = 0.0f; pOut->_22 = 0.0f; pOut->_23 = 0.0f; pOut->_24 = 0.0f;
+    pOut->_31 = 0.0f; pOut->_32 = 0.0f; pOut->_33 = 0.0f; pOut->_34 = 0.0f;
+    pOut->_41 = 0.0f; pOut->_42 = 0.0f; pOut->_43 = 0.0f; pOut->_44 = 0.0f;
 	
 	return pOut;
 }
@@ -311,7 +311,7 @@ bool D3DXMatrickNotEmpty(const D3DXMATRIX *pM){
 
 /**D3DXMatrixIdentity: creates an idetntiy matrix*/
 D3DXMATRIX *D3DXMatrixIdentity(D3DXMATRIX *pOut){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 		
     pOut->_11 = 1.0f;
@@ -339,7 +339,7 @@ D3DXMATRIX *D3DXMatrixIdentity(D3DXMATRIX *pOut){
 
 /**D3DXMatrixTranspose: transposes a matrix*/
 D3DXMATRIX *D3DXMatrixTranspose(D3DXMATRIX *pOut, const D3DXMATRIX *pM){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 	
     pOut->_11 = pM->_11;
@@ -367,7 +367,7 @@ D3DXMATRIX *D3DXMatrixTranspose(D3DXMATRIX *pOut, const D3DXMATRIX *pM){
 
 /**D3DXMatrixRotationX: creates a rotation matrix on the X axis*/
 D3DXMATRIX * D3DXMatrixRotationX(D3DXMATRIX * pOut, float Angle){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut=D3DXMatrixIdentity(pOut);
 	else
 		D3DXMatrixIdentity(pOut);
@@ -384,7 +384,7 @@ D3DXMATRIX * D3DXMatrixRotationX(D3DXMATRIX * pOut, float Angle){
 	
 /**D3DXMatrixRotationY: creates a rotation matrix on the Y axis*/
 D3DXMATRIX * D3DXMatrixRotationY(D3DXMATRIX * pOut, float Angle){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = D3DXMatrixIdentity(pOut);
 	else
 		D3DXMatrixIdentity(pOut);
@@ -401,7 +401,7 @@ D3DXMATRIX * D3DXMatrixRotationY(D3DXMATRIX * pOut, float Angle){
 
 /**D3DXMatrixRotationZ: creates a rotation matrix on the Z axis*/
 D3DXMATRIX * D3DXMatrixRotationZ(D3DXMATRIX * pOut, float Angle){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = D3DXMatrixIdentity(pOut);
 	else
 		D3DXMatrixIdentity(pOut);
@@ -418,25 +418,25 @@ D3DXMATRIX * D3DXMatrixRotationZ(D3DXMATRIX * pOut, float Angle){
 
 /**D3DXMatrixMultiply: mul operator between matricies*/
 D3DXMATRIX * D3DXMatrixMultiply(D3DXMATRIX * pOut, const D3DXMATRIX * pM1, const D3DXMATRIX * pM2){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = D3DXMatrixIdentity(pOut);
 
-	pOut->_11 = pM1->_11*pM2->_11+pM1->_12*pM2->_21+pM1->_13*pM2->_31+pM1->_14*pM2->_41;
-	pOut->_12 = pM1->_11*pM2->_12+pM1->_12*pM2->_22+pM1->_13*pM2->_32+pM1->_14*pM2->_42;
-	pOut->_13 = pM1->_11*pM2->_13+pM1->_12*pM2->_23+pM1->_13*pM2->_33+pM1->_14*pM2->_43;
-	pOut->_14 = pM1->_11*pM2->_14+pM1->_12*pM2->_24+pM1->_13*pM2->_34+pM1->_14*pM2->_44;
-	pOut->_21 = pM1->_21*pM2->_11+pM1->_22*pM2->_21+pM1->_23*pM2->_31+pM1->_24*pM2->_41;
-	pOut->_22 = pM1->_21*pM2->_12+pM1->_22*pM2->_22+pM1->_23*pM2->_32+pM1->_24*pM2->_42;
-	pOut->_23 = pM1->_21*pM2->_13+pM1->_22*pM2->_23+pM1->_23*pM2->_33+pM1->_24*pM2->_43;
-	pOut->_24 = pM1->_21*pM2->_14+pM1->_22*pM2->_24+pM1->_23*pM2->_34+pM1->_24*pM2->_44;
-	pOut->_31 = pM1->_31*pM2->_11+pM1->_32*pM2->_21+pM1->_33*pM2->_31+pM1->_34*pM2->_41;
-	pOut->_32 = pM1->_31*pM2->_12+pM1->_32*pM2->_22+pM1->_33*pM2->_32+pM1->_34*pM2->_42;
-	pOut->_33 = pM1->_31*pM2->_13+pM1->_32*pM2->_23+pM1->_33*pM2->_33+pM1->_34*pM2->_43;
-	pOut->_34 = pM1->_31*pM2->_14+pM1->_32*pM2->_24+pM1->_33*pM2->_34+pM1->_34*pM2->_44;
-	pOut->_41 = pM1->_41*pM2->_11+pM1->_42*pM2->_21+pM1->_43*pM2->_31+pM1->_44*pM2->_41;
-	pOut->_42 = pM1->_41*pM2->_12+pM1->_42*pM2->_22+pM1->_43*pM2->_32+pM1->_44*pM2->_42;
-	pOut->_43 = pM1->_41*pM2->_13+pM1->_42*pM2->_23+pM1->_43*pM2->_33+pM1->_44*pM2->_43;
-	pOut->_44 = pM1->_41*pM2->_14+pM1->_42*pM2->_24+pM1->_43*pM2->_34+pM1->_44*pM2->_44;
+    pOut->_11 = pM1->_11 * pM2->_11 + pM1->_12 * pM2->_21 + pM1->_13 * pM2->_31 + pM1->_14 * pM2->_41;
+    pOut->_12 = pM1->_11 * pM2->_12 + pM1->_12 * pM2->_22 + pM1->_13 * pM2->_32 + pM1->_14 * pM2->_42;
+    pOut->_13 = pM1->_11 * pM2->_13 + pM1->_12 * pM2->_23 + pM1->_13 * pM2->_33 + pM1->_14 * pM2->_43;
+    pOut->_14 = pM1->_11 * pM2->_14 + pM1->_12 * pM2->_24 + pM1->_13 * pM2->_34 + pM1->_14 * pM2->_44;
+    pOut->_21 = pM1->_21 * pM2->_11 + pM1->_22 * pM2->_21 + pM1->_23 * pM2->_31 + pM1->_24 * pM2->_41;
+    pOut->_22 = pM1->_21 * pM2->_12 + pM1->_22 * pM2->_22 + pM1->_23 * pM2->_32 + pM1->_24 * pM2->_42;
+    pOut->_23 = pM1->_21 * pM2->_13 + pM1->_22 * pM2->_23 + pM1->_23 * pM2->_33 + pM1->_24 * pM2->_43;
+    pOut->_24 = pM1->_21 * pM2->_14 + pM1->_22 * pM2->_24 + pM1->_23 * pM2->_34 + pM1->_24 * pM2->_44;
+    pOut->_31 = pM1->_31 * pM2->_11 + pM1->_32 * pM2->_21 + pM1->_33 * pM2->_31 + pM1->_34 * pM2->_41;
+    pOut->_32 = pM1->_31 * pM2->_12 + pM1->_32 * pM2->_22 + pM1->_33 * pM2->_32 + pM1->_34 * pM2->_42;
+    pOut->_33 = pM1->_31 * pM2->_13 + pM1->_32 * pM2->_23 + pM1->_33 * pM2->_33 + pM1->_34 * pM2->_43;
+    pOut->_34 = pM1->_31 * pM2->_14 + pM1->_32 * pM2->_24 + pM1->_33 * pM2->_34 + pM1->_34 * pM2->_44;
+    pOut->_41 = pM1->_41 * pM2->_11 + pM1->_42 * pM2->_21 + pM1->_43 * pM2->_31 + pM1->_44 * pM2->_41;
+    pOut->_42 = pM1->_41 * pM2->_12 + pM1->_42 * pM2->_22 + pM1->_43 * pM2->_32 + pM1->_44 * pM2->_42;
+    pOut->_43 = pM1->_41 * pM2->_13 + pM1->_42 * pM2->_23 + pM1->_43 * pM2->_33 + pM1->_44 * pM2->_43;
+    pOut->_44 = pM1->_41 * pM2->_14 + pM1->_42 * pM2->_24 + pM1->_43 * pM2->_34 + pM1->_44 * pM2->_44;
 
 	return pOut;
 }
@@ -444,14 +444,14 @@ D3DXMATRIX * D3DXMatrixMultiply(D3DXMATRIX * pOut, const D3DXMATRIX * pM1, const
 /**D3DXVec3TransformCoord: applies a matrix to a vector; including division by w*/
 D3DXVECTOR3 * D3DXVec3TransformCoord(D3DXVECTOR3 * pOut, const D3DXVECTOR3 * pV, const D3DXMATRIX * pM){
 
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXVECTOR3();
 
 	float w;
-	pOut->x = pV->x*pM->_11 + pV->y*pM->_21 + pV->z*pM->_31 + pM->_41;
-	pOut->y = pV->x*pM->_12 + pV->y*pM->_22 + pV->z*pM->_32 + pM->_42;
-	pOut->z = pV->x*pM->_13 + pV->y*pM->_23 + pV->z*pM->_33 + pM->_43;
-	w       = pV->x*pM->_14 + pV->y*pM->_24 + pV->z*pM->_34 + pM->_44;
+    pOut->x = pV->x * pM->_11 + pV->y * pM->_21 + pV->z * pM->_31 + pM->_41;
+    pOut->y = pV->x * pM->_12 + pV->y * pM->_22 + pV->z * pM->_32 + pM->_42;
+    pOut->z = pV->x * pM->_13 + pV->y * pM->_23 + pV->z * pM->_33 + pM->_43;
+    w       = pV->x * pM->_14 + pV->y * pM->_24 + pV->z * pM->_34 + pM->_44;
 
 	pOut->x /= w;
 	pOut->y /= w;
@@ -463,57 +463,57 @@ D3DXVECTOR3 * D3DXVec3TransformCoord(D3DXVECTOR3 * pOut, const D3DXVECTOR3 * pV,
 /**D3DXVec3Transform: applies a matrix to a vector*/
 D3DXVECTOR4 * D3DXVec3Transform(D3DXVECTOR4 * pOut, const D3DXVECTOR3 * pV, const D3DXMATRIX * pM){
 	
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXVECTOR4();
 
-	pOut->x = pV->x*pM->_11 + pV->y*pM->_21 + pV->z*pM->_31 + pM->_41;
-	pOut->y = pV->x*pM->_12 + pV->y*pM->_22 + pV->z*pM->_32 + pM->_42;
-	pOut->z = pV->x*pM->_13 + pV->y*pM->_23 + pV->z*pM->_33 + pM->_43;
-	pOut->w = pV->x*pM->_14 + pV->y*pM->_24 + pV->z*pM->_34 + pM->_44;
+    pOut->x = pV->x * pM->_11 + pV->y * pM->_21 + pV->z * pM->_31 + pM->_41;
+    pOut->y = pV->x * pM->_12 + pV->y * pM->_22 + pV->z * pM->_32 + pM->_42;
+    pOut->z = pV->x * pM->_13 + pV->y * pM->_23 + pV->z * pM->_33 + pM->_43;
+    pOut->w = pV->x * pM->_14 + pV->y * pM->_24 + pV->z * pM->_34 + pM->_44;
 
 	return pOut;
 }
 
 /**D3DXVec3TransformNormal: applies a matrix to a normal vector*/
 D3DXVECTOR3 * D3DXVec3TransformNormal(D3DXVECTOR3 * pOut, const D3DXVECTOR3 * pV, const D3DXMATRIX * pM){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut=new D3DXVECTOR3();
 
-	pOut->x = pV->x*pM->_11 + pV->y*pM->_21 + pV->z*pM->_31;
-	pOut->y = pV->x*pM->_12 + pV->y*pM->_22 + pV->z*pM->_32;
-	pOut->z = pV->x*pM->_13 + pV->y*pM->_23 + pV->z*pM->_33;
+    pOut->x = pV->x * pM->_11 + pV->y * pM->_21 + pV->z * pM->_31;
+    pOut->y = pV->x * pM->_12 + pV->y * pM->_22 + pV->z * pM->_32;
+    pOut->z = pV->x * pM->_13 + pV->y * pM->_23 + pV->z * pM->_33;
 	return pOut;
 }
 
 /**D3DXMatrixRotationQuaternion: creates a rotation matrix based on a quatertion*/
 D3DXMATRIX *D3DXMatrixRotationQuaternion(D3DXMATRIX * pOut, const D3DXQUATERNION * pQ){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 
 	D3DXMatrixIdentity(pOut);
 
-	float qx2 = pQ->x*pQ->x;
-	float qy2 = pQ->y*pQ->y;
-	float qz2 = pQ->z*pQ->z;
+    float qx2 = pQ->x * pQ->x;
+    float qy2 = pQ->y * pQ->y;
+    float qz2 = pQ->z * pQ->z;
 
-    pOut->_11 = 1.0f-2.0f*(qz2+qy2);
-    pOut->_12 = 2.0f*(pQ->x*pQ->y-pQ->w*pQ->z);
-    pOut->_13 = 2.0f*(pQ->x*pQ->z+pQ->w*pQ->y);
+    pOut->_11 = 1.0f - 2.0f * (qz2 + qy2);
+    pOut->_12 = 2.0f * (pQ->x * pQ->y - pQ->w * pQ->z);
+    pOut->_13 = 2.0f * (pQ->x * pQ->z + pQ->w * pQ->y);
 
-    pOut->_21 = 2.0f*(pQ->x*pQ->y+pQ->w*pQ->z);
-    pOut->_22 = 1.0f-2.0f*(qx2+qz2);
-    pOut->_23 = 2.0f*(pQ->y*pQ->z-pQ->w*pQ->x);
+    pOut->_21 = 2.0f * (pQ->x * pQ->y + pQ->w * pQ->z);
+    pOut->_22 = 1.0f - 2.0f * (qx2 + qz2);
+    pOut->_23 = 2.0f * (pQ->y * pQ->z - pQ->w * pQ->x);
 
-    pOut->_31 = 2.0f*(pQ->x*pQ->z-pQ->w*pQ->y);
-    pOut->_32 = 2.0f*(pQ->y*pQ->z+pQ->w*pQ->x);
-    pOut->_33 = 1.0f-2.0f*(qx2+qy2);
+    pOut->_31 = 2.0f * (pQ->x * pQ->z - pQ->w * pQ->y);
+    pOut->_32 = 2.0f * (pQ->y * pQ->z + pQ->w * pQ->x);
+    pOut->_33 = 1.0f - 2.0f * (qx2 + qy2);
 
 	return pOut;
 }
 
 /**D3DXMatrixTranslation: creates a translation matrix*/
 D3DXMATRIX *D3DXMatrixTranslation(D3DXMATRIX *pOut, float x, float y, float z){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 
 	D3DXMatrixIdentity(pOut);
@@ -527,7 +527,7 @@ D3DXMATRIX *D3DXMatrixTranslation(D3DXMATRIX *pOut, float x, float y, float z){
 
 /**D3DXMatrixLookAtLH: creates a left-handed view matrix*/
 D3DXMATRIX* D3DXMatrixLookAtLH( D3DXMATRIX *pOut, const D3DXVECTOR3 *pEye, const D3DXVECTOR3 *pAt, const D3DXVECTOR3 *pUp ){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 		
 	D3DXVECTOR3 x, y, z;
@@ -557,9 +557,9 @@ D3DXMATRIX* D3DXMatrixLookAtLH( D3DXMATRIX *pOut, const D3DXVECTOR3 *pEye, const
     pOut->_33 = z.z;
     pOut->_34 = 0.0f;
 	
-    pOut->_41 = -D3DXVec3Dot(&x,pEye);
-    pOut->_42 = -D3DXVec3Dot(&y,pEye);
-    pOut->_43 = -D3DXVec3Dot(&z,pEye);
+    pOut->_41 = -D3DXVec3Dot(&x, pEye);
+    pOut->_42 = -D3DXVec3Dot(&y, pEye);
+    pOut->_43 = -D3DXVec3Dot(&z, pEye);
     pOut->_44 = 1.0f;
 	
 	return pOut;
@@ -567,7 +567,7 @@ D3DXMATRIX* D3DXMatrixLookAtLH( D3DXMATRIX *pOut, const D3DXVECTOR3 *pEye, const
 
 /**D3DXMatrixLookAtRH: creates a right-handed view matrix*/
 D3DXMATRIX* D3DXMatrixLookAtRH( D3DXMATRIX *pOut, const D3DXVECTOR3 *pEye, const D3DXVECTOR3 *pAt, const D3DXVECTOR3 *pUp ){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 		
 	D3DXVECTOR3 x,y,z;
@@ -597,9 +597,9 @@ D3DXMATRIX* D3DXMatrixLookAtRH( D3DXMATRIX *pOut, const D3DXVECTOR3 *pEye, const
     pOut->_33 = z.z;
     pOut->_34 = 0.0f;
 	
-    pOut->_41 = D3DXVec3Dot(&x,pEye);
-    pOut->_42 = D3DXVec3Dot(&y,pEye);
-    pOut->_43 = D3DXVec3Dot(&z,pEye);
+    pOut->_41 = D3DXVec3Dot(&x, pEye);
+    pOut->_42 = D3DXVec3Dot(&y, pEye);
+    pOut->_43 = D3DXVec3Dot(&z, pEye);
     pOut->_44 = 1.0f;
 	
 	return pOut;
@@ -607,72 +607,72 @@ D3DXMATRIX* D3DXMatrixLookAtRH( D3DXMATRIX *pOut, const D3DXVECTOR3 *pEye, const
 
 /**D3DXMatrixPerspectiveFovLH: creates a perspective left-handed matrix*/
 D3DXMATRIX* D3DXMatrixPerspectiveFovLH( D3DXMATRIX *pOut, float fovy, float Aspect, float zn, float zf ){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 		
 	D3DXMatrixIdentity(pOut);
      
-	float f = 1.0f/tanf(fovy*0.5f);
+    float f = 1.0f / tanf(fovy * 0.5f);
 	float d = zf - zn;
 
-	pOut->_11 = f/Aspect;
-	pOut->_22 = f;
-	pOut->_33 = zf/d;
+    pOut->_11 = f / Aspect;
+    pOut->_22 = f;
+    pOut->_33 = zf / d;
 	pOut->_44 = 0.0f;
-	pOut->_43 = -zn*zf/d;
+    pOut->_43 = -zn * zf / d;
 	pOut->_34 = 1.0f;
 	return pOut;
 }
 
 /**D3DXMatrixPerspectiveFovRH: creates a perspective right-handed matrix*/
 D3DXMATRIX* D3DXMatrixPerspectiveFovRH( D3DXMATRIX *pOut, float fovy, float Aspect, float zn, float zf ){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 		
 	D3DXMatrixIdentity(pOut);
 
-	float f = 1.0f/tanf(fovy*0.5f);
+    float f = 1.0f / tanf(fovy * 0.5f);
 	float d = zn - zf;
 
 	pOut->_11 = f/Aspect;
 	pOut->_22 = f;
-	pOut->_33 = zf/d;
+    pOut->_33 = zf / d;
 	pOut->_44 = 0.0f;
-	pOut->_43 = zn*zf/d;
+    pOut->_43 = zn * zf / d;
 	pOut->_34 = -1.0f;
 	return pOut;
 }
 
 /**D3DXMatrixOrthoLH: creates an orthographic left-handed matrix*/
 D3DXMATRIX *D3DXMatrixOrthoLH(D3DXMATRIX * pOut, float w, float h, float zn, float zf){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 		
 	D3DXMatrixIdentity(pOut);
 
-	float d = zf-zn;
+    float d = zf - zn;
 
-	pOut->_11 = 2.0f/float(w);
-	pOut->_22 = 2.0f/float(h);
-	pOut->_33 = 1.0f/d;
-	pOut->_43 = -zn/d;
+    pOut->_11 = 2.0f / float(w);
+    pOut->_22 = 2.0f / float(h);
+    pOut->_33 = 1.0f / d;
+    pOut->_43 = -zn / d;
 	
 	return pOut;
 }
 
 /**D3DXMatrixOrthoRH: creates an orthographic right-handed matrix*/
 D3DXMATRIX *D3DXMatrixOrthoRH(D3DXMATRIX * pOut, float w, float h, float zn, float zf){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 		
 	D3DXMatrixIdentity(pOut);
 
-	float d = zn-zf;
+    float d = zn - zf;
 
-	pOut->_11 = 2.0f/float(w);
-	pOut->_22 = 2.0f/float(h);
-	pOut->_33 = 1.0f/d;
-	pOut->_43 = zn/d;
+    pOut->_11 = 2.0f / float(w);
+    pOut->_22 = 2.0f / float(h);
+    pOut->_33 = 1.0f / d;
+    pOut->_43 = zn / d;
 	
 	return pOut;
 }
@@ -726,7 +726,7 @@ D3DXMATRIX* D3DXMatrixInverseTrace(D3DXMATRIX *pOut, float *pDeterminant, const 
     if(det<=1e-6f)
         return NULL;
 
-    if(pOut==NULL)
+    if(pOut == NULL)
         pOut = new D3DXMATRIX();
 
     D3DXMATRIX I, pM2, pM3;
@@ -759,7 +759,7 @@ D3DXMATRIX* D3DXMatrixInverse(D3DXMATRIX *pOut, float *pDeterminant, const D3DXM
 
 /**D3DXMatrixToOpenGL: converts the matrix from the D3DXMATRIX format to the OpenGL format*/
 float *D3DXMatrixToOpenGL(float *pOut, const D3DXMATRIX *pM){
-    if(pOut==NULL)
+    if(pOut == NULL)
         pOut=new float[16];
 
     pOut[0]  = pM->_11;
@@ -787,7 +787,7 @@ float *D3DXMatrixToOpenGL(float *pOut, const D3DXMATRIX *pM){
 
 /**OpenGLToD3DXMatrix: converts the matrix from the OpenGL format to the D3DXMATRIX format*/
 D3DXMATRIX *OpenGLToD3DXMatrix(D3DXMATRIX *pOut, float *pM){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXMATRIX();
 
 	pOut->_11 = pM[0];
@@ -815,23 +815,23 @@ D3DXMATRIX *OpenGLToD3DXMatrix(D3DXMATRIX *pOut, float *pM){
 
 /**D3DXMatrixExtractPlanes: extracts planes from a view matrix*/
 D3DXPLANE *D3DXMatrixExtractPlanes(D3DXPLANE *pOut, D3DXMATRIX *pM){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXPLANE[6];
 
 	//Left
-	pOut[0].set(pM->_14+pM->_11, pM->_24+pM->_21, pM->_34+pM->_31, pM->_44+pM->_41);
+    pOut[0].set(pM->_14 + pM->_11, pM->_24 + pM->_21, pM->_34 + pM->_31, pM->_44 + pM->_41);
 	//Right
-	pOut[1].set(pM->_14-pM->_11, pM->_24-pM->_21, pM->_34-pM->_31, pM->_44-pM->_41);
+    pOut[1].set(pM->_14 - pM->_11, pM->_24 - pM->_21, pM->_34 - pM->_31, pM->_44 - pM->_41);
 
 	//Bottom
-	pOut[2].set(pM->_14+pM->_12, pM->_24+pM->_22, pM->_34+pM->_32, pM->_44+pM->_42);
+    pOut[2].set(pM->_14 + pM->_12, pM->_24 + pM->_22, pM->_34 + pM->_32, pM->_44 + pM->_42);
 	//Top
-	pOut[3].set(pM->_14-pM->_12, pM->_24-pM->_22, pM->_34-pM->_32, pM->_44-pM->_42);
+    pOut[3].set(pM->_14 - pM->_12, pM->_24 - pM->_22, pM->_34 - pM->_32, pM->_44 - pM->_42);
 
 	//Near
-	pOut[4].set(pM->_13, pM->_23, pM->_33, pM->_43);
+    pOut[4].set(pM->_13, pM->_23, pM->_33, pM->_43);
 	//Far
-	pOut[5].set(pM->_14-pM->_13, pM->_24-pM->_23, pM->_34-pM->_33, pM->_44-pM->_43);
+    pOut[5].set(pM->_14 - pM->_13, pM->_24 - pM->_23, pM->_34 - pM->_33, pM->_44 - pM->_43);
 
 	return pOut;
 }
