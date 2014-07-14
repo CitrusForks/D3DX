@@ -34,7 +34,7 @@ public:
 
 //D3DXQuaternionIdentity:: identity quaternion
 D3DXQUATERNION *D3DXQuaternionIdentity(D3DXQUATERNION *pOut){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXQUATERNION();
 
 	pOut->x = 0.0f;
@@ -47,16 +47,16 @@ D3DXQUATERNION *D3DXQuaternionIdentity(D3DXQUATERNION *pOut){
 
 /**Calculate a quaternion from an axis and an angle*/
 D3DXQUATERNION *D3DXQuaternionRotationAxis(D3DXQUATERNION *pOut, const D3DXVECTOR3 * pV, float Angle){
-	if(pOut==NULL)
-		pOut=new D3DXQUATERNION();
+    if(pOut == NULL)
+        pOut = new D3DXQUATERNION();
 
 	Angle /= 2.0f;
 
 	float sinAngle = sinf(Angle);
 
-	pOut->x = (sinAngle*pV->x);
-	pOut->y = (sinAngle*pV->y);
-	pOut->z = (sinAngle*pV->z);
+    pOut->x = (sinAngle * pV->x);
+    pOut->y = (sinAngle * pV->y);
+    pOut->z = (sinAngle * pV->z);
 	pOut->w = cosf(Angle);
 
 	return pOut;
@@ -69,20 +69,20 @@ inline float D3DXQuaternionDot(const D3DXQUATERNION *pQ1, const D3DXQUATERNION *
 
 //D3DXQuaternionSlerp: spherical interpolation
 inline D3DXQUATERNION* D3DXQuaternionSlerp(D3DXQUATERNION *pOut, const D3DXQUATERNION *pQ1, const D3DXQUATERNION *pQ2, float t){
-	if(pOut==NULL)
+    if(pOut == NULL)
 		pOut = new D3DXQUATERNION();
 
-	float theta = acosf(D3DXQuaternionDot(pQ1,pQ2));
+    float theta = acosf(D3DXQuaternionDot(pQ1, pQ2));
 
 	float sinTheta = sinf(theta);
 
-	float t1 = sinf((1.0f-t)*theta)/sinTheta;
-	float t2 = sinf(t*theta)/sinTheta;
+    float t1 = sinf((1.0f - t) * theta) / sinTheta;
+    float t2 = sinf(t * theta) / sinTheta;
 
-	pOut->x = pQ1->x*t1 + pQ2->x*t2;
-	pOut->y = pQ1->y*t1 + pQ2->y*t2;
-	pOut->z = pQ1->z*t1 + pQ2->z*t2;
-	pOut->w = pQ1->w*t1 + pQ2->w*t2;
+    pOut->x = pQ1->x * t1 + pQ2->x * t2;
+    pOut->y = pQ1->y * t1 + pQ2->y * t2;
+    pOut->z = pQ1->z * t1 + pQ2->z * t2;
+    pOut->w = pQ1->w * t1 + pQ2->w * t2;
 
 	return pOut;
 }

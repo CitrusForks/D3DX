@@ -511,6 +511,12 @@ D3DXMATRIX *D3DXMatrixRotationQuaternion(D3DXMATRIX * pOut, const D3DXQUATERNION
 	return pOut;
 }
 
+/**D3DXQuaternionRotationMatrix: creates a quaternion from a matrix*/
+D3DXQUATERNION *D3DXQuaternionRotationMatrix(D3DXQUATERNION *pOut, D3DXMATRIX *pM)
+{
+    return pOut;
+}
+
 /**D3DXMatrixTranslation: creates a translation matrix*/
 D3DXMATRIX *D3DXMatrixTranslation(D3DXMATRIX *pOut, float x, float y, float z){
     if(pOut == NULL)
