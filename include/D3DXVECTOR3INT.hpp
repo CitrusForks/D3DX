@@ -17,6 +17,30 @@ public:
 	bool isTheSame(const D3DXVECTOR3INT &a){
 		return ((a.x==x)&&(a.y==y)&&(a.z==z));
 	}
+
+  	int operator [](int i) const{
+		switch(i){
+			case 0:
+				return x; break;
+			case 1:
+				return y; break;
+			case 2:
+				return z; break;
+		}
+		return -1.0f;
+	}
+
+ 	int &operator [](int i){
+		switch(i){
+			case 0:
+				return x; break;
+			case 1:
+				return y; break;
+			case 2:
+				return z; break;
+		}
+		return x;
+	}
 };
 
 #endif
