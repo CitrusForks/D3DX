@@ -27,7 +27,7 @@ public:
 			case 2:
 				return z; break;
 		}
-		return -1.0f;
+		return -1;
 	}
 
  	int &operator [](int i){
