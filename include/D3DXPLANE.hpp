@@ -18,15 +18,30 @@
 #ifndef CLASS_D3DXPLANE
 #define CLASS_D3DXPLANE
 
+/**
+ * @brief The D3DXPLANE class
+ */
 class D3DXPLANE
 {
 public:
-	float a,b,c,d;
+    float a, b, c, d;
 
-	D3DXPLANE(){
+    /**
+     * @brief D3DXPLANE
+     */
+    D3DXPLANE()
+    {
 	}
 
-	void set(float a, float b, float c, float d){
+    /**
+     * @brief set
+     * @param a
+     * @param b
+     * @param c
+     * @param d
+     */
+    void set(float a, float b, float c, float d)
+    {
 		this->a = a;
 		this->b = b;
 		this->c = c;

@@ -18,72 +18,133 @@
 #ifndef CLASS_D3DXVECTOR2
 #define CLASS_D3DXVECTOR2
 
+/**
+ * @brief The D3DXVECTOR2 class
+ */
 class D3DXVECTOR2
 {
 public:
 	float x, y;
 
-	D3DXVECTOR2(){
+    /**
+     * @brief D3DXVECTOR2
+     */
+    D3DXVECTOR2()
+    {
 	}
 
+    /**
+     * @brief D3DXVECTOR2
+     * @param x
+     * @param y
+     */
 	D3DXVECTOR2(float x, float y)
 	{
 		this->x = x;
 		this->y = y;
 	}
 
+    /**
+     * @brief operator -
+     * @param v
+     * @return
+     */
 	D3DXVECTOR2 operator -(const D3DXVECTOR2 &v)
 	{
-		return D3DXVECTOR2(x-v.x, y-v.y);
+        return D3DXVECTOR2(x - v.x, y - v.y);
 	}
 
+    /**
+     * @brief operator -=
+     * @param v
+     */
 	void operator -=(const D3DXVECTOR2 &v)
 	{
 		x -= v.x;
 		y -= v.y;
 	}
 
+    /**
+     * @brief operator +
+     * @param v
+     * @return
+     */
 	D3DXVECTOR2 operator +(const D3DXVECTOR2 &v)
 	{
-		return D3DXVECTOR2(x+v.x, y+v.y);
+        return D3DXVECTOR2(x + v.x, y + v.y);
 	}
 
+    /**
+     * @brief operator +=
+     * @param v
+     */
 	void operator +=(const D3DXVECTOR2 &v)
 	{
 		x += v.x;
 		y += v.y;
 	}
 
+    /**
+     * @brief operator *
+     * @param v
+     * @return
+     */
 	D3DXVECTOR2 operator *(const D3DXVECTOR2 &v)
 	{
-		return D3DXVECTOR2(x*v.x, y*v.y);
+        return D3DXVECTOR2(x * v.x, y * v.y);
 	}
 
+    /**
+     * @brief operator *
+     * @param a
+     * @return
+     */
 	D3DXVECTOR2 operator *(const float &a)
 	{
-		return D3DXVECTOR2(x*a, y*a);
+        return D3DXVECTOR2(x * a, y * a);
 	}
 
+    /**
+     * @brief operator *=
+     * @param a
+     * @return
+     */
 	D3DXVECTOR2 operator *=(const float &a)
 	{
-		return D3DXVECTOR2(x*a, y*a);
+        return D3DXVECTOR2(x * a, y * a);
 	}
 
+    /**
+     * @brief operator /
+     * @param a
+     * @return
+     */
 	D3DXVECTOR2 operator /(const float &a)
 	{
-		if(x!=0.0f)
-			return D3DXVECTOR2(x/a, y/a);
+        if(x != 0.0f)
+            return D3DXVECTOR2(x / a, y / a);
 		else
 			return D3DXVECTOR2(x, y);
 	}
 
-	void operator /=(const D3DXVECTOR2 &v){
+    /**
+     * @brief operator /=
+     * @param v
+     */
+    void operator /=(const D3DXVECTOR2 &v)
+    {
 		x /= v.x;
 		y /= v.y;
 	}
 
-	bool operator ==(const D3DXVECTOR2 &v){
-		return (v.x==x)&&(v.y==y);
+    /**
+     * @brief operator ==
+     * @param v
+     * @return
+     */
+    bool operator ==(const D3DXVECTOR2 &v)
+    {
+        return (v.x == x) && (v.y == y);
 	}
 
 };
