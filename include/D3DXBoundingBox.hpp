@@ -19,6 +19,7 @@
 #define FUNCTIONS_D3DXBOUNDINGBOX
 
 #include "D3DXVECTOR3.hpp"
+#include "D3DXMATRIX.hpp"
 
 /**
  * @brief D3DXExtendBBox computes a bounding box (bMax,bMin) is expanded according to p.
@@ -328,6 +329,40 @@ void D3DXBBoxLocal(const D3DXVECTOR3 *max, const D3DXVECTOR3 *min, D3DXVECTOR3 *
 }
 
 /**
+ * @brief D3DXBBoxApplyTransform
+ * @param bbox
+ * @param transform
+ * @param bboxOut
+ */
+void D3DXBBoxApplyTransform(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin, const D3DXMATRIX *transform, 
+                            D3DXVECTOR3 *pMax, D3DXVECTOR3 *pMin)
+{
+    D3DXVECTOR3 frame[8];
+    frame[0] = *bMin;
+    frame[1] = D3DXVECTOR3(bMax->x, bMin->y, bMax->z);
+    frame[2] = D3DXVECTOR3(bMin->x, bMin->y, bMax->z);
+    frame[3] = D3DXVECTOR3(bMax->x, bMin->y, bMin->z);
+
+    frame[4] = *bMax;
+    frame[5] = D3DXVECTOR3(bMin->x, bMax->y, bMin->z);
+    frame[6] = D3DXVECTOR3(bMin->x, bMax->y, bMax->z);
+    frame[7] = D3DXVECTOR3(bMax->x, bMax->y, bMin->z);
+
+    for(int i=0;i<8;i++) {
+        D3DXVECTOR3 tmp;
+        D3DXVec3TransformCoord(&tmp, &frame[i], transform);
+        frame[i] = tmp;
+    }
+
+    *pMax = frame[0];
+    *pMin = frame[0];
+
+    for(int i=1;i<8;i++) {
+        D3DXExtendBBox(pMax, pMin, &frame[i]);
+    }
+}
+
+/**
  * @brief D3DXBBoxClampLocal
  * @param max
  * @param min
@@ -400,4 +435,5 @@ D3DXVECTOR3 *D3DXVec3ShiftOctant(D3DXVECTOR3 *vecOut, int ind)
 
 	return vecOut;
 }
+
 #endif
