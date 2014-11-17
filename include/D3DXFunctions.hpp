@@ -385,7 +385,7 @@ D3DXVECTOR3 D3DXFloat2Vec3(float vec[3])
 bool D3DXVec3Similar(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b)
 {
 	D3DXVECTOR3 tmp = *a - *b;
-    return sqrtf(D3DXVec3Dot(&tmp,&tmp)) < 1e-12f;
+    return sqrtf(D3DXVec3Dot(&tmp, &tmp)) < 1e-12f;
 }
 
 #endif //D3DX_FUNCTIONS
