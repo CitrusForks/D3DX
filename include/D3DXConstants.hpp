@@ -15,8 +15,8 @@
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-#ifndef CONSTANTS_D3DXCONSTANTS
-#define CONSTANTS_D3DXCONSTANTS
+#ifndef D3DX_CONSTANTS
+#define D3DX_CONSTANTS
 
 #include "D3DXVECTOR3.hpp"
 #include "D3DXVECTOR4.hpp"
@@ -36,4 +36,4 @@ const D3DXVECTOR3 E0        = D3DXVECTOR3(1.0f,0.0f,0.0f);
 const D3DXVECTOR3 E1        = D3DXVECTOR3(0.0f,1.0f,0.0f);
 const D3DXVECTOR3 E2        = D3DXVECTOR3(0.0f,0.0f,1.0f);
 
-#endif
+#endif //D3DX_CONSTANTS
