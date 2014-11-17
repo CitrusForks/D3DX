@@ -48,4 +48,5 @@ public:
 		this->d = d;
 	}
 };
-#endif
+
+#endif //CLASS_D3DXPLANE
