@@ -15,8 +15,8 @@
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-#ifndef FUNCTIONS_D3DXFUNCTIONS
-#define FUNCTIONS_D3DXFUNCTIONS
+#ifndef D3DX_FUNCTIONS
+#define D3DX_FUNCTIONS
 
 #include <math.h>
 
@@ -25,41 +25,79 @@
 #include "D3DXVECTOR4.hpp"
 #include "D3DXQUATERNION.hpp"
 
-//Cross Product
-void D3DXVec3Cross(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *A, const D3DXVECTOR3 *B){
+/**
+ * @brief D3DXVec3Cross
+ * @param pOut
+ * @param A
+ * @param B
+ */
+void D3DXVec3Cross(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *A, const D3DXVECTOR3 *B)
+{
 	pOut->x = A->y * B->z - B->y * A->z;
 	pOut->y = A->z * B->x - B->z * A->x;
 	pOut->z = A->x * B->y - B->x * A->y;
 }
 
-//Dot product
-inline float D3DXVec2Dot(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b){
-	return (a->x*b->x+ a->y*b->y);
+/**
+ * @brief D3DXVec2Dot
+ * @param a
+ * @param b
+ * @return
+ */
+inline float D3DXVec2Dot(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b)
+{
+    return (a->x * b->x +
+            a->y * b->y);
 }
 
-inline float D3DXVec3Dot(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
-	return (a->x*b->x+ a->y*b->y+ a->z*b->z);
+/**
+ * @brief D3DXVec3Dot
+ * @param a
+ * @param b
+ * @return
+ */
+inline float D3DXVec3Dot(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b)
+{
+    return (a->x * b->x +
+            a->y * b->y +
+            a->z * b->z);
 }
 
-inline float D3DXVec4Dot(const D3DXVECTOR4 *a, const D3DXVECTOR4 *b){
-	return (a->x*b->x+ a->y*b->y+ a->z*b->z + a->w*b->w);
+/**
+ * @brief D3DXVec4Dot
+ * @param a
+ * @param b
+ * @return
+ */
+inline float D3DXVec4Dot(const D3DXVECTOR4 *a, const D3DXVECTOR4 *b)
+{
+    return (a->x * b->x +
+            a->y * b->y +
+            a->z * b->z +
+            a->w * b->w);
 }
 
-D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut, const D3DXVECTOR2 *pV){
+/**
+ * @brief D3DXVec2Normalize
+ * @param pOut
+ * @param pV
+ * @return
+ */
+D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut, const D3DXVECTOR2 *pV)
+{
 #ifdef D3DX_NORMALIZATION_POINTER_CHECK
 	if(pOut == NULL)
 		pOut = new D3DXVECTOR2();
 #endif
 
-	float length = (pV->x*pV->x + pV->y*pV->y);
+    float length = (pV->x * pV->x + pV->y * pV->y);
 	
-	if(length>0.0f){
+    if(length > 0.0f) {
 		length = sqrtf(length);
-		pOut->x = pV->x/length;
-		pOut->y = pV->y/length;
+        pOut->x = pV->x / length;
+        pOut->y = pV->y / length;
 		return pOut;
-	}
-	else{
+    } else {
 		#ifdef D3DX_DEBUG_POINER_CHECK
 			printf("D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut, const D3DXVECTOR2 *pV): Normalization Error!\n");
 		#endif
@@ -67,17 +105,16 @@ D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut, const D3DXVECTOR2 *pV){
 	}
 }
 
-D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut){
-
-	float length = (pOut->x*pOut->x + pOut->y*pOut->y);
+D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut)
+{
+    float length = (pOut->x * pOut->x + pOut->y * pOut->y);
 	
-	if(length>0.0f){
+    if(length > 0.0f){
 		length = sqrtf(length);
 		pOut->x /= length;
 		pOut->y /= length;
 		return pOut;
-	}
-	else{
+    } else {
 		#ifdef D3DX_DEBUG_POINER_CHECK
 			printf("D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut): Normalization Error!\n");
 		#endif
@@ -85,25 +122,30 @@ D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut){
 	}
 }
 
-/**Normalize a D3DXVECTOR3*/
-D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *pV){
+/**
+ * @brief D3DXVec3Normalize
+ * @param pOut
+ * @param pV
+ * @return
+ */
+D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *pV)
+{
 #ifdef D3DX_NORMALIZATION_POINTER_CHECK
 	if(pOut == NULL)
 		pOut = new D3DXVECTOR3();
 #endif
 
-	float length = (pV->x*pV->x+
-					pV->z*pV->z+
-					pV->y*pV->y);
+    float length = (pV->x * pV->x+
+                    pV->z * pV->z+
+                    pV->y * pV->y);
 	
-	if(length>0.0f){
+    if(length > 0.0f){
 		length = sqrtf(length);
-		pOut->x = pV->x/length;
-		pOut->y = pV->y/length;
-		pOut->z = pV->z/length;
+        pOut->x = pV->x / length;
+        pOut->y = pV->y / length;
+        pOut->z = pV->z / length;
 		return pOut;
-	}
-	else{
+    } else {
 		#ifdef D3DX_DEBUG_POINER_CHECK
 			printf("D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *pV): Normalization Error!\n");
 		#endif
@@ -111,20 +153,24 @@ D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *pV){
 	}
 }
 
-/**D3DXVec3Normalize: normalizes a D3DXVECTOR3*/
-D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut){
-	float length = (pOut->x*pOut->x+
-					pOut->z*pOut->z+
-					pOut->y*pOut->y);
+/**
+ * @brief D3DXVec3Normalize normalizes a D3DXVECTOR3.
+ * @param pOut
+ * @return
+ */
+D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut)
+{
+    float length = (pOut->x * pOut->x +
+                    pOut->z * pOut->z +
+                    pOut->y * pOut->y);
 	
-	if(length>0.0f){
+    if(length > 0.0f) {
 		length = sqrtf(length);
 		pOut->x /= length;
 		pOut->y /= length;
 		pOut->z /= length;
 		return pOut;
-	}
-	else{
+    } else {
 		#ifdef D3DX_DEBUG_POINER_CHECK
 			printf("D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut): Normalization Error!\n");
 		#endif
@@ -132,41 +178,53 @@ D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut){
 	}
 }
 
-/**D3DXVec3Normalize2: normalizes a D3DXVECTOR3 and returns is magnitude*/
-float D3DXVec3Normalize2(D3DXVECTOR3 *pOut){
-	float length = (pOut->x*pOut->x + pOut->z*pOut->z + pOut->y*pOut->y);
+/**
+ * @brief D3DXVec3Normalize2 normalizes a D3DXVECTOR3 and returns is magnitude.
+ * @param pOut
+ * @return
+ */
+float D3DXVec3Normalize2(D3DXVECTOR3 *pOut)
+{
+    float length = (pOut->x * pOut->x +
+                    pOut->z * pOut->z +
+                    pOut->y * pOut->y);
 	
-	if(length>0.0f){
+    if(length > 0.0f) {
 		length = sqrtf(length);
 		pOut->x /= length;
 		pOut->y /= length;
 		pOut->z /= length;
 		return length;
-	}
-	else
+    } else {
 		return 0.0f;
+    }
 }
 
-/**D3DXVec4Normalize: normalizes a D3DXVECTOR4*/
-D3DXVECTOR4 *D3DXVec4Normalize(D3DXVECTOR4 *pOut, const D3DXVECTOR4 *pV){
+/**
+ * @brief D3DXVec4Normalize normalizes a D3DXVECTOR4.
+ * @param pOut
+ * @param pV
+ * @return
+ */
+D3DXVECTOR4 *D3DXVec4Normalize(D3DXVECTOR4 *pOut, const D3DXVECTOR4 *pV)
+{
 #ifdef D3DX_NORMALIZATION_POINTER_CHECK
 	if(pOut == NULL)
 		pOut = new D3DXVECTOR4();
 #endif
-	float length = (pV->x*pV->x+
-					pV->z*pV->z+
-					pV->w*pV->w+
-					pV->y*pV->y);
+    float length = (pV->x * pV->x+
+                    pV->z * pV->z+
+                    pV->w * pV->w+
+                    pV->y * pV->y);
 	
-	if(length>0.0f){
+    if(length > 0.0f) {
 		length = sqrtf(length);
-		pOut->x = pV->x/length;
-		pOut->y = pV->y/length;
-		pOut->z = pV->z/length;
-		pOut->w = pV->w/length;
+        pOut->x = pV->x / length;
+        pOut->y = pV->y / length;
+        pOut->z = pV->z / length;
+        pOut->w = pV->w / length;
 		return pOut;
-	}
-	else{
+    } else {
 		#ifdef D3DX_DEBUG_POINER_CHECK
 			printf("D3DXVECTOR4 *D3DXVec4Normalize(D3DXVECTOR4 *pOut, const D3DXVECTOR4 *pV): Normalization Error!\n");
 		#endif
@@ -174,84 +232,160 @@ D3DXVECTOR4 *D3DXVec4Normalize(D3DXVECTOR4 *pOut, const D3DXVECTOR4 *pV){
 	}
 }
 
-/**Length Square*/
-float D3DXVec2LengthSq(const D3DXVECTOR2 *pV){
-	return	pV->x*pV->x+
-			pV->y*pV->y;
+/**
+ * @brief D3DXVec2LengthSq
+ * @param pV
+ * @return
+ */
+float D3DXVec2LengthSq(const D3DXVECTOR2 *pV)
+{
+    return	pV->x * pV->x+
+            pV->y * pV->y;
 }
 
-float D3DXVec3LengthSq(const D3DXVECTOR3 *pV){
-	return	pV->x*pV->x+
-			pV->z*pV->z+
-			pV->y*pV->y;
+/**
+ * @brief D3DXVec3LengthSq
+ * @param pV
+ * @return
+ */
+float D3DXVec3LengthSq(const D3DXVECTOR3 *pV)
+{
+    return	pV->x * pV->x+
+            pV->z * pV->z+
+            pV->y * pV->y;
 }
 
-float D3DXVec4LengthSq(const D3DXVECTOR4 *pV){
-	return	pV->x*pV->x+
-			pV->z*pV->z+
-			pV->w*pV->w+
-			pV->y*pV->y;
+/**
+ * @brief D3DXVec4LengthSq
+ * @param pV
+ * @return
+ */
+float D3DXVec4LengthSq(const D3DXVECTOR4 *pV)
+{
+    return	pV->x * pV->x +
+            pV->z * pV->z +
+            pV->w * pV->w +
+            pV->y * pV->y;
 }
 
-/**Length*/
-float D3DXVec2Length(const D3DXVECTOR2 *pV){
-	return	sqrtf(	pV->x*pV->x+
-					pV->y*pV->y);
+/**
+ * @brief D3DXVec2Length
+ * @param pV
+ * @return
+ */
+float D3DXVec2Length(const D3DXVECTOR2 *pV)
+{
+    return	sqrtf(  pV->x * pV->x +
+                    pV->y * pV->y);
 }
 
-float D3DXVec3Length(const D3DXVECTOR3 *pV){
-	return	sqrtf(	pV->x*pV->x+
-					pV->z*pV->z+
-					pV->y*pV->y);
+/**
+ * @brief D3DXVec3Length
+ * @param pV
+ * @return
+ */
+float D3DXVec3Length(const D3DXVECTOR3 *pV)
+{
+    return	sqrtf(  pV->x * pV->x+
+                    pV->z * pV->z+
+                    pV->y * pV->y);
 }
 
-float D3DXVec4Length(const D3DXVECTOR4 *pV){
-	return	sqrtf(	pV->x*pV->x+
-					pV->z*pV->z+
-					pV->w*pV->w+
-					pV->y*pV->y);
+/**
+ * @brief D3DXVec4Length
+ * @param pV
+ * @return
+ */
+float D3DXVec4Length(const D3DXVECTOR4 *pV)
+{
+    return	sqrtf(	pV->x * pV->x+
+                    pV->z * pV->z+
+                    pV->w * pV->w+
+                    pV->y * pV->y);
 }
 
-/**Distance*/
-float D3DXVecDistance(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b){
+/**
+ * @brief D3DXVecDistance
+ * @param a
+ * @param b
+ * @return
+ */
+float D3DXVecDistance(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b)
+{
 	D3DXVECTOR2 c;
-	c.x=a->x-b->x;
-	c.y=a->y-b->y;
-	return sqrtf(c.x*c.x + c.y*c.y);
+    c.x = a->x - b->x;
+    c.y = a->y - b->y;
+    return sqrtf(c.x * c.x + c.y * c.y);
 }
 
-float D3DXVecDistance(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
+/**
+ * @brief D3DXVecDistance
+ * @param a
+ * @param b
+ * @return
+ */
+float D3DXVecDistance(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b)
+{
 	D3DXVECTOR3 c;
-	c.x=a->x-b->x;
-	c.y=a->y-b->y;
-	c.z=a->z-b->z;
-	return sqrtf(c.x*c.x+c.y*c.y+c.z*c.z);
+    c.x = a->x - b->x;
+    c.y = a->y - b->y;
+    c.z = a->z - b->z;
+    return sqrtf(c.x * c.x +
+                 c.y * c.y +
+                 c.z * c.z);
 }
 
-/**Squared distance*/
-float D3DXVecDistanceSq(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b){
+/**
+ * @brief D3DXVecDistanceSq
+ * @param a
+ * @param b
+ * @return
+ */
+float D3DXVecDistanceSq(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b)
+{
 	D3DXVECTOR2 c;
 	c.x=a->x-b->x;
 	c.y=a->y-b->y;
 	return (c.x*c.x+c.y*c.y);
 }
 
-float D3DXVecDistanceSq(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
+/**
+ * @brief D3DXVecDistanceSq
+ * @param a
+ * @param b
+ * @return
+ */
+float D3DXVecDistanceSq(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b)
+{
 	D3DXVECTOR3 c;
-	c.x=a->x-b->x;
-	c.y=a->y-b->y;
-	c.z=a->z-b->z;
-	return c.x*c.x+c.y*c.y+c.z*c.z;
+    c.x = a->x - b->x;
+    c.y = a->y - b->y;
+    c.z = a->z - b->z;
+    return  c.x * c.x +
+            c.y * c.y +
+            c.z * c.z;
 }
 
-//Array to Vector
-D3DXVECTOR3 D3DXFloat2Vec3(float vec[3]){
-	return D3DXVECTOR3(vec[0],vec[1],vec[2]);
+/**
+ * @brief D3DXFloat2Vec3
+ * @param vec
+ * @return
+ */
+D3DXVECTOR3 D3DXFloat2Vec3(float vec[3])
+{
+    return D3DXVECTOR3(vec[0], vec[1], vec[2]);
 }
 
-//Checking for similarity
-bool D3DXVec3Similar(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b){
+/**
+ * @brief D3DXVec3Similar checks if two D3DXVECTOR3s are similar.
+ * @param a
+ * @param b
+ * @return
+ */
+bool D3DXVec3Similar(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b)
+{
 	D3DXVECTOR3 tmp = *a - *b;
-	return sqrtf(D3DXVec3Dot(&tmp,&tmp))<1e-12f;
+    return sqrtf(D3DXVec3Dot(&tmp,&tmp)) < 1e-12f;
 }
-#endif
+
+#endif //D3DX_FUNCTIONS

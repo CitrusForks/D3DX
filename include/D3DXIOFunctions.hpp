@@ -16,7 +16,7 @@
 **/
 
 #ifndef D3DX_IO_FUNCTIONS
-#define
+#define D3DX_IO_FUNCTIONS
 
 #include <stdio.h>
 
