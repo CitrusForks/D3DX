@@ -18,13 +18,20 @@
 #ifndef CLASS_D3DXQUATERNION
 #define CLASS_D3DXQUATERNION
 
+/**
+ * @brief The D3DXQUATERNION class
+ */
 class D3DXQUATERNION
 {
 public:
 
-	float x,y,z,w;
+    float x, y, z, w;
 
-	D3DXQUATERNION(){
+    /**
+     * @brief D3DXQUATERNION
+     */
+    D3DXQUATERNION()
+    {
 		x = 0.0f;
 		y = 0.0f;
 		z = 0.0f;
@@ -32,10 +39,16 @@ public:
 	}
 };
 
-//D3DXQuaternionIdentity:: identity quaternion
-D3DXQUATERNION *D3DXQuaternionIdentity(D3DXQUATERNION *pOut){
-    if(pOut == NULL)
+/**
+ * @brief D3DXQuaternionIdentity creates the identity quaternion.
+ * @param pOut
+ * @return
+ */
+D3DXQUATERNION *D3DXQuaternionIdentity(D3DXQUATERNION *pOut)
+{
+    if(pOut == NULL) {
 		pOut = new D3DXQUATERNION();
+    }
 
 	pOut->x = 0.0f;
 	pOut->y = 0.0f;
@@ -45,10 +58,18 @@ D3DXQUATERNION *D3DXQuaternionIdentity(D3DXQUATERNION *pOut){
 	return pOut;
 }
 
-/**Calculate a quaternion from an axis and an angle*/
-D3DXQUATERNION *D3DXQuaternionRotationAxis(D3DXQUATERNION *pOut, const D3DXVECTOR3 * pV, float Angle){
-    if(pOut == NULL)
+/**
+ * @brief D3DXQuaternionRotationAxis calculates a quaternion given an axis and an angle.
+ * @param pOut
+ * @param pV
+ * @param Angle
+ * @return
+ */
+D3DXQUATERNION *D3DXQuaternionRotationAxis(D3DXQUATERNION *pOut, const D3DXVECTOR3 * pV, float Angle)
+{
+    if(pOut == NULL) {
         pOut = new D3DXQUATERNION();
+    }
 
 	Angle /= 2.0f;
 
@@ -62,15 +83,33 @@ D3DXQUATERNION *D3DXQuaternionRotationAxis(D3DXQUATERNION *pOut, const D3DXVECTO
 	return pOut;
 }
 
-//D3DXQuaternionDot:: dot product between quaternions
-inline float D3DXQuaternionDot(const D3DXQUATERNION *pQ1, const D3DXQUATERNION *pQ2){
-	return (pQ1->x*pQ2->x + pQ1->y*pQ2->y + pQ1->z*pQ2->z + pQ1->w*pQ2->w);
+/**
+ * @brief D3DXQuaternionDot evaluates dot product between quaternions.
+ * @param pQ1
+ * @param pQ2
+ * @return
+ */
+inline float D3DXQuaternionDot(const D3DXQUATERNION *pQ1, const D3DXQUATERNION *pQ2)
+{
+    return (pQ1->x * pQ2->x +
+            pQ1->y * pQ2->y +
+            pQ1->z * pQ2->z +
+            pQ1->w * pQ2->w);
 }
 
-//D3DXQuaternionSlerp: spherical interpolation
-inline D3DXQUATERNION* D3DXQuaternionSlerp(D3DXQUATERNION *pOut, const D3DXQUATERNION *pQ1, const D3DXQUATERNION *pQ2, float t){
-    if(pOut == NULL)
+/**
+ * @brief D3DXQuaternionSlerp performs spherical interpolation.
+ * @param pOut
+ * @param pQ1
+ * @param pQ2
+ * @param t
+ * @return
+ */
+inline D3DXQUATERNION* D3DXQuaternionSlerp(D3DXQUATERNION *pOut, const D3DXQUATERNION *pQ1, const D3DXQUATERNION *pQ2, float t)
+{
+    if(pOut == NULL) {
 		pOut = new D3DXQUATERNION();
+    }
 
     float theta = acosf(D3DXQuaternionDot(pQ1, pQ2));
 
@@ -86,4 +125,5 @@ inline D3DXQUATERNION* D3DXQuaternionSlerp(D3DXQUATERNION *pOut, const D3DXQUATE
 
 	return pOut;
 }
-#endif
+
+#endif //CLASS_D3DXQUATERNION

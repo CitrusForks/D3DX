@@ -228,4 +228,5 @@ public:
 		return x;
 	}
 };
-#endif
+
+#endif //CLASS_D3DXVECTOR3
