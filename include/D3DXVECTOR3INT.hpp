@@ -1,24 +1,50 @@
-#ifndef CLASS_D3DXVECTOR3INT
-#define CLASS_D3DXVECTOR3INT
+#ifndef CLASS_D3DXVECTOR3_INT
+#define CLASS_D3DXVECTOR3_INT
 
-class D3DXVECTOR3INT{
+/**
+ * @brief The D3DXVECTOR3INT class
+ */
+class D3DXVECTOR3INT
+{
 public:
 	int		x, y, z;
 	
+    /**
+     * @brief D3DXVECTOR3INT
+     */
 	D3DXVECTOR3INT(){
 	}
 
-	D3DXVECTOR3INT(int x, int y, int z){
+    /**
+     * @brief D3DXVECTOR3INT
+     * @param x
+     * @param y
+     * @param z
+     */
+    D3DXVECTOR3INT(int x, int y, int z)
+    {
 		this->x = x;
 		this->y = y;
 		this->z = z;
 	}
 
-	bool isTheSame(const D3DXVECTOR3INT &a){
-		return ((a.x==x)&&(a.y==y)&&(a.z==z));
+    /**
+     * @brief isTheSame
+     * @param a
+     * @return
+     */
+    bool isTheSame(const D3DXVECTOR3INT &a)
+    {
+        return ((a.x == x) && (a.y == y) && (a.z == z));
 	}
 
-  	int operator [](int i) const{
+    /**
+     * @brief operator []
+     * @param i
+     * @return
+     */
+    int operator [](int i) const
+    {
 		switch(i){
 			case 0:
 				return x; break;
@@ -30,7 +56,13 @@ public:
 		return -1;
 	}
 
- 	int &operator [](int i){
+    /**
+     * @brief operator []
+     * @param i
+     * @return
+     */
+    int &operator [](int i)
+    {
 		switch(i){
 			case 0:
 				return x; break;
@@ -43,4 +75,4 @@ public:
 	}
 };
 
-#endif
+#endif //CLASS_D3DXVECTOR3_INT
