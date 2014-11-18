@@ -202,12 +202,12 @@ class D3DXMATRIX2X2
     }
     	
     /**
-     * @brief D3DXMATRIX2X2::Determinant computes the determinant of the matrix.
+     * @brief Determinant computes the determinant of the matrix.
      * @return
      */
-    float D3DXMATRIX2X2::Determinant()
+    float Determinant()
     {
-		return data[0]*data[3] - data[2]*data[1];
+        return data[0] * data[3] - data[2] * data[1];
 	}
 
     /**
@@ -219,7 +219,7 @@ class D3DXMATRIX2X2
     {
 	    float det = Determinant();
 
-        if(fabsf(det) < 1e-9f){
+        if(fabsf(det) < 1e-9f) {
 		    printf("Determinant is near zero: D3DXMATRIX2X2 *D3DXMATRIX2X2::Inverse()\n");
             return new D3DXMATRIX2X2(0.0f, 0.0f, 0.0f, 0.0f);
 	    }
