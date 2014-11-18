@@ -18,8 +18,6 @@
 #ifndef CLASS_D3DXMATRIX
 #define CLASS_D3DXMATRIX
 
-#include "math_util.hpp"
-
 #include "D3DXVECTOR3.hpp"
 #include "D3DXVECTOR4.hpp"
 #include "D3DXQUATERNION.hpp"
