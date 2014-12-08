@@ -22,8 +22,7 @@
 #include "D3DXVECTOR4.hpp"
 #include "D3DXQUATERNION.hpp"
 #include "D3DXPLANE.hpp"
-#include "D3DXMATRIX2X2.hpp"
-
+inve
 /**
  * @brief The D3DXMATRIX class
  */
@@ -644,13 +643,20 @@ D3DXMATRIX *D3DXMatrixRotationQuaternion(D3DXMATRIX * pOut, const D3DXQUATERNION
 
 /**
  * @brief D3DXQuaternionRotationMatrix creates a quaternion from a matrix.
- * @param pOut
- * @param pM
+ * @param pOut is the output quaternion.
+ * @param pM is a rotational matrix.
  * @return
  */
 D3DXQUATERNION *D3DXQuaternionRotationMatrix(D3DXQUATERNION *pOut, D3DXMATRIX *pM)
 {
-    //TODO: to be done.
+    float tr = D3DXMatrixTrace(pM);
+
+    pOut->w = sqrtf(tr) / 2.0f;
+
+    pOut->x = sqrtf( pM->_11 - pM->_22 - pM->_33 + pM->_44) / 2.0f;
+    pOut->t = sqrtf(-pM->_11 + pM->_11 - pM->_33 + pM->_44) / 2.0f;
+    pOut->z = sqrtf(-pM->_11 - pM->_22 + pM->_33 + pM->_44) / 2.0f;
+
     return pOut;
 }
 
