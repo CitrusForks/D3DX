@@ -664,7 +664,7 @@ D3DXQUATERNION *D3DXQuaternionRotationMatrix(D3DXQUATERNION *pOut, D3DXMATRIX *p
     pOut->w = sqrtf(MAX(tr, 0.0f)) / 2.0f;
 
     pOut->x = sqrtf(MAX( pM->_11 - pM->_22 - pM->_33 + pM->_44, 0.0f)) / 2.0f;
-    pOut->y = sqrtf(MAX(-pM->_11 + pM->_11 - pM->_33 + pM->_44, 0.0f)) / 2.0f;
+    pOut->y = sqrtf(MAX(-pM->_11 + pM->_22 - pM->_33 + pM->_44, 0.0f)) / 2.0f;
     pOut->z = sqrtf(MAX(-pM->_11 - pM->_22 + pM->_33 + pM->_44, 0.0f)) / 2.0f;
 
     return pOut;
