@@ -22,7 +22,7 @@
 #include "D3DXVECTOR4.hpp"
 #include "D3DXQUATERNION.hpp"
 #include "D3DXPLANE.hpp"
-inve
+
 /**
  * @brief The D3DXMATRIX class
  */
@@ -610,6 +610,16 @@ D3DXVECTOR3 * D3DXVec3TransformNormal(D3DXVECTOR3 * pOut, const D3DXVECTOR3 * pV
 }
 
 /**
+ * @brief D3DXMatrixTrace computes the trace of a matrix.
+ * @param pM
+ * @return
+ */
+float D3DXMatrixTrace(const D3DXMATRIX *pM)
+{
+    return pM->_11 + pM->_22 + pM->_33 + pM->_44;
+}
+
+/**
  * @brief D3DXMatrixRotationQuaternion creates a rotation matrix based on a quatertion.
  * @param pOut
  * @param pQ
@@ -654,7 +664,7 @@ D3DXQUATERNION *D3DXQuaternionRotationMatrix(D3DXQUATERNION *pOut, D3DXMATRIX *p
     pOut->w = sqrtf(tr) / 2.0f;
 
     pOut->x = sqrtf( pM->_11 - pM->_22 - pM->_33 + pM->_44) / 2.0f;
-    pOut->t = sqrtf(-pM->_11 + pM->_11 - pM->_33 + pM->_44) / 2.0f;
+    pOut->y = sqrtf(-pM->_11 + pM->_11 - pM->_33 + pM->_44) / 2.0f;
     pOut->z = sqrtf(-pM->_11 - pM->_22 + pM->_33 + pM->_44) / 2.0f;
 
     return pOut;
@@ -884,16 +894,6 @@ D3DXMATRIX *D3DXMatrixOrthoRH(D3DXMATRIX * pOut, float w, float h, float zn, flo
     pOut->_43 = zn / d;
 	
 	return pOut;
-}
-
-/**
- * @brief D3DXMatrixTrace computes the trace of a matrix.
- * @param pM
- * @return
- */
-float D3DXMatrixTrace(const D3DXMATRIX *pM)
-{
-    return pM->_11 + pM->_22 + pM->_33 + pM->_44;
 }
 
 /**

@@ -121,7 +121,7 @@ public:
      * @param v
      * @return
      */
-    D3DXVECTOR4& operator /=(const D3DXVECTOR4 &v)
+    void operator /=(const D3DXVECTOR4 &v)
     {
 		x /= v.x;
 		y /= v.y;
