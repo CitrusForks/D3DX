@@ -1,10 +1,8 @@
 - Author: Francesco Banterle
 
-- Year: 2008-2013
+- Year: 2008-2014
 
-- Copyright: 2008-2013 Francesco Banterle
-
-- Description: semi-compliant D3DX implementation for Vectors, Matricies, and Quaternions
+- Description: semi-compliant D3DX implementation for Vectors, Matrices, and Quaternions
 
 - License: This software is distributed under LGPL v3 license (see license.txt)
 
