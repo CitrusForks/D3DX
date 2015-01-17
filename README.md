@@ -1,6 +1,6 @@
 D3DX Library for 3D Math
 ========================
-A semi-compliant D3DX implementation for Vectors, Matricies, and Quaternions. Please refer to D3DX original manual.
+A semi-compliant D3DX implementation for vectors, matrices, and quaternions. Please refer to D3DX original manual.
 
 AUTHOR:
 =======
