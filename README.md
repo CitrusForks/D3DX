@@ -1,16 +1,21 @@
-== D3DX Library for 3D Math ==
+D3DX Library for 3D Math
+========================
+A semi-compliant D3DX implementation for Vectors, Matricies, and Quaternions. Please refer to D3DX original manual.
+
+AUTHOR:
+=======
+Francesco Banterle
 
 
+HOW TO INSTALL:
+===============
 
-- Author: Francesco Banterle
+1) Unzip the file .zip in a FOLDER on your machine
 
-- Year: 2008-2013
+2) Add piccante include directory in your include path
 
-- Copyright: 2008-2013 Francesco Banterle
+3) Include "D3DX.hpp" in your project
 
-- Description: semi-compliant D3DX implementation for Vectors, Matricies, and Quaternions
-
-- License: This software is distributed under Mozilla Public License (see license.txt)
-
-- Manual: please refer to D3DX Manual
-
+LICENSE:
+========
+This library is distributed under the MPL 2.0 license: https://www.mozilla.org/MPL/2.0/
