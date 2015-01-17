@@ -12,7 +12,7 @@ HOW TO INSTALL:
 
 1) Unzip the file .zip in a FOLDER on your machine
 
-2) Add piccante include directory in your include path
+2) Add D3DX include directory in your include path
 
 3) Include "D3DX.hpp" in your project
 
