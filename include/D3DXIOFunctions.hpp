@@ -20,8 +20,9 @@
  */
 void fscanfVet(FILE *file, D3DXVECTOR3 *vet)
 {
-    if(vet == NULL)
+    if(vet == NULL) {
 		return;
+    }
 
 	fscanf(file, "%f", &vet->x);
 	fscanf(file, "%f", &vet->y);
@@ -35,8 +36,9 @@ void fscanfVet(FILE *file, D3DXVECTOR3 *vet)
  */
 void fscanfVet(FILE *file, float *vet)
 {
-    if(vet == NULL)
-		return;
+    if(vet == NULL) {
+        return;
+    }
 
 	fscanf(file, "%f", &vet[0]);
 	fscanf(file, "%f", &vet[1]);
