@@ -22,11 +22,11 @@
 #endif
 
 #ifndef ABS
-    #define ABS(a)          (a > 0   ? a : -a)
+    #define ABS(a)          (a > 0 ? a : -a)
 #endif
 
 #ifndef CLAMP
-    #define CLAMP(x, a)     ( x >= a ?  (a-1) : (x < 0 ? 0 : x))
+    #define CLAMP(x, a)     ( x >= a ? (a-1) : (x < 0 ? 0 : x))
 #endif
 
 #ifndef CLAMPi
