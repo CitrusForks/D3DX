@@ -55,7 +55,7 @@ class D3DXMATRIX2X2
      */
     void Identity()
     {
-	    data[0] = 1.0f;
+        data[0] = 1.0f;
 	    data[3] = 1.0f;
 	    data[1] = 0.0f;
 	    data[2] = 0.0f;
@@ -69,8 +69,9 @@ class D3DXMATRIX2X2
      */
     void operator += ( const D3DXMATRIX2X2 &pM)
     {
-        for(int i=0;i<4;i++)
+        for(int i=0; i<4; i++) {
             data[i] += pM.data[i];
+        }
     }
 
     /**
@@ -82,11 +83,12 @@ class D3DXMATRIX2X2
     {
         D3DXMATRIX2X2 pOut;
 
-        for(int i=0;i<4;i++)
+        for(int i=0; i<4; i++) {
             pOut.data[i] =  data[i] + pM.data[i];
+        }
 
         return pOut;
-	}
+    }
 
   	/** - operator*/
 
@@ -96,8 +98,9 @@ class D3DXMATRIX2X2
      */
     void operator -= ( const D3DXMATRIX2X2 &pM)
     {
-        for(int i=0;i<4;i++)
+        for(int i=0; i<4; i++) {
             data[i] -= pM.data[i];
+        }
     }
 
     /**
@@ -109,11 +112,12 @@ class D3DXMATRIX2X2
     {
         D3DXMATRIX2X2 pOut;
 
-        for(int i=0;i<4;i++)
+        for(int i=0; i<4; i++) {
             pOut.data[i] =  data[i] - pM.data[i];
+        }
 
         return pOut;
-	}
+    }
 
     /**
      * @brief operator -
@@ -122,7 +126,7 @@ class D3DXMATRIX2X2
     D3DXMATRIX2X2 operator -()const
     {
 		return D3DXMATRIX2X2(-data[0], -data[1], -data[2], -data[3]);
-	}
+    }
 
     /** * operator */
 	
@@ -135,14 +139,15 @@ class D3DXMATRIX2X2
      */
     static D3DXMATRIX2X2 *Mul(const D3DXMATRIX2X2 &mA, const D3DXMATRIX2X2 &mB, D3DXMATRIX2X2 *out = NULL)
     {
-	    if(out==NULL)
-		    out = new D3DXMATRIX2X2();
+        if(out == NULL) {
+            out = new D3DXMATRIX2X2();
+        }
 
-	    out->data[0] = mA.data[0]*mB.data[0] + mA.data[1]*mB.data[2];
-	    out->data[1] = mA.data[0]*mB.data[1] + mA.data[1]*mB.data[3];
+	    out->data[0] = mA.data[0] * mB.data[0] + mA.data[1] * mB.data[2];
+	    out->data[1] = mA.data[0] * mB.data[1] + mA.data[1] * mB.data[3];
 
-	    out->data[2] = mA.data[2]*mB.data[0] + mA.data[3]*mB.data[2];
-	    out->data[3] = mA.data[2]*mB.data[1] + mA.data[3]*mB.data[3];
+	    out->data[2] = mA.data[2] * mB.data[0] + mA.data[3] * mB.data[2];
+	    out->data[3] = mA.data[2] * mB.data[1] + mA.data[3] * mB.data[3];
 
 	    return out;
     }
@@ -156,8 +161,9 @@ class D3DXMATRIX2X2
         D3DXMATRIX2X2 pOut;
         Mul(*this, pM, &pOut);
 
-        for(int i=0;i<4;i++)
+        for(int i=0;i<4;i++) {
             data[i] = pOut.data[i];
+        }
     }
 
     /**
@@ -166,8 +172,9 @@ class D3DXMATRIX2X2
      */
     void operator *= (float v)
     {
-        for(int i=0;i<4;i++)
+        for(int i=0; i<4; i++) {
             data[i] *= v;
+        }
     }
 
     /**
@@ -188,8 +195,9 @@ class D3DXMATRIX2X2
      */
     void operator /= (float v)
     {
-        for(int i=0;i<4;i++)
+        for(int i=0;i<4;i++) {
             data[i] /= v;
+        }
     }
     	
     /**
@@ -199,28 +207,29 @@ class D3DXMATRIX2X2
     float Determinant()
     {
         return data[0] * data[3] - data[2] * data[1];
-	}
+    }
 
     /**
      * @brief Inverse computes the inverse of the matrix.
      * @param out
      * @return
      */
-    D3DXMATRIX2X2 *Inverse(D3DXMATRIX2X2 *out=NULL)
+    D3DXMATRIX2X2 *Inverse(D3DXMATRIX2X2 *out = NULL)
     {
 	    float det = Determinant();
 
         if(fabsf(det) < 1e-9f) {
-		    printf("Determinant is near zero: D3DXMATRIX2X2 *D3DXMATRIX2X2::Inverse()\n");
+            printf("Determinant is near zero: D3DXMATRIX2X2 *D3DXMATRIX2X2::Inverse()\n");
             return new D3DXMATRIX2X2(0.0f, 0.0f, 0.0f, 0.0f);
 	    }
 		
-        if(out == NULL)
+        if(out == NULL) {
             out = new D3DXMATRIX2X2(data[3], -data[1], -data[2], data[0]);
-        else
+        } else {
             out->Init(data[3], -data[1], -data[2], data[0]);
+        }
 
-	    *out /= det;
+        *out /= det;
 	    return out;
     }
     	
@@ -230,7 +239,7 @@ class D3DXMATRIX2X2
     void Print()
     {
         printf("\n%3.3f %3.3f \n %3.3f %3.3f\n\n",data[0], data[1], data[2], data[3]);
-	}
+    }
 };
 
 #endif //CLASS_D3DXD3DXMATRIX_2X2

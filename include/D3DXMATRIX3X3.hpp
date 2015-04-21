@@ -16,11 +16,15 @@ class D3DXMATRIX3X3
 {
  public:
 	float data[9];
-	
-	//Constructor
-	D3DXMATRIX3X3(){
-	    for(int i=0;i<9;i++)
+
+    /**
+     * @brief D3DXMATRIX3X3
+     */
+    D3DXMATRIX3X3()
+    {
+        for(int i=0; i<9; i++) {
 		    data[i] = 0.0f;
+        }
     }
 
     /**
@@ -29,8 +33,9 @@ class D3DXMATRIX3X3
      */
     D3DXMATRIX3X3(float *data)
     {
-        if(data != NULL)
+        if(data != NULL) {
             memcpy(this->data, data, 9 * sizeof(float));
+        }
     }
 
     /**
@@ -38,11 +43,16 @@ class D3DXMATRIX3X3
      */
     void Identity()
     {
-	    for(int i=0;i<9;i++)
-		    data[i] = 0.0f;
-
 	    data[0] = 1.0f;
-	    data[4] = 1.0f;
+        data[1] = 0.0f;
+        data[2] = 0.0f;
+
+        data[3] = 0.0f;
+        data[4] = 1.0f;
+        data[5] = 0.0f;
+
+        data[6] = 0.0f;
+        data[7] = 0.0f;
 	    data[8] = 1.0f;
     }
 	
@@ -54,11 +64,13 @@ class D3DXMATRIX3X3
      */
     float* Mul(float *vec, float *ret)
     {
-        if(vec == NULL)
+        if(vec == NULL) {
 		    return ret;
+        }
 
-        if(ret == NULL)
+        if(ret == NULL) {
 		    ret = new float[3];
+        }
 
         ret[0] = data[0] * vec[0] + data[1] * vec[1] + data[2] * vec[2];
         ret[1] = data[3] * vec[0] + data[4] * vec[1] + data[5] * vec[2];
@@ -96,8 +108,9 @@ class D3DXMATRIX3X3
      */
     D3DXMATRIX3X3 *Inverse(D3DXMATRIX3X3 *inv)
     {
-        if(inv == NULL)
+        if(inv == NULL) {
 		    inv = new D3DXMATRIX3X3();
+        }
 
 	    float det = Determinant();
         if(fabsf(det) <= 1e-9f) {
@@ -125,7 +138,7 @@ class D3DXMATRIX3X3
      */
     void Print()
     {
-        for(int i=0;i<9;i++) {
+        for(int i=0; i<9; i++) {
             if((i%3) == 0)
 			    printf("\n");
 
