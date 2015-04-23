@@ -48,9 +48,6 @@ const float C_PI_2_2            = 19.739208802178717237668981999752f;
 //PI * 4 / 3 --> Sphere volume constant
 const float C_SPHERE_VOLUME     = 4.188790204786390984616857844373f;
 
-// 1/PI
-const float C_INV_PI            = 0.31830988618379067153776526745f;
-
 // 180/PI
 const float C_ONE_80_OVER_PI    = 57.295779513082320876798154814105f;
 
