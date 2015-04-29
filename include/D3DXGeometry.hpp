@@ -149,8 +149,9 @@ float D3DXVec3DistanceRayPointF(const D3DXVECTOR3 *rO, const D3DXVECTOR3 *rD, co
  */
 D3DXVECTOR3 *D3DXVec3Diffuse(float u1, float u2, D3DXVECTOR3 *out)
 {
-    if(out == NULL)
+    if(out == NULL) {
         out = new D3DXVECTOR3();
+    }
     
     float cosTheta = sqrtf(MAX(u1, 0.0f));
     float tmp = 1.0f - cosTheta * cosTheta;
@@ -174,8 +175,9 @@ D3DXVECTOR3 *D3DXVec3Diffuse(float u1, float u2, D3DXVECTOR3 *out)
  */
 D3DXVECTOR3 *D3DXVec3Reflect(const D3DXVECTOR3 *dir, const D3DXVECTOR3 *nor, D3DXVECTOR3 *out)
 {
-    if(out == NULL)
+    if(out == NULL) {
 		out = new D3DXVECTOR3();
+    }
 
     float dotx = 2.0f * D3DXVec3Dot(nor, dir);
 
@@ -196,14 +198,16 @@ D3DXVECTOR3 *D3DXVec3Reflect(const D3DXVECTOR3 *dir, const D3DXVECTOR3 *nor, D3D
  */
 D3DXVECTOR3 *D3DXVec3ReflectNeg(const D3DXVECTOR3 *dir, const D3DXVECTOR3 *nor, D3DXVECTOR3 *out)
 {
-    if(out == NULL)
+    if(out == NULL) {
 		out = new D3DXVECTOR3();
+    }
 
     float dotx = 2.0f * D3DXVec3Dot(nor, dir);
 
     out->x = dotx * nor->x - dir->x;
     out->y = dotx * nor->y - dir->y;
     out->z = dotx * nor->z - dir->z;
+
 	D3DXVec3Normalize(out);
 
 	return out;
