@@ -44,8 +44,11 @@ D3DXVECTOR2 *D3DXVecToAng(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out)
  */
 D3DXVECTOR2 *D3DXVecToTexCoord(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out)
 {
-    if(out == NULL)
-		out = new D3DXVECTOR2();
+    #ifdef GRT_POINTER_OUT_CHECK
+        if(pOut == NULL) {
+	        pOut = new D3DXVECTOR2();
+        }
+    #endif
 
 	//(theta,phi)->(y,x)
     out->x = 1.0f - ((atan2f(dir->z, -dir->x) * C_INV_PI) * 0.5f + 0.5f);
@@ -63,8 +66,9 @@ D3DXVECTOR2 *D3DXVecToTexCoord(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out)
 D3DXVECTOR3 *D3DXAngToVec(const D3DXVECTOR2 *dir, D3DXVECTOR3 *out)
 {
 	#ifdef GRT_POINTER_OUT_CHECK
-        if(out == NULL)
+        if(out == NULL) {
 			out = new D3DXVECTOR3();
+        }
 	#endif
 
 	float sinTheta = sinf(dir->x);
@@ -86,8 +90,11 @@ D3DXVECTOR3 *D3DXAngToVec(const D3DXVECTOR2 *dir, D3DXVECTOR3 *out)
  */
 inline D3DXVECTOR3 *D3DXImgCoordToVec(float x, float y, int width, int height, D3DXVECTOR3 *out)
 {
-	if(out == NULL)
-		out = new D3DXVECTOR3();
+  	#ifdef GRT_POINTER_OUT_CHECK
+        if(pOut == NULL) {
+	        pOut = new D3DXVECTOR3();
+        }
+    #endif
 
     float phi   = (C_PI_2 * x) / float(width);
     float theta = (C_PI   * y) / float(height);
@@ -147,8 +154,11 @@ D3DXVECTOR3 *D3DXVecProjBase(	const D3DXVECTOR3 *V0,
 								const D3DXVECTOR3 *pV,
                                 D3DXVECTOR3 *pOut)
 {
-    if(pOut == NULL)
-		pOut = new D3DXVECTOR3();
+  	#ifdef GRT_POINTER_OUT_CHECK
+        if(pOut == NULL) {
+	        pOut = new D3DXVECTOR3();
+        }
+    #endif
 
     pOut->x = D3DXVec3Dot(V0, pV);
     pOut->y = D3DXVec3Dot(V1, pV);
@@ -172,12 +182,15 @@ D3DXVECTOR3 *D3DXVecApplyBase(	const D3DXVECTOR3 *V0,
 								const D3DXVECTOR3 *pV,
                                 D3DXVECTOR3 *pOut)
 {
-    if(pOut == NULL)
-		pOut = new D3DXVECTOR3();
+  	#ifdef GRT_POINTER_OUT_CHECK
+        if(pOut == NULL) {
+	        pOut = new D3DXVECTOR3();
+        }
+    #endif
 
-    *pOut =     (*V0) * pV->x +
-                (*V1) * pV->y +
-                (*V2) * pV->z;
+    *pOut = (*V0) * pV->x +
+            (*V1) * pV->y +
+            (*V2) * pV->z;
 	return pOut;
 }
 
@@ -191,7 +204,7 @@ void DecompressNormals(D3DXVECTOR3 *n)
 
     if(tmp > 0.0f) {
 		n->z = sqrtf(tmp);
-    } else{
+    } else {
 		n->z = 0.0f;
 		D3DXVec3Normalize(n, n);
 	}
