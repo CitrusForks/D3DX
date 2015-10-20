@@ -335,9 +335,9 @@ float D3DXVecDistance(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b)
 float D3DXVecDistanceSq(const D3DXVECTOR2 *a, const D3DXVECTOR2 *b)
 {
 	D3DXVECTOR2 c;
-	c.x=a->x-b->x;
-	c.y=a->y-b->y;
-	return (c.x*c.x+c.y*c.y);
+	c.x = a->x - b->x;
+	c.y = a->y - b->y;
+	return c.x * c.x + c.y * c.y;
 }
 
 /**
@@ -352,9 +352,7 @@ float D3DXVecDistanceSq(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b)
     c.x = a->x - b->x;
     c.y = a->y - b->y;
     c.z = a->z - b->z;
-    return  c.x * c.x +
-            c.y * c.y +
-            c.z * c.z;
+    return c.x * c.x + c.y * c.y + c.z * c.z;
 }
 
 /**
