@@ -149,10 +149,12 @@ float D3DXVec3DistanceRayPointF(const D3DXVECTOR3 *rO, const D3DXVECTOR3 *rD, co
  */
 D3DXVECTOR3 *D3DXVec3Diffuse(float u1, float u2, D3DXVECTOR3 *out)
 {
-    if(out == NULL) {
-        out = new D3DXVECTOR3();
-    }
-    
+    #ifdef D3DX_POINTER_CHECK
+        if(out == NULL) {
+            out = new D3DXVECTOR3();
+        }
+    #endif
+
     float cosTheta = sqrtf(MAX(u1, 0.0f));
     float tmp = 1.0f - cosTheta * cosTheta;
     float sinTheta = tmp > 0.0f ? sqrtf(tmp) : 0.0f;
@@ -198,10 +200,12 @@ D3DXVECTOR3 *D3DXVec3Reflect(const D3DXVECTOR3 *dir, const D3DXVECTOR3 *nor, D3D
  */
 D3DXVECTOR3 *D3DXVec3ReflectNeg(const D3DXVECTOR3 *dir, const D3DXVECTOR3 *nor, D3DXVECTOR3 *out)
 {
-    if(out == NULL) {
-		out = new D3DXVECTOR3();
-    }
-
+    #ifdef D3DX_POINTER_CHECK
+        if(out == NULL) {
+		    out = new D3DXVECTOR3();
+        }
+    #endif
+    
     float dotx = 2.0f * D3DXVec3Dot(nor, dir);
 
     out->x = dotx * nor->x - dir->x;
@@ -232,7 +236,7 @@ bool D3DXVec3Refract(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1, fl
 
     float k = 1.0f - eta * eta * (1.0f - NdotI * NdotI);
     if(k <= 0.0f) {
-		#ifdef GRT_TOTAL_REFRACTION_OFF
+		#ifdef D3DX_TOTAL_REFRACTION_OFF
 			*out = *dir;
 			return true;
 		#else
@@ -265,7 +269,7 @@ bool D3DXVec3RefractNeg(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1,
     float k = 1.0f - eta * eta * (1.0f - NdotI * NdotI);
 
     if(k <= 0.0f) {
-		#ifdef GRT_TOTAL_REFRACTION_OFF
+		#ifdef D3DX_TOTAL_REFRACTION_OFF
 			*out = *dir;
 			return true;
 		#else

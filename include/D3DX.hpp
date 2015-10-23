@@ -11,6 +11,7 @@
 
 //by default we check pointers
 #define D3DX_NORMALIZATION_POINTER_CHECK
+#define D3DX_POINTER_CHECK
 
 //classic math utils
 #include "math_util.hpp"

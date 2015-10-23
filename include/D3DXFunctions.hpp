@@ -77,8 +77,9 @@ inline float D3DXVec4Dot(const D3DXVECTOR4 *a, const D3DXVECTOR4 *b)
 D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut, const D3DXVECTOR2 *pV)
 {
 #ifdef D3DX_NORMALIZATION_POINTER_CHECK
-	if(pOut == NULL)
-		pOut = new D3DXVECTOR2();
+    if(pOut == NULL) {
+        pOut = new D3DXVECTOR2();
+    }
 #endif
 
     float length = (pV->x * pV->x + pV->y * pV->y);
@@ -100,7 +101,7 @@ D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut)
 {
     float length = (pOut->x * pOut->x + pOut->y * pOut->y);
 	
-    if(length > 0.0f){
+    if(length > 0.0f) {
 		length = sqrtf(length);
 		pOut->x /= length;
 		pOut->y /= length;
@@ -122,8 +123,9 @@ D3DXVECTOR2 *D3DXVec2Normalize(D3DXVECTOR2 *pOut)
 D3DXVECTOR3 *D3DXVec3Normalize(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *pV)
 {
 #ifdef D3DX_NORMALIZATION_POINTER_CHECK
-	if(pOut == NULL)
+	if(pOut == NULL) {
 		pOut = new D3DXVECTOR3();
+    }
 #endif
 
     float length = (pV->x * pV->x+
@@ -200,8 +202,9 @@ float D3DXVec3Normalize2(D3DXVECTOR3 *pOut)
 D3DXVECTOR4 *D3DXVec4Normalize(D3DXVECTOR4 *pOut, const D3DXVECTOR4 *pV)
 {
 #ifdef D3DX_NORMALIZATION_POINTER_CHECK
-	if(pOut == NULL)
+	if(pOut == NULL) {
 		pOut = new D3DXVECTOR4();
+    }
 #endif
     float length = (pV->x * pV->x+
                     pV->z * pV->z+
@@ -321,6 +324,7 @@ float D3DXVecDistance(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b)
     c.x = a->x - b->x;
     c.y = a->y - b->y;
     c.z = a->z - b->z;
+
     return sqrtf(c.x * c.x +
                  c.y * c.y +
                  c.z * c.z);
@@ -374,7 +378,7 @@ D3DXVECTOR3 D3DXFloat2Vec3(float vec[3])
 bool D3DXVec3Similar(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b)
 {
 	D3DXVECTOR3 tmp = *a - *b;
-    return sqrtf(D3DXVec3Dot(&tmp, &tmp)) < 1e-12f;
+    return sqrtf(MAX(D3DXVec3Dot(&tmp, &tmp), 0.0f)) < 1e-12f;
 }
 
 #endif //D3DX_FUNCTIONS

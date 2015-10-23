@@ -9,8 +9,10 @@
 #ifndef D3DX_COORDSYS
 #define D3DX_COORDSYS
 
-#include "math_constant.hpp"
+#include <math.h>
 
+#include "math_constant.hpp"
+#include "D3DXFunctions.hpp"
 #include "D3DXVECTOR2.hpp"
 #include "D3DXVECTOR3.hpp"
 
@@ -25,9 +27,10 @@
 D3DXVECTOR2 *D3DXVecToAng(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out)
 {
 
-	#ifdef GRT_POINTER_OUT_CHECK
-        if(out == NULL)
+    #ifdef D3DX_POINTER_CHECK
+        if(out == NULL) {
 			out = new D3DXVECTOR2();
+        }
 	#endif
 
 	out->x = acosf( dir->y);
@@ -42,19 +45,19 @@ D3DXVECTOR2 *D3DXVecToAng(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out)
  * @param out
  * @return
  */
-D3DXVECTOR2 *D3DXVecToTexCoord(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out)
+D3DXVECTOR2 *D3DXVecToTexCoord(const D3DXVECTOR3 *dir, D3DXVECTOR2 *pOut)
 {
-    #ifdef GRT_POINTER_OUT_CHECK
+    #ifdef D3DX_POINTER_CHECK
         if(pOut == NULL) {
 	        pOut = new D3DXVECTOR2();
         }
     #endif
 
 	//(theta,phi)->(y,x)
-    out->x = 1.0f - ((atan2f(dir->z, -dir->x) * C_INV_PI) * 0.5f + 0.5f);
-    out->y = (acosf(dir->y) * C_INV_PI);
+    pOut->x = 1.0f - ((atan2f(dir->z, -dir->x) * C_INV_PI) * 0.5f + 0.5f);
+    pOut->y = (acosf(dir->y) * C_INV_PI);
 
-	return out;
+	return pOut;
 }
 
 /**
@@ -65,7 +68,7 @@ D3DXVECTOR2 *D3DXVecToTexCoord(const D3DXVECTOR3 *dir, D3DXVECTOR2 *out)
  */
 D3DXVECTOR3 *D3DXAngToVec(const D3DXVECTOR2 *dir, D3DXVECTOR3 *out)
 {
-	#ifdef GRT_POINTER_OUT_CHECK
+	#ifdef D3DX_POINTER_CHECK
         if(out == NULL) {
 			out = new D3DXVECTOR3();
         }
@@ -88,9 +91,9 @@ D3DXVECTOR3 *D3DXAngToVec(const D3DXVECTOR2 *dir, D3DXVECTOR3 *out)
  * @param out
  * @return
  */
-inline D3DXVECTOR3 *D3DXImgCoordToVec(float x, float y, int width, int height, D3DXVECTOR3 *out)
+inline D3DXVECTOR3 *D3DXImgCoordToVec(float x, float y, int width, int height, D3DXVECTOR3 *pOut)
 {
-  	#ifdef GRT_POINTER_OUT_CHECK
+  	#ifdef D3DX_POINTER_CHECK
         if(pOut == NULL) {
 	        pOut = new D3DXVECTOR3();
         }
@@ -101,11 +104,11 @@ inline D3DXVECTOR3 *D3DXImgCoordToVec(float x, float y, int width, int height, D
 
     float sinTheta = sinf(theta);
 
-    out->x = sinTheta * cosf(phi);
-	out->y = cosf(theta);
-    out->z = sinTheta * sinf(phi);
+    pOut->x = sinTheta * cosf(phi);
+	pOut->y = cosf(theta);
+    pOut->z = sinTheta * sinf(phi);
 
-	return out;
+	return pOut;
 }
 
 /**
@@ -154,7 +157,7 @@ D3DXVECTOR3 *D3DXVecProjBase(	const D3DXVECTOR3 *V0,
 								const D3DXVECTOR3 *pV,
                                 D3DXVECTOR3 *pOut)
 {
-  	#ifdef GRT_POINTER_OUT_CHECK
+  	#ifdef D3DX_POINTER_CHECK
         if(pOut == NULL) {
 	        pOut = new D3DXVECTOR3();
         }
@@ -182,7 +185,7 @@ D3DXVECTOR3 *D3DXVecApplyBase(	const D3DXVECTOR3 *V0,
 								const D3DXVECTOR3 *pV,
                                 D3DXVECTOR3 *pOut)
 {
-  	#ifdef GRT_POINTER_OUT_CHECK
+  	#ifdef D3DX_POINTER_CHECK
         if(pOut == NULL) {
 	        pOut = new D3DXVECTOR3();
         }
