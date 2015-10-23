@@ -81,6 +81,20 @@ bool D3DXCheckPointBBox(const D3DXVECTOR3 *bMax, const D3DXVECTOR3 *bMin, const 
 }
 
 /**
+ * @brief D3DXCheckPointBBoxLength checks if a point p is in a bounding box defined by its center and its length.
+ * @param bCenter is the center of the bounding box.
+ * @param bRadius is the lenght of the box for each directions.
+ * @param p is an input point.
+ * @return It returns true if the p is inside the bounding box, false otherwise.
+ */
+bool D3DXCheckPointBBoxLength(const D3DXVECTOR3 &bCenter, const float bRadius, const D3DXVECTOR3 &p)
+{
+    return (p.x >= (bCenter.x - bRadius)) && (p.x <= (bCenter.x + bRadius)) &&
+           (p.y >= (bCenter.y - bRadius)) && (p.y <= (bCenter.y + bRadius)) &&
+           (p.z >= (bCenter.z - bRadius)) && (p.z <= (bCenter.z + bRadius));
+}
+
+/**
  * @brief D3DXCheckPlaneBBox checks if a plane (nor, d) intersects a bounding box (bMax,bMin).
  * @param bMax is the maximum of the input bounding box.
  * @param bMin is the minimum of the input bounding box.
