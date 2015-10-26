@@ -32,9 +32,7 @@ D3DXVECTOR3 *D3DXTriangleNormal(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const 
     b.y = p2->y - p3->y;
     b.z = p2->z - p3->z;
 
-    D3DXVec3Cross(pOut, &a, &b);
-	D3DXVec3Normalize(pOut);
-	return pOut;
+    return D3DXVec3Cross(pOut, &a, &b);
 }
 
 /**
@@ -56,8 +54,7 @@ D3DXVECTOR3 *D3DXTriangleNormal2(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *p1, const
     b.y = p2->y - p3->y;
     b.z = p2->z - p3->z;
 
-    D3DXVec3Cross(pOut, &a, &b);
-	return pOut;
+    return D3DXVec3Cross(pOut, &a, &b);
 }
 
 /**
@@ -76,7 +73,7 @@ float D3DXTriangleArea(D3DXVECTOR3 *v0, D3DXVECTOR3 *v1, D3DXVECTOR3 *v2)
     float s = (v01 + v02 + v12) / 2.0f;
 
     float area2 = s * (s - v01) * (s - v02) * (s - v12);
-	return (area2>0.0f) ? sqrtf(area2): 0.0f;
+	return (area2 > 0.0f) ? sqrtf(area2) : 0.0f;
 }
 
 /**

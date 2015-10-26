@@ -22,11 +22,18 @@
  * @param A
  * @param B
  */
-void D3DXVec3Cross(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *A, const D3DXVECTOR3 *B)
+D3DXVECTOR3 *D3DXVec3Cross(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *A, const D3DXVECTOR3 *B)
 {
+    #ifdef D3DX_POINTER_CHECK
+        if(pOut == NULL) {
+            pOut = new D3DXVECTOR3();
+        }
+    #endif
+
 	pOut->x = A->y * B->z - B->y * A->z;
 	pOut->y = A->z * B->x - B->z * A->x;
 	pOut->z = A->x * B->y - B->x * A->y;
+    return pOut;
 }
 
 /**
