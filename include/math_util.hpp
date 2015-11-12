@@ -33,5 +33,4 @@
     #define CLAMPi(x, a, b) (x < a ? a : (x > b ? b : x))
 #endif
 
-
 #endif //D3DX_MATH_UTIL_HPP
