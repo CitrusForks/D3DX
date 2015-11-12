@@ -337,33 +337,32 @@ D3DXMATRIX *D3DXMatrixEmpty(D3DXMATRIX *pOut)
 }
 
 /**
- * @brief D3DXMatrickNotEmpty checks if the matrix does not have zeros.
+ * @brief D3DXMatrixNotEmpty checks if the matrix does not have zeros.
  * @param pM
  * @return
  */
-bool D3DXMatrickNotEmpty(const D3DXMATRIX *pM)
+bool D3DXMatrixNotEmpty(const D3DXMATRIX *pM)
 {
-	float acc;
+    float acc;
+    acc  = fabsf(pM->_11);
+    acc += fabsf(pM->_12);
+    acc += fabsf(pM->_13);
+    acc += fabsf(pM->_14);
 
-	acc  = fabsf(pM->_11);
-	acc += fabsf(pM->_12);
-	acc += fabsf(pM->_13);
-	acc += fabsf(pM->_14);
+    acc += fabsf(pM->_21);
+    acc += fabsf(pM->_22);
+    acc += fabsf(pM->_23);
+    acc += fabsf(pM->_24);
 
-	acc += fabsf(pM->_21);
-	acc += fabsf(pM->_22);
-	acc += fabsf(pM->_23);
-	acc += fabsf(pM->_24);
+    acc += fabsf(pM->_31);
+    acc += fabsf(pM->_32);
+    acc += fabsf(pM->_33);
+    acc += fabsf(pM->_34);
 
-	acc += fabsf(pM->_31);
-	acc += fabsf(pM->_32);
-	acc += fabsf(pM->_33);
-	acc += fabsf(pM->_34);
-
-	acc += fabsf(pM->_41);
-	acc += fabsf(pM->_42);
-	acc += fabsf(pM->_43);
-	acc += fabsf(pM->_44);
+    acc += fabsf(pM->_41);
+    acc += fabsf(pM->_42);
+    acc += fabsf(pM->_43);
+    acc += fabsf(pM->_44);
 
     return (acc > 0.0f);
 }
