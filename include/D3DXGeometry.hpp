@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef D3DX_GEOMETRY
-#define D3DX_GEOMETRY
+#ifndef D3DX_GEOMETRY_HPP
+#define D3DX_GEOMETRY_HPP
 
 #include "D3DXConstants.hpp"
 #include "D3DXFunctions.hpp"
@@ -279,4 +279,4 @@ bool D3DXVec3RefractNeg(const D3DXVECTOR3 *dir,const D3DXVECTOR3 *nor, float n1,
 	}
 }
 
-#endif //D3DX_GEOMETRY
+#endif //D3DX_GEOMETRY_HPP

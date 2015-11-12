@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef FUNCTIONS_D3DX_MATH_UTIL
-#define FUNCTIONS_D3DX_MATH_UTIL
+#ifndef D3DX_MATH_UTIL_HPP
+#define D3DX_MATH_UTIL_HPP
 
 #include <math.h>
 
@@ -34,4 +34,4 @@
 #endif
 
 
-#endif //FUNCTIONS_D3DX_MATH_UTIL
+#endif //D3DX_MATH_UTIL_HPP

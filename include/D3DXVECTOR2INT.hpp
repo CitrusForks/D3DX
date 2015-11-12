@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef CLASS_D3DXVECTOR2_INT
-#define CLASS_D3DXVECTOR2_INT
+#ifndef D3DXVECTOR2_INT_HPP
+#define D3DXVECTOR2_INT_HPP
 
 /**
  * @brief The D3DXVECTOR2INT class
@@ -61,4 +61,4 @@ public:
 	}
 };
 
-#endif //CLASS_D3DXVECTOR2_INT
+#endif //D3DXVECTOR2_INT_HPP

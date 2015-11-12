@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef FUNCTIONS_D3DXBOUNDINGBOX
-#define FUNCTIONS_D3DXBOUNDINGBOX
+#ifndef D3DX_BOUNDING_BOX_HPP
+#define D3DX_BOUNDING_BOX_HPP
 
 #include "D3DXVECTOR3.hpp"
 #include "D3DXMATRIX.hpp"
@@ -419,8 +419,8 @@ void D3DXBoxOctant(D3DXVECTOR3 *max, D3DXVECTOR3 *min, D3DXVECTOR3 *maxOut, D3DX
         } else {
 			(*maxOut)[i] = (*max)[i];
             (*minOut)[i] = ((*max)[i] + (*min)[i]) / 2.0f;
-		}
-	}
+        }
+    }
 }
 
 /**
@@ -437,9 +437,8 @@ D3DXVECTOR3 *D3DXVec3ShiftOctant(D3DXVECTOR3 *vecOut, int ind)
         } else {
 			(*vecOut)[i] =  1.0f;
         }
-	}
-
-	return vecOut;
+    }
+    return vecOut;
 }
 
-#endif
+#endif //D3DX_BOUNDING_BOX_HPP

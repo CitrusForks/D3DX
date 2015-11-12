@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef D3DX_COORDSYS
-#define D3DX_COORDSYS
+#ifndef D3DX_COORDSYS_HPP
+#define D3DX_COORDSYS_HPP
 
 #include <math.h>
 
@@ -194,7 +194,7 @@ D3DXVECTOR3 *D3DXVecApplyBase(	const D3DXVECTOR3 *V0,
     *pOut = (*V0) * pV->x +
             (*V1) * pV->y +
             (*V2) * pV->z;
-	return pOut;
+    return pOut;
 }
 
 /**
@@ -208,9 +208,9 @@ void DecompressNormals(D3DXVECTOR3 *n)
     if(tmp > 0.0f) {
 		n->z = sqrtf(tmp);
     } else {
-		n->z = 0.0f;
-		D3DXVec3Normalize(n, n);
-	}
+        n->z = 0.0f;
+        D3DXVec3Normalize(n, n);
+    }
 }
 
-#endif //D3DX_COORDSYS
+#endif //D3DX_COORDSYS_HPP

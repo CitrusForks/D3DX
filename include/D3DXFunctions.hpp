@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef D3DX_FUNCTIONS
-#define D3DX_FUNCTIONS
+#ifndef D3DX_FUNCTIONS_HPP
+#define D3DX_FUNCTIONS_HPP
 
 #include <math.h>
 
@@ -388,4 +388,4 @@ bool D3DXVec3Similar(const D3DXVECTOR3 *a, const D3DXVECTOR3 *b)
     return sqrtf(MAX(D3DXVec3Dot(&tmp, &tmp), 0.0f)) < 1e-12f;
 }
 
-#endif //D3DX_FUNCTIONS
+#endif //D3DX_FUNCTIONS_HPP

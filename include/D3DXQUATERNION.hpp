@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef CLASS_D3DXQUATERNION
-#define CLASS_D3DXQUATERNION
+#ifndef D3DXQUATERNION_HPP
+#define D3DXQUATERNION_HPP
 
 /**
  * @brief The D3DXQUATERNION class
@@ -123,4 +123,4 @@ inline D3DXQUATERNION* D3DXQuaternionSlerp(D3DXQUATERNION *pOut, const D3DXQUATE
 	return pOut;
 }
 
-#endif //CLASS_D3DXQUATERNION
+#endif //D3DXQUATERNION_HPP

@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef CLASS_D3DXMATRIX
-#define CLASS_D3DXMATRIX
+#ifndef D3DXMATRIX_HPP
+#define D3DXMATRIX_HPP
 
 #include "D3DXVECTOR3.hpp"
 #include "D3DXVECTOR4.hpp"
@@ -866,7 +866,7 @@ D3DXMATRIX* D3DXMatrixPerspectiveFovRH( D3DXMATRIX *pOut, float fovy, float Aspe
     float f = 1.0f / tanf(fovy * 0.5f);
 	float d = zn - zf;
 
-	pOut->_11 = f/Aspect;
+	pOut->_11 = f / Aspect;
 	pOut->_22 = f;
     pOut->_33 = zf / d;
 	pOut->_44 = 0.0f;
@@ -1137,4 +1137,4 @@ D3DXPLANE *D3DXMatrixExtractPlanes(D3DXPLANE *pOut, D3DXMATRIX *pM)
 	return pOut;
 }
 
-#endif //CLASS_D3DXMATRIX
+#endif //D3DXMATRIX_HPP

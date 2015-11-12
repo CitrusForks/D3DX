@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef D3DX_IO_FUNCTIONS
-#define D3DX_IO_FUNCTIONS
+#ifndef D3DX_IO_FUNCTIONS_HPP
+#define D3DX_IO_FUNCTIONS_HPP
 
 #include <stdio.h>
 
@@ -74,4 +74,4 @@ void printfVet(D3DXVECTOR2 *vet)
     printf(" %f %f\n", vet->x, vet->y);
 }
 
-#endif //D3DX_IO_FUNCTIONS
+#endif //D3DX_IO_FUNCTIONS_HPP

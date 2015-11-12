@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef D3DX_CONSTANTS
-#define D3DX_CONSTANTS
+#ifndef D3DX_CONSTANTS_HPP
+#define D3DX_CONSTANTS_HPP
 
 #include "D3DXVECTOR3.hpp"
 #include "D3DXVECTOR4.hpp"
@@ -27,4 +27,4 @@ const D3DXVECTOR3 E0        = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
 const D3DXVECTOR3 E1        = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 const D3DXVECTOR3 E2        = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
 
-#endif //D3DX_CONSTANTS
+#endif //D3DX_CONSTANTS_HPP

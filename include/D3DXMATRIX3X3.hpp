@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef CLASS_D3DXMATRIX_3X3
-#define CLASS_D3DXMATRIX_3X3
+#ifndef D3DXMATRIX_3X3_HPP
+#define D3DXMATRIX_3X3_HPP
 
 /**
  * @brief The D3DXMATRIX3X3 class
@@ -148,4 +148,4 @@ class D3DXMATRIX3X3
     }
  };
 
-#endif //CLASS_D3DXMATRIX_3X3
+#endif //D3DXMATRIX_3X3_HPP

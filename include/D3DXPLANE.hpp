@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef CLASS_D3DXPLANE
-#define CLASS_D3DXPLANE
+#ifndef D3DXPLANE_HPP
+#define D3DXPLANE_HPP
 
 /**
  * @brief The D3DXPLANE class
@@ -40,4 +40,4 @@ public:
 	}
 };
 
-#endif //CLASS_D3DXPLANE
+#endif //D3DXPLANE_HPP

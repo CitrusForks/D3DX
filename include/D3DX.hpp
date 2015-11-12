@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef D3DX_INCLUDERS
-#define D3DX_INCLUDERS
+#ifndef D3DX_HPP
+#define D3DX_HPP
 
 //by default we check pointers
 #define D3DX_NORMALIZATION_POINTER_CHECK
@@ -41,4 +41,4 @@
 //4x4 Matrix
 #include "D3DXMATRIX.hpp"
 
-#endif
+#endif //D3DX_HPP

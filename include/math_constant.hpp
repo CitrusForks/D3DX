@@ -6,8 +6,8 @@
 *     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 **/
 
-#ifndef D3DX_MATH_CONSTANTS
-#define D3DX_MATH_CONSTANTS
+#ifndef D3DX_MATH_CONSTANTS_HPP
+#define D3DX_MATH_CONSTANTS_HPP
 
 //Natural logarithm of 2
 const float C_LOG_NAT_2         = 0.69314718055994530941723212145818f;
@@ -54,4 +54,4 @@ const float C_ONE_80_OVER_PI    = 57.295779513082320876798154814105f;
 // PI/180
 const float C_PI_OVER_ONE_80    = 0.017453292519943295769236907685f;
 
-#endif //MATH_CONSTANTS
+#endif //D3DX_MATH_CONSTANTS_HPP
