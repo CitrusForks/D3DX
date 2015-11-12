@@ -325,15 +325,18 @@ void D3DXMatrixPrintf(const D3DXMATRIX *pM)
  */
 D3DXMATRIX *D3DXMatrixEmpty(D3DXMATRIX *pOut)
 {
-    if(pOut == NULL)
-		pOut = new D3DXMATRIX();
+    #ifdef D3DX_POINTER_CHECK
+        if(pOut == NULL) {
+            pOut = new D3DXMATRIX();
+        }
+    #endif
 		
     pOut->_11 = 0.0f; pOut->_12 = 0.0f; pOut->_13 = 0.0f; pOut->_14 = 0.0f;
     pOut->_21 = 0.0f; pOut->_22 = 0.0f; pOut->_23 = 0.0f; pOut->_24 = 0.0f;
     pOut->_31 = 0.0f; pOut->_32 = 0.0f; pOut->_33 = 0.0f; pOut->_34 = 0.0f;
     pOut->_41 = 0.0f; pOut->_42 = 0.0f; pOut->_43 = 0.0f; pOut->_44 = 0.0f;
 	
-	return pOut;
+    return pOut;
 }
 
 /**
@@ -399,8 +402,8 @@ D3DXMATRIX *D3DXMatrixIdentity(D3DXMATRIX *pOut)
     pOut->_42 = 0.0f;
     pOut->_43 = 0.0f;
     pOut->_44 = 1.0f;
-	
-	return pOut;
+    
+    return pOut;
 }
 
 /**
@@ -437,7 +440,7 @@ D3DXMATRIX *D3DXMatrixTranspose(D3DXMATRIX *pOut, const D3DXMATRIX *pM)
     pOut->_43 = pM->_34;
     pOut->_44 = pM->_44;
 
-	return pOut;
+    return pOut;
 }
 
 /**
@@ -454,14 +457,15 @@ D3DXMATRIX * D3DXMatrixRotationX(D3DXMATRIX * pOut, float Angle)
 		D3DXMatrixIdentity(pOut);
     }
 	
-	float cosAng = cosf(Angle);
-	float sinAng = sinf(Angle);
+    float cosAng = cosf(Angle);
+    float sinAng = sinf(Angle);
 	
-	pOut->_22 =  cosAng;
-	pOut->_33 =  cosAng;
-	pOut->_23 =  sinAng;
-	pOut->_32 = -sinAng;
-	return pOut;
+    pOut->_22 =  cosAng;
+    pOut->_33 =  cosAng;
+    pOut->_23 =  sinAng;
+    pOut->_32 = -sinAng;
+
+    return pOut;
 }
 	
 /**
@@ -478,14 +482,15 @@ D3DXMATRIX * D3DXMatrixRotationY(D3DXMATRIX * pOut, float Angle)
 		D3DXMatrixIdentity(pOut);
     }
 
-	float cosAng=cosf(Angle);
-	float sinAng=sinf(Angle);
+    float cosAng=cosf(Angle);
+    float sinAng=sinf(Angle);
 	
-	pOut->_11 =  cosAng;
-	pOut->_33 =  cosAng;
-	pOut->_13 = -sinAng;
-	pOut->_31 =  sinAng;
-	return pOut;
+    pOut->_11 =  cosAng;
+    pOut->_33 =  cosAng;
+    pOut->_13 = -sinAng;
+    pOut->_31 =  sinAng;
+
+    return pOut;
 }
 
 /**
@@ -502,14 +507,15 @@ D3DXMATRIX * D3DXMatrixRotationZ(D3DXMATRIX * pOut, float Angle)
 		D3DXMatrixIdentity(pOut);
     }
 
-	float cosAng = cosf(Angle);
-	float sinAng = sinf(Angle);
+    float cosAng = cosf(Angle);
+    float sinAng = sinf(Angle);
 
-	pOut->_11 =  cosAng;
-	pOut->_22 =  cosAng;
-	pOut->_12 =  sinAng;
-	pOut->_21 = -sinAng;
-	return pOut;
+    pOut->_11 =  cosAng;
+    pOut->_22 =  cosAng;
+    pOut->_12 =  sinAng;
+    pOut->_21 = -sinAng;
+    
+    return pOut;
 }
 
 /**
@@ -542,7 +548,7 @@ D3DXMATRIX * D3DXMatrixMultiply(D3DXMATRIX * pOut, const D3DXMATRIX * pM1, const
     pOut->_43 = pM1->_41 * pM2->_13 + pM1->_42 * pM2->_23 + pM1->_43 * pM2->_33 + pM1->_44 * pM2->_43;
     pOut->_44 = pM1->_41 * pM2->_14 + pM1->_42 * pM2->_24 + pM1->_43 * pM2->_34 + pM1->_44 * pM2->_44;
 
-	return pOut;
+    return pOut;
 }
 
 /**
@@ -560,17 +566,16 @@ D3DXVECTOR3 * D3DXVec3TransformCoord(D3DXVECTOR3 * pOut, const D3DXVECTOR3 * pV,
         }
     #endif
  
-	float w;
     pOut->x = pV->x * pM->_11 + pV->y * pM->_21 + pV->z * pM->_31 + pM->_41;
     pOut->y = pV->x * pM->_12 + pV->y * pM->_22 + pV->z * pM->_32 + pM->_42;
     pOut->z = pV->x * pM->_13 + pV->y * pM->_23 + pV->z * pM->_33 + pM->_43;
-    w       = pV->x * pM->_14 + pV->y * pM->_24 + pV->z * pM->_34 + pM->_44;
+    float w = pV->x * pM->_14 + pV->y * pM->_24 + pV->z * pM->_34 + pM->_44;
 
 	pOut->x /= w;
 	pOut->y /= w;
 	pOut->z /= w;
 
-	return pOut;
+    return pOut;
 }
 
 /**
