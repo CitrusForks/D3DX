@@ -305,9 +305,9 @@ unsigned int FibonacciNormalsInv(const D3DXVECTOR3 *pA, unsigned int n)
 
     float d = 1024.0f; 
     unsigned int j = 0;
-    for (unsigned int s = 0; s < 4; ++s) {
+    for(unsigned int k = 0; k < 4; k++) {
 
-        D3DXVECTOR2 tmp_v2 = D3DXVECTOR2(float(s % 2), float(s / 2));
+        D3DXVECTOR2 tmp_v2 = D3DXVECTOR2(float(k % 2), float(k / 2));
         tmp_v2 += c;
         float bias = (1.0f - n_f_rcp);
         float cosTheta = D3DXVec2Dot(&B1, &tmp_v2) + bias; 
@@ -325,7 +325,7 @@ unsigned int FibonacciNormalsInv(const D3DXVECTOR3 *pA, unsigned int n)
         q.z = sinTheta * sinf(phi);
 
         float dist_sq = D3DXVecDistanceSq(&q, pA);
-        if (dist_sq < d) {
+        if(dist_sq < d) {
             d = dist_sq;
             j = i;
         }
