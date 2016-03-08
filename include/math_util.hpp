@@ -33,4 +33,15 @@
     #define CLAMPi(x, a, b) (x < a ? a : (x > b ? b : x))
 #endif
 
+inline float log_base(float x, float base)
+{
+    return logf(x) / logf(base);
+}
+
+inline float madfrac(float a, float b)
+{
+    float tmp = a * b;
+    return float(tmp - floorf(tmp));
+}
+
 #endif //D3DX_MATH_UTIL_HPP

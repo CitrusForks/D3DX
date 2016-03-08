@@ -9,6 +9,8 @@
 #ifndef D3DXMATRIX_2X2_HPP
 #define D3DXMATRIX_2X2_HPP
 
+#include "D3DXVECTOR2.hpp"
+
 /**
  * @brief The D3DXMATRIX2X2 class
  */
@@ -190,6 +192,21 @@ class D3DXMATRIX2X2
     }
 
     /**
+     * @brief operator *
+     * @param pM
+     * @return
+     */
+    D3DXVECTOR2 operator *(const D3DXVECTOR2 &pV) const
+    {
+        D3DXVECTOR2 pOut;
+
+        pOut.x = data[0] * pV.x + data[1] * pV.y;
+        pOut.y = data[2] * pV.x + data[3] * pV.y;
+
+        return pOut;
+    }
+
+    /**
      * @brief operator /=
      * @param v
      */
@@ -216,6 +233,12 @@ class D3DXMATRIX2X2
      */
     D3DXMATRIX2X2 *Inverse(D3DXMATRIX2X2 *out = NULL)
     {
+        #ifdef D3DX_POINTER_CHECK
+            if(out == NULL) {
+                out =  new D3DXMATRIX2X2();
+            }
+        #endif
+
 	    float det = Determinant();
 
         if(fabsf(det) < 1e-9f) {
@@ -223,22 +246,33 @@ class D3DXMATRIX2X2
             return new D3DXMATRIX2X2(0.0f, 0.0f, 0.0f, 0.0f);
 	    }
 		
-        if(out == NULL) {
-            out = new D3DXMATRIX2X2(data[3], -data[1], -data[2], data[0]);
-        } else {
-            out->Init(data[3], -data[1], -data[2], data[0]);
-        }
-
-        *out /= det;
+        out->Init(data[3] / det, -data[1] / det, -data[2] / det, data[0] / det);
 	    return out;
     }
     	
+
+    D3DXVECTOR2 *getRow(D3DXVECTOR2 *pOut, unsigned int row)
+    {
+        row = row % 2;
+
+        #ifdef D3DX_POINTER_CHECK
+            if(pOut == NULL) {
+                pOut =  new D3DXVECTOR2();
+            }
+        #endif
+
+            pOut->x = data[row * 2];
+            pOut->y = data[row * 2 + 1];
+
+            return pOut;
+    }
+
     /**
      * @brief Print prints the matrix.
      */
     void Print()
     {
-        printf("\n%3.3f %3.3f \n %3.3f %3.3f\n\n",data[0], data[1], data[2], data[3]);
+        printf("\n%3.5f %3.5f \n %3.5f %3.5f\n\n",data[0], data[1], data[2], data[3]);
     }
 };
 
