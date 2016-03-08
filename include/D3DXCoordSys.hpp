@@ -222,11 +222,11 @@ void DecompressNormals(D3DXVECTOR3 *n)
 /**
 * @brief FibonacciNormals
 * @param pOut is the output unit vector
-* @param i is the encoded value of the vector
-* @param n is the precision encoding value such that n < 2^{21} due to 32-bit floating point
+* @param j is the encoded value of the vector
+* @param n_f is the precision encoding value such that n < 2^{21} due to 32-bit floating point
 * @return
 */
-D3DXVECTOR3 *FibonacciNormals(D3DXVECTOR3 *pOut, unsigned int i, unsigned int n)
+D3DXVECTOR3 *FibonacciNormals(D3DXVECTOR3 *pOut, unsigned int j, float n_f)
 {
 #ifdef D3DX_POINTER_CHECK
     if(pOut == NULL) {
@@ -234,12 +234,12 @@ D3DXVECTOR3 *FibonacciNormals(D3DXVECTOR3 *pOut, unsigned int i, unsigned int n)
     }
 #endif
 
-    float i_f = float(i);
+    float j_f = float(j);
 
-    float tmp = i_f * D3DX_FB_PHI_MINUS_ONE;
+    float tmp = j_f * D3DX_FB_PHI_MINUS_ONE;
     float phi = C_PI_2 * (tmp - floorf(tmp));
 
-    float cosTheta = 1.0f - (2.0f * i_f + 1.0f) / float(n);
+    float cosTheta = 1.0f - (2.0f * j_f + 1.0f) / n_f;
     float sinTheta = sqrtf(MAX(1.0f - cosTheta * cosTheta, 0.0f));
 
     pOut->x = cosf(phi) * sinTheta;
@@ -252,10 +252,10 @@ D3DXVECTOR3 *FibonacciNormals(D3DXVECTOR3 *pOut, unsigned int i, unsigned int n)
 /**
 * @brief FibonacciNormalsInv
 * @param pA is the input unit vector
-* @param n is the precision encoding value such that n < 2^{21} due to 32-bit floating point
+* @param n_f is the precision encoding value such that n < 2^{21} due to 32-bit floating point
 * @return
 */
-unsigned int FibonacciNormalsInv(const D3DXVECTOR3 *pA, unsigned int n)
+unsigned int FibonacciNormalsInv(const D3DXVECTOR3 *pA, float n_f)
 {
 #ifdef D3DX_POINTER_CHECK
     if(pA == NULL) {
@@ -266,7 +266,6 @@ unsigned int FibonacciNormalsInv(const D3DXVECTOR3 *pA, unsigned int n)
     float phi = MIN(atan2(pA->z, pA->x), C_PI);
     float cosTheta = pA->y;
 
-    float n_f = float(n);
     float k = log_base(n_f * C_PI * D3DX_FB_SQRT_5 * (1.0f - cosTheta * cosTheta), D3DX_FB_PHI * D3DX_FB_PHI);
     k = MAX(floorf(k), 2.0f);
 
@@ -283,11 +282,13 @@ unsigned int FibonacciNormalsInv(const D3DXVECTOR3 *pA, unsigned int n)
     float F1 = floorf(fabsf(tmp + 0.5f)) * (tmp >= 0.0f ? 1.0f : -1.0f);
 #endif
 
+    float n_f_rcp = 1.0f / n_f;
+
     D3DXMATRIX2X2 B = D3DXMATRIX2X2(
         C_PI_2 * (madfrac(F0 + 1.0f, D3DX_FB_PHI_MINUS_ONE) -  D3DX_FB_PHI_MINUS_ONE),
         C_PI_2 * (madfrac(F1 + 1.0f, D3DX_FB_PHI_MINUS_ONE) -  D3DX_FB_PHI_MINUS_ONE),
-        -2.0f * F0 / n_f,
-        -2.0f * F1 / n_f);
+        -2.0f * F0 * n_f_rcp,
+        -2.0f * F1 * n_f_rcp);
 
     D3DXVECTOR2 B1; 
     B.getRow(&B1, 1);
@@ -300,8 +301,6 @@ unsigned int FibonacciNormalsInv(const D3DXVECTOR3 *pA, unsigned int n)
     D3DXVECTOR2 c = B_inv * vec;
     c.x = floorf(c.x);
     c.y = floorf(c.y);
-
-    float n_f_rcp = 1.0f / n_f;
 
     float d = 1024.0f; 
     unsigned int j = 0;
