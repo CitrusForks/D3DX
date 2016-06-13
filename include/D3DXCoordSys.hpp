@@ -273,7 +273,7 @@ unsigned int FibonacciNormalsInv(const D3DXVECTOR3 *pA, float n_f)
 
     float tmp;
 
-#ifdef std::round
+#ifdef D3DX_CPP_11
     float F0 = std::round(Fk);
     float F1 = std::round(Fk * PHI);
 #else
