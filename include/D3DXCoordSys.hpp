@@ -326,7 +326,7 @@ unsigned int FibonacciNormalsInv(const D3DXVECTOR3 *pA, float n_f)
         float dist_sq = D3DXVecDistanceSq(&q, pA);
         if(dist_sq < d) {
             d = dist_sq;
-            j = i;
+            j = int(i);
         }
     }
 
