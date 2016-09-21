@@ -14,10 +14,9 @@
 #include "D3DXVECTOR2.hpp"
 #include "D3DXVECTOR3.hpp"
 #include "D3DXVECTOR4.hpp"
-#include "D3DXQUATERNION.hpp"
 
 /**
- * @brief D3DXVec3Cross
+ * @brief D3DXVec3Cross computes the cross product A x B
  * @param pOut
  * @param A
  * @param B

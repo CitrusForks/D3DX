@@ -9,6 +9,8 @@
 #ifndef D3DXQUATERNION_HPP
 #define D3DXQUATERNION_HPP
 
+#include "D3DXFunctions.hpp"
+
 /**
  * @brief The D3DXQUATERNION class
  */
@@ -76,6 +78,30 @@ D3DXQUATERNION *D3DXQuaternionRotationAxis(D3DXQUATERNION *pOut, const D3DXVECTO
 	pOut->w = cosf(Angle);
 
 	return pOut;
+}
+
+/**
+ * @brief D3DXQuaternionRotationVec3toVec3 calculates a quaternion for rotating from vector pV0 to vector pV1
+ * @param pOut
+ * @param pV0
+ * @param pV1
+ * @return
+ */
+D3DXQUATERNION *D3DXQuaternionRotationVec3toVec3(D3DXQUATERNION *pOut, const D3DXVECTOR3 * pV0, const D3DXVECTOR3 * pV1)
+{
+    #ifdef D3DX_POINTER_CHECK
+        if(pOut == NULL) {
+            pOut = new D3DXQUATERNION();
+        }
+    #endif
+
+    D3DXVECTOR3 axis;
+    D3DXVec3Cross(&axis, pV0, pV1);
+
+    float cosRot = D3DXVec3Dot(pV0, pV1);
+    float angle = acosf(cosRot);
+
+    return D3DXQuaternionRotationAxis(pOut, &axis, angle);
 }
 
 /**
