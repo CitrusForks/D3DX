@@ -130,7 +130,7 @@ void CreateOrthoNormalBase(const D3DXVECTOR3 *n, D3DXVECTOR3 *u, D3DXVECTOR3 *v)
         v->y =  n->z;
         v->z = -n->y;
     } else {
-        if(fabsf(n->x)>D3DX_COORDSYS_EPSILON) {
+        if(fabsf(n->x) > D3DX_COORDSYS_EPSILON) {
             v->x =  n->z;
             v->y =  0.0f;
             v->z = -n->x;
@@ -157,7 +157,7 @@ void CreateOrthoNormalBase(const D3DXVECTOR3 *n, D3DXVECTOR3 *u, D3DXVECTOR3 *v)
 * @param pOut
 * @return
 */
-D3DXVECTOR3 *D3DXVecProjBase(	const D3DXVECTOR3 *V0,
+D3DXVECTOR3 *D3DXVecProjBase(const D3DXVECTOR3 *V0,
                              const D3DXVECTOR3 *V1,
                              const D3DXVECTOR3 *V2,
                              const D3DXVECTOR3 *pV,
@@ -198,8 +198,9 @@ D3DXVECTOR3 *D3DXVecApplyBase(	const D3DXVECTOR3 *V0,
 #endif
 
     *pOut = (*V0) * pV->x +
-        (*V1) * pV->y +
-        (*V2) * pV->z;
+            (*V1) * pV->y +
+            (*V2) * pV->z;
+
     return pOut;
 }
 
